@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Science - Properties and Changes of Materials & Forces and Simple Machines (Grade 5)">
   <title>Science • Matter & Forces</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔬</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -18,13 +21,13 @@
       <div class="hero-tags"><span>🧊 States of Matter</span><span>🔥 Changes of State</span><span>🧲 Forces</span></div>
     </header>
 
-    <section class="progress-card" aria-label="Progress">
+    <section class="progress-card" aria-label="Progress" style="--accent:#4a6bff">
       <div class="progress-row"><strong>Your progress • Seu progresso</strong><span id="progressText">0%</span></div>
       <div class="progress-bar"><span id="progressBar"></span></div>
       <div class="stats"><span>✅ <b id="answered">0</b> answered</span><span>⭐ <b id="correctCount">0</b> correct</span></div>
     </section>
 
-    <nav class="section-nav" aria-label="Sections">
+    <nav class="section-nav" aria-label="Sections" style="--accent:#4a6bff">
       <a class="home" href="index.html">🏠 Início</a>
       <a href="#materials">1. Properties & Changes of Materials</a>
       <a href="#forces">2. Forces and Simple Machines</a>
@@ -32,7 +35,7 @@
 
     <main>
       <!-- ================= UNIT 2 ================= -->
-      <section class="topic-section" id="materials">
+      <section class="topic-section" id="materials" style="--accent:#8a5cf6;--accent-soft:#f1ecff">
         <div class="topic-title">
           <span class="emoji">🧪</span>
           <div>
@@ -105,7 +108,7 @@
       </section>
 
       <!-- ================= UNIT 3 ================= -->
-      <section class="topic-section" id="forces">
+      <section class="topic-section" id="forces" style="--accent:#2f8fe0;--accent-soft:#e8f4ff">
         <div class="topic-title">
           <span class="emoji">⚙️</span>
           <div>
@@ -268,6 +271,8 @@
         answer: 0
       }
     ]);
+
+    initScrollSpy();
   </script>
 </body>
 </html>

@@ -18,7 +18,11 @@ function buildQuiz(containerId, questions, options) {
     card.className = 'question';
 
     const h4 = document.createElement('h4');
-    h4.textContent = `${qi + 1}. ${q.question}`;
+    const qnum = document.createElement('span');
+    qnum.className = 'qnum';
+    qnum.textContent = qi + 1;
+    h4.appendChild(qnum);
+    h4.appendChild(document.createTextNode(q.question));
     card.appendChild(h4);
 
     if (q.translation) {
@@ -97,4 +101,23 @@ function updateGlobalProgress() {
   if (text) text.textContent = pct + '%';
   if (answeredEl) answeredEl.textContent = answeredCount;
   if (correctEl) correctEl.textContent = correctCount;
+}
+
+function initScrollSpy() {
+  const links = document.querySelectorAll('.section-nav a[href^="#"]');
+  const sections = Array.from(links)
+    .map(a => document.getElementById(a.getAttribute('href').slice(1)))
+    .filter(Boolean);
+  if (!sections.length) return;
+
+  const setActive = id => {
+    links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === `#${id}`));
+  };
+
+  const observer = new IntersectionObserver(entries => {
+    const visible = entries.filter(e => e.isIntersecting);
+    if (visible.length) setActive(visible[0].target.id);
+  }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+
+  sections.forEach(s => observer.observe(s));
 }
