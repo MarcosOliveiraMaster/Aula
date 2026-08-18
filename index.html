@@ -1,101 +1,52 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="English Quest - revisão bilíngue de inglês para o 5º ano">
-  <title>English Quest • Grade 5</title>
+  <meta name="description" content="Aula - portal de estudos de Geografia e Ciências para o 5º ano">
+  <title>Aula • Geografia & Ciências</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="app">
     <header class="hero">
-      <div class="hero-badge">🧠 MapleBear • Grade 5</div>
-      <h1>English Quest</h1>
-      <p>Uma aventura de revisão de inglês: aprenda, pratique e desbloqueie estrelas!</p>
-      <div class="hero-tags"><span>🇺🇸 English</span><span>🇧🇷 Português</span><span>⭐ 30+ desafios</span></div>
+      <div class="hero-badge">🎓 MapleBear • Year Five</div>
+      <h1>Aula</h1>
+      <p>Escolha uma matéria para estudar o conteúdo, ver imagens explicativas e praticar com questões de múltipla escolha.</p>
+      <div class="hero-tags"><span>🌎 Geografia</span><span>🔬 Science</span><span>📝 Questões práticas</span></div>
     </header>
 
-    <section class="progress-card" aria-label="Progresso">
-      <div class="progress-row"><strong>Seu progresso</strong><span id="progressText">0%</span></div>
-      <div class="progress-bar"><span id="progressBar"></span></div>
-      <div class="stats"><span>⭐ <b id="stars">0</b> estrelas</span><span>✅ <b id="answered">0</b> respostas</span></div>
+    <section class="subject-grid">
+      <a class="subject-card card-geo" href="geografia.html">
+        <span class="icon">🌎</span>
+        <h2>Geografia</h2>
+        <p>O espaço transformado: do campo para a cidade, a relação entre o campo e a cidade e os setores da economia. Conteúdo 100% em português.</p>
+        <span class="go">Estudar Geografia →</span>
+      </a>
+      <a class="subject-card card-sci" href="ciencias.html">
+        <span class="icon">🔬</span>
+        <h2>Science</h2>
+        <p>Properties and Changes of Materials & Forces and Simple Machines. Conteúdo em inglês, com traduções em português.</p>
+        <span class="go">Study Science →</span>
+      </a>
     </section>
 
-    <nav class="tabs" aria-label="Assuntos">
-      <button class="tab active" data-topic="figurative">🎨 Fig. Language</button>
-      <button class="tab" data-topic="pronouns">🪞 Pronouns</button>
-      <button class="tab" data-topic="punctuation">✏️ Punctuation</button>
-      <button class="tab" data-topic="memoir">📖 Memoir</button>
-      <button class="tab" data-topic="challenge">🏆 Final Challenge</button>
-    </nav>
+    <section class="home-info">
+      <div class="info-pill">
+        <h3>📖 Textos informativos</h3>
+        <p>Cada seção traz explicações completas sobre os temas estudados, com vocabulário destacado.</p>
+      </div>
+      <div class="info-pill">
+        <h3>🖼️ Imagens do material</h3>
+        <p>Fotos e ilustrações retiradas do próprio roteiro de estudos ajudam a visualizar o conteúdo.</p>
+      </div>
+      <div class="info-pill">
+        <h3>✅ Questões de múltipla escolha</h3>
+        <p>5 questões de prática ao final de cada seção para reforçar o aprendizado.</p>
+      </div>
+    </section>
 
-    <main>
-      <section class="topic active" id="figurative">
-        <div class="topic-title"><span class="emoji">🎨</span><div><p class="eyebrow">UNIT 4</p><h2>Poetry & Figurative Language</h2><p>Poetry can make ordinary ideas feel magical.</p><p class="pt">A poesia pode deixar ideias comuns mais mágicas.</p></div></div>
-
-        <div class="concept-grid">
-          <article class="concept"><h3>🟣 Metaphor</h3><p><b>English:</b> A metaphor says one thing <b>is</b> another thing.</p><p class="pt">Uma metáfora diz que uma coisa <b>é</b> outra, criando uma comparação sem “like” ou “as”.</p><div class="example"><b>English:</b> The sun is a golden blanket.<br><span>Português: O sol é um cobertor dourado.</span></div><div class="example"><b>English:</b> Dreams are tiny stars in jars.<br><span>Português: Os sonhos são pequenas estrelas em potes.</span></div></article>
-          <article class="concept"><h3>🔊 Onomatopoeia</h3><p><b>English:</b> A word that sounds like the noise it describes.</p><p class="pt">Uma palavra que imita o som que descreve.</p><div class="example"><b>English:</b> Buzz! Splash! Bang!<br><span>Português: Zum! Splash! Bang!</span></div><div class="example"><b>English:</b> The footsteps went <b>thump, thump, thump.</b><br><span>Português: Os passos fizeram <b>tum, tum, tum.</b></span></div></article>
-          <article class="concept"><h3>🌙 Personification</h3><p><b>English:</b> Giving human qualities or actions to animals, objects, or nature.</p><p class="pt">Dar características ou ações humanas a animais, objetos ou elementos da natureza.</p><div class="example"><b>English:</b> The moon smiled at the children.<br><span>Português: A lua sorriu para as crianças.</span></div><div class="example"><b>English:</b> The wind whispered through the trees.<br><span>Português: O vento sussurrou entre as árvores.</span></div></article>
-          <article class="concept"><h3>🐝 Alliteration</h3><p><b>English:</b> Repeating the same beginning sound in nearby words.</p><p class="pt">Repetir o mesmo som inicial em palavras próximas.</p><div class="example"><b>English:</b> Busy bees buzz by bright blue flowers.<br><span>Português: Abelhas ocupadas zumbem perto de flores azuis e brilhantes.</span></div></article>
-        </div>
-
-        <div class="section-head"><span>🎯</span><div><h3>Practice • Pratique</h3><p>Leia o inglês e use a tradução como apoio.</p></div></div>
-        <div id="figurativeQuestions" class="question-list"></div>
-        <div class="matching card">
-          <h3>🔗 Match the term • Ligue os conceitos</h3>
-          <p>Escolha um termo e depois escolha a definição correspondente.</p>
-          <div class="match-grid"><div><h4>Terms • Termos</h4><div id="matchTerms"></div></div><div><h4>Definitions • Definições</h4><div id="matchDefs"></div></div></div>
-          <div id="matchFeedback" class="feedback" aria-live="polite"></div>
-        </div>
-      </section>
-
-      <section class="topic" id="pronouns">
-        <div class="topic-title"><span class="emoji">🪞</span><div><p class="eyebrow">UNIT 6</p><h2>Reflexive & Intensive Pronouns</h2><p>Understand when the action returns to the subject and when a pronoun only adds emphasis.</p><p class="pt">Entenda quando a ação volta para o sujeito e quando o pronome apenas dá ênfase.</p></div></div>
-
-        <div class="pronoun-table card">
-          <h3>Pronoun map • Mapa dos pronomes</h3>
-          <div class="table-scroll"><table><thead><tr><th>Subject</th><th>Reflexive / Intensive</th><th>Português</th></tr></thead><tbody>
-          <tr><td>I</td><td>myself</td><td>eu mesmo(a)</td></tr><tr><td>you</td><td>yourself</td><td>você mesmo(a)</td></tr><tr><td>he</td><td>himself</td><td>ele mesmo</td></tr><tr><td>she</td><td>herself</td><td>ela mesma</td></tr><tr><td>it</td><td>itself</td><td>ele/ela mesmo(a), para coisas/animais</td></tr><tr><td>we</td><td>ourselves</td><td>nós mesmos</td></tr><tr><td>you</td><td>yourselves</td><td>vocês mesmos</td></tr><tr><td>they</td><td>themselves</td><td>eles/elas mesmos</td></tr>
-          </tbody></table></div>
-        </div>
-
-        <div class="two-cards"><article class="concept"><h3>🪞 Reflexive</h3><p><b>English:</b> The subject and object are the same person or thing.</p><p class="pt">O sujeito e o objeto são a mesma pessoa ou coisa.</p><div class="example"><b>English:</b> Sophie looked at herself in the mirror.<br><span>Português: Sophie olhou para si mesma no espelho.</span></div></article>
-        <article class="concept"><h3>📣 Intensive</h3><p><b>English:</b> It emphasizes the subject. The sentence still makes sense without it.</p><p class="pt">Ele dá ênfase ao sujeito. A frase continua fazendo sentido sem ele.</p><div class="example"><b>English:</b> The BFG himself delivered the dreams.<br><span>Português: O próprio BFG entregou os sonhos.</span></div></article></div>
-
-        <div class="section-head"><span>🧩</span><div><h3>Practice • Pratique</h3><p>Mais de uma forma de exercício para fixar.</p></div></div>
-        <div id="pronounQuestions" class="question-list"></div>
-      </section>
-
-      <section class="topic" id="punctuation">
-        <div class="topic-title"><span class="emoji">✏️</span><div><p class="eyebrow">UNIT 5</p><h2>Memoir • Writing & Punctuation</h2><p>Use punctuation to make writing clear and easy to understand.</p><p class="pt">Use a pontuação para deixar o texto claro e fácil de entender.</p></div></div>
-
-        <div class="concept-grid three"><article class="concept"><h3>🔹 Commas</h3><p><b>English:</b> Use commas to separate items in a list.</p><p class="pt">Use vírgulas para separar itens de uma lista.</p><div class="example"><b>English:</b> I packed a pencil, a ruler, and a notebook.<br><span>Português: Eu coloquei um lápis, uma régua e um caderno na mochila.</span></div><p><b>English:</b> After school, I went to the park.</p><p class="pt">Depois da escola, eu fui ao parque.</p></article>
-          <article class="concept"><h3>💬 Quotation marks</h3><p><b>English:</b> Use quotation marks around someone's exact words.</p><p class="pt">Use aspas ao redor das palavras exatas que alguém falou.</p><div class="example"><b>English:</b> Emma said, “Let's play outside.”<br><span>Português: Emma disse: “Vamos brincar lá fora.”</span></div></article>
-          <article class="concept"><h3>✨ Apostrophes</h3><p><b>English:</b> Apostrophes can show possession or contractions.</p><p class="pt">Apóstrofos podem indicar posse ou contrações.</p><div class="example"><b>English:</b> Sofia's book.<br><span>Português: O livro da Sofia.</span></div><div class="example"><b>English:</b> I don't know.<br><span>Português: Eu não sei.</span></div></article></div>
-
-        <div class="section-head"><span>📝</span><div><h3>Practice • Pratique</h3><p>Escolha a pontuação que deixa a frase correta.</p></div></div>
-        <div id="punctuationQuestions" class="question-list"></div>
-      </section>
-
-      <section class="topic" id="memoir">
-        <div class="topic-title"><span class="emoji">📖</span><div><p class="eyebrow">MEMOIR</p><h2>Memoir & Interview</h2><p>A memoir tells personal experiences. An interview records questions and answers.</p><p class="pt">Um memoir conta experiências pessoais. Uma entrevista registra perguntas e respostas.</p></div></div>
-        <div class="concept-grid"><article class="concept"><h3>📖 Memoir</h3><p><b>English:</b> A memoir is writing about personal memories and experiences.</p><p class="pt">Memoir é um texto sobre memórias e experiências pessoais.</p><div class="example"><b>English:</b> I remember the day I learned to ride a bike.<br><span>Português: Eu me lembro do dia em que aprendi a andar de bicicleta.</span></div></article>
-        <article class="concept"><h3>🎤 Interview</h3><p><b>English:</b> An interview uses questions to learn about another person's ideas or experiences.</p><p class="pt">Uma entrevista usa perguntas para conhecer ideias ou experiências de outra pessoa.</p><div class="example"><b>English:</b> “What was your favorite school memory?”<br><span>Português: “Qual foi sua memória favorita da escola?”</span></div></article></div>
-        <div id="memoirQuestions" class="question-list"></div>
-      </section>
-
-      <section class="topic" id="challenge">
-        <div class="topic-title"><span class="emoji">🏆</span><div><p class="eyebrow">FINAL BOSS</p><h2>Final Challenge</h2><p>10 questões misturadas. Tente sem olhar as respostas anteriores!</p><p class="pt">Você consegue chegar a 10/10?</p></div></div>
-        <div id="finalQuestions" class="question-list"></div>
-        <button class="primary big" id="finishBtn">🏆 Finish challenge • Finalizar</button>
-        <div class="result card hidden" id="finalResult"><div class="trophy">🏆</div><h3 id="resultTitle"></h3><p id="resultText"></p><button class="secondary" id="retryBtn">🔄 Try again • Tentar novamente</button></div>
-      </section>
-    </main>
-
-    <footer>⭐ English Quest • Revisão bilíngue para o 5º ano • Feito para aprender brincando.</footer>
+    <footer>🎓 Aula • Material de apoio de Geografia e Ciências • 5º ano</footer>
   </div>
-  <script src="script.js" defer></script>
 </body>
 </html>

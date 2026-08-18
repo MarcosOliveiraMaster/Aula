@@ -1,0 +1,23 @@
+<svg viewBox="0 0 440 220" xmlns="http://www.w3.org/2000/svg" font-family="Inter,sans-serif">
+<rect width="440" height="220" fill="#ffffff"/>
+<text x="220" y="22" text-anchor="middle" font-size="14" font-weight="900" fill="#22308a">Balanced forces • Forças equilibradas</text>
+<line x1="70" y1="55" x2="370" y2="55" stroke="#9a8a6a" stroke-width="5"/>
+<circle cx="220" cy="55" r="5" fill="#22308a"/>
+<path d="M180 55 H90" stroke="#4a6bff" stroke-width="4" marker-end="url(#b1)"/>
+<path d="M260 55 H350" stroke="#4a6bff" stroke-width="4" marker-end="url(#b1)"/>
+<text x="130" y="45" text-anchor="middle" font-size="12" fill="#4a6bff" font-weight="700">5 N</text>
+<text x="310" y="45" text-anchor="middle" font-size="12" fill="#4a6bff" font-weight="700">5 N</text>
+<text x="220" y="80" text-anchor="middle" font-size="11" fill="#667085">No motion • Sem movimento</text>
+<text x="220" y="122" text-anchor="middle" font-size="14" font-weight="900" fill="#c23a3a">Unbalanced forces • Forças desequilibradas</text>
+<line x1="70" y1="155" x2="370" y2="155" stroke="#9a8a6a" stroke-width="5"/>
+<circle cx="245" cy="155" r="5" fill="#c23a3a"/>
+<path d="M215 155 H100" stroke="#ff6b6b" stroke-width="6" marker-end="url(#b2)"/>
+<path d="M275 155 H330" stroke="#4a6bff" stroke-width="3" marker-end="url(#b1)"/>
+<text x="150" y="145" text-anchor="middle" font-size="12" fill="#c23a3a" font-weight="700">8 N</text>
+<text x="305" y="145" text-anchor="middle" font-size="12" fill="#4a6bff" font-weight="700">3 N</text>
+<text x="220" y="185" text-anchor="middle" font-size="11" fill="#667085">Object moves left • O objeto se move</text>
+<defs>
+<marker id="b1" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#4a6bff"/></marker>
+<marker id="b2" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#ff6b6b"/></marker>
+</defs>
+</svg>

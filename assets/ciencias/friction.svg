@@ -1,0 +1,30 @@
+<svg viewBox="0 0 440 200" xmlns="http://www.w3.org/2000/svg" font-family="Inter,sans-serif">
+<rect width="440" height="200" fill="#ffffff"/>
+<text x="112" y="20" text-anchor="middle" font-size="13" font-weight="900" fill="#22308a">Rough surface</text><text x="112" y="35" text-anchor="middle" font-size="11" fill="#4a5a9a" font-style="italic">Superfície áspera</text>
+<rect x="30" y="120" width="165" height="18" fill="#d8c9a3"/>
+<path d="M35 120 l4 -8 4 8" stroke="#a68a55" stroke-width="2" fill="none"/>
+<path d="M47 120 l4 -8 4 8" stroke="#a68a55" stroke-width="2" fill="none"/>
+<path d="M59 120 l4 -8 4 8" stroke="#a68a55" stroke-width="2" fill="none"/>
+<path d="M71 120 l4 -8 4 8" stroke="#a68a55" stroke-width="2" fill="none"/>
+<path d="M83 120 l4 -8 4 8" stroke="#a68a55" stroke-width="2" fill="none"/>
+<path d="M95 120 l4 -8 4 8" stroke="#a68a55" stroke-width="2" fill="none"/>
+<path d="M107 120 l4 -8 4 8" stroke="#a68a55" stroke-width="2" fill="none"/>
+<path d="M119 120 l4 -8 4 8" stroke="#a68a55" stroke-width="2" fill="none"/>
+<path d="M131 120 l4 -8 4 8" stroke="#a68a55" stroke-width="2" fill="none"/>
+<path d="M143 120 l4 -8 4 8" stroke="#a68a55" stroke-width="2" fill="none"/>
+<path d="M155 120 l4 -8 4 8" stroke="#a68a55" stroke-width="2" fill="none"/>
+<path d="M167 120 l4 -8 4 8" stroke="#a68a55" stroke-width="2" fill="none"/>
+<path d="M179 120 l4 -8 4 8" stroke="#a68a55" stroke-width="2" fill="none"/>
+<rect x="80" y="90" width="55" height="32" rx="6" fill="#c7cdfa" stroke="#4a6bff" stroke-width="2"/>
+<path d="M140 106 H165" stroke="#c23a3a" stroke-width="3" marker-end="url(#f1)"/>
+<text x="112" y="160" text-anchor="middle" font-size="11" fill="#667085">More friction • Mais atrito</text>
+<text x="330" y="20" text-anchor="middle" font-size="13" font-weight="900" fill="#22308a">Smooth surface</text><text x="330" y="35" text-anchor="middle" font-size="11" fill="#4a5a9a" font-style="italic">Superfície lisa</text>
+<rect x="245" y="120" width="165" height="18" fill="#cfe8ff"/>
+<rect x="298" y="90" width="55" height="32" rx="6" fill="#c7cdfa" stroke="#4a6bff" stroke-width="2"/>
+<path d="M358 106 H400" stroke="#1f8a68" stroke-width="3" marker-end="url(#f2)"/>
+<text x="330" y="160" text-anchor="middle" font-size="11" fill="#667085">Less friction • Menos atrito</text>
+<defs>
+<marker id="f1" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#c23a3a"/></marker>
+<marker id="f2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#1f8a68"/></marker>
+</defs>
+</svg>

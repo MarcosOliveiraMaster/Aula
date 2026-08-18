@@ -1,0 +1,25 @@
+<svg viewBox="0 0 460 195" xmlns="http://www.w3.org/2000/svg" font-family="Inter,sans-serif">
+<rect width="460" height="195" fill="#ffffff"/>
+<g transform="translate(40,50)"><rect x="0" y="0" width="70" height="70" rx="10" fill="#dbe6ff" stroke="#7e97e6" stroke-width="2"/><text x="35" y="40" text-anchor="middle" font-size="26">🧊</text></g>
+<g transform="translate(195,50)"><path d="M35 0 C55 30 65 48 65 62 A30 30 0 1 1 5 62 C5 48 15 30 35 0Z" fill="#bfe0ff" stroke="#4a9be0" stroke-width="2"/></g>
+<g transform="translate(345,45)"><ellipse cx="35" cy="45" rx="42" ry="26" fill="#fdeecb" stroke="#e3b45a" stroke-width="2"/><text x="35" y="53" text-anchor="middle" font-size="24">💨</text></g>
+<text x="75" y="180" text-anchor="middle" font-size="14" font-weight="800" fill="#22308a">Solid • Sólido</text>
+<text x="228" y="180" text-anchor="middle" font-size="14" font-weight="800" fill="#22308a">Liquid • Líquido</text>
+<text x="380" y="180" text-anchor="middle" font-size="14" font-weight="800" fill="#22308a">Gas • Gás</text>
+<path d="M115 70 H190" stroke="#ff5f91" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="152" y="62" text-anchor="middle" font-size="11" fill="#ff5f91" font-weight="700">melting</text>
+<text x="152" y="90" text-anchor="middle" font-size="10" fill="#ff5f91" font-style="italic">derretimento</text>
+<path d="M265 70 H340" stroke="#ff5f91" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="302" y="62" text-anchor="middle" font-size="11" fill="#ff5f91" font-weight="700">evaporation</text>
+<text x="302" y="90" text-anchor="middle" font-size="10" fill="#ff5f91" font-style="italic">evaporação</text>
+<path d="M340 110 H265" stroke="#54a3d6" stroke-width="3" marker-end="url(#arrow2)"/>
+<text x="302" y="128" text-anchor="middle" font-size="11" fill="#2f8fe0" font-weight="700">condensation</text>
+<text x="302" y="142" text-anchor="middle" font-size="10" fill="#2f8fe0" font-style="italic">condensação</text>
+<path d="M190 110 H115" stroke="#54a3d6" stroke-width="3" marker-end="url(#arrow2)"/>
+<text x="152" y="128" text-anchor="middle" font-size="11" fill="#2f8fe0" font-weight="700">freezing</text>
+<text x="152" y="142" text-anchor="middle" font-size="10" fill="#2f8fe0" font-style="italic">congelamento</text>
+<defs>
+<marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#ff5f91"/></marker>
+<marker id="arrow2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#2f8fe0"/></marker>
+</defs>
+</svg>
