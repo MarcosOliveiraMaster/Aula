@@ -17,7 +17,7 @@
       <div class="hero-badge">🔢 MapleBear • Matemática • Year Five</div>
       <h1>Números Decimais</h1>
       <p>Vamos praticar multiplicação por potências de 10, comparação de decimais, situações-problema com soma e subtração, e representar números decimais na grade do material dourado.</p>
-      <div class="hero-tags"><span>✖️ Potências de 10</span><span>⚖️ Comparação</span><span>🧮 Situações-problema</span><span>🟨 Material dourado</span></div>
+      <div class="hero-tags"><span>✖️ Potências de 10</span><span>⚖️ Comparação</span><span>🧮 Situações-problema</span><span>🟨 Material dourado</span><span>📝 Exercícios</span></div>
     </header>
 
     <section class="progress-card" aria-label="Progresso" style="--accent:#7657ff">
@@ -32,6 +32,7 @@
       <a href="#comparacao">2. Comparação</a>
       <a href="#problemas">3. Situações-problema</a>
       <a href="#grade">4. Material dourado</a>
+      <a href="#exercicios">5. Exercícios</a>
     </nav>
 
     <main>
@@ -150,6 +151,35 @@
         <div style="height:16px"></div>
         <div id="grid4"></div>
       </section>
+
+      <!-- ================= SEÇÃO 5 ================= -->
+      <section class="topic-section" id="exercicios" style="--accent:#0891b2;--accent-soft:#e0f7fa">
+        <div class="topic-title">
+          <span class="emoji">📝</span>
+          <div>
+            <p class="eyebrow">SEÇÃO 5</p>
+            <h2>Exercícios</h2>
+            <p>16 situações-problema misturando tudo o que você aprendeu. Enunciado em inglês, tradução em português, alternativas em inglês.</p>
+          </div>
+        </div>
+
+        <article class="lesson">
+          <h3>🧠 Revisão geral</h3>
+          <p>Agora é hora de praticar! Esta seção reúne <b>16 situações-problema</b> — 4 de cada tipo: somar decimais, subtrair decimais, multiplicar por potências de 10 e comparar preços para descobrir o mais barato ou o mais caro. Leia o enunciado em inglês, confira a tradução em português logo abaixo e escolha a alternativa correta (em inglês).</p>
+        </article>
+
+        <div class="section-head"><span>➕</span><div><h3>Add Decimals • Somar decimais</h3><p>4 questions • 4 questões</p></div></div>
+        <div id="ex-add" class="question-list"></div>
+
+        <div class="section-head"><span>➖</span><div><h3>Subtract Decimals • Subtrair decimais</h3><p>4 questions • 4 questões</p></div></div>
+        <div id="ex-sub" class="question-list"></div>
+
+        <div class="section-head"><span>✖️</span><div><h3>Multiply by Powers of 10 • Multiplicar por potências de 10</h3><p>4 questions • 4 questões</p></div></div>
+        <div id="ex-mult" class="question-list"></div>
+
+        <div class="section-head"><span>💰</span><div><h3>Compare Prices • Comparar preços</h3><p>4 questions • 4 questões</p></div></div>
+        <div id="ex-price" class="question-list"></div>
+      </section>
     </main>
 
     <footer>🔢 Matemática • Números Decimais • 5º ano</footer>
@@ -265,6 +295,120 @@
     buildDecimalGrid('grid2', 0.34);
     buildDecimalGrid('grid3', 0.6);
     buildDecimalGrid('grid4', 0.75);
+
+    const exOptions = {
+      correctMsg: '✅ Correct! • Correto!',
+      wrongMsg: '❌ Try again next time • Tente novamente da próxima vez',
+      scoreLabel: 'Score • Pontuação'
+    };
+
+    buildQuiz('ex-add', [
+      {
+        question: 'Emma bought a notebook for $4.25 and a pencil case for $3.50. How much did she spend in total?',
+        translation: 'Emma comprou um caderno por $4,25 e um estojo por $3,50. Quanto ela gastou no total?',
+        choices: ['$7.65', '$7.75', '$8.75', '$7.85'],
+        answer: 1
+      },
+      {
+        question: 'A recipe used 1.25 kg of flour and 0.75 kg of sugar. What is the total weight of flour and sugar used?',
+        translation: 'Uma receita usou 1,25 kg de farinha e 0,75 kg de açúcar. Qual é o peso total de farinha e açúcar usados?',
+        choices: ['1.90 kg', '2.10 kg', '2 kg', '1 kg'],
+        answer: 2
+      },
+      {
+        question: 'Liam ran 2.4 km on Saturday and 3.15 km on Sunday. How many kilometers did he run in total over the weekend?',
+        translation: 'Liam correu 2,4 km no sábado e 3,15 km no domingo. Quantos quilômetros ele correu no total no fim de semana?',
+        choices: ['5.45 km', '5.55 km', '5.35 km', '6.55 km'],
+        answer: 1
+      },
+      {
+        question: 'A jug had 1.5 liters of juice. Ana poured in another 0.85 liters. How many liters of juice are in the jug now?',
+        translation: 'Uma jarra tinha 1,5 litro de suco. Ana colocou mais 0,85 litro. Quantos litros de suco há na jarra agora?',
+        choices: ['2.25 L', '1.35 L', '2.45 L', '2.35 L'],
+        answer: 3
+      }
+    ], exOptions);
+
+    buildQuiz('ex-sub', [
+      {
+        question: 'Noah had $15.00. He spent $6.35 on a toy. How much money does he have left?',
+        translation: 'Noah tinha $15,00. Ele gastou $6,35 em um brinquedo. Quanto dinheiro sobrou?',
+        choices: ['$8.75', '$8.65', '$9.65', '$8.55'],
+        answer: 1
+      },
+      {
+        question: 'A ribbon was 3.6 meters long. Sophia cut off 1.25 meters to decorate a gift. How many meters of ribbon are left?',
+        translation: 'Uma fita tinha 3,6 metros de comprimento. Sophia cortou 1,25 metro para decorar um presente. Quantos metros de fita sobraram?',
+        choices: ['2.45 m', '2.25 m', '2.35 m', '1.35 m'],
+        answer: 2
+      },
+      {
+        question: 'A container had 4.8 kg of rice. After cooking, 2.35 kg of rice were used. How many kilograms of rice are left in the container?',
+        translation: 'Um recipiente tinha 4,8 kg de arroz. Depois de cozinhar, 2,35 kg de arroz foram usados. Quantos quilogramas de arroz sobraram no recipiente?',
+        choices: ['2.55 kg', '2.35 kg', '2.45 kg', '3.45 kg'],
+        answer: 2
+      },
+      {
+        question: 'A backpack costs $32.90 less than a bicycle that costs $58.40. How much does the backpack cost?',
+        translation: 'Uma mochila custa $32,90 a menos que uma bicicleta que custa $58,40. Quanto custa a mochila?',
+        choices: ['$26.50', '$25.40', '$91.30', '$25.50'],
+        answer: 3
+      }
+    ], exOptions);
+
+    buildQuiz('ex-mult', [
+      {
+        question: 'One notebook costs $3.20. How much do 10 notebooks cost?',
+        translation: 'Um caderno custa $3,20. Quanto custam 10 cadernos?',
+        choices: ['$3.20', '$32.00', '$320.00', '$30.20'],
+        answer: 1
+      },
+      {
+        question: 'A small bag of rice weighs 0.45 kg. How many kilograms do 100 bags weigh?',
+        translation: 'Um pacotinho de arroz pesa 0,45 kg. Quantos quilogramas pesam 100 pacotinhos?',
+        choices: ['4.5 kg', '450 kg', '45 kg', '0.45 kg'],
+        answer: 2
+      },
+      {
+        question: 'One pencil costs $0.65. What is the cost of 1000 pencils bought by a school?',
+        translation: 'Um lápis custa $0,65. Qual é o custo de 1000 lápis comprados por uma escola?',
+        choices: ['$65.00', '$6.50', '$650.00', '$6500.00'],
+        answer: 2
+      },
+      {
+        question: 'A single sticker weighs 1.08 grams. What is the total weight of 100 stickers?',
+        translation: 'Um adesivo pesa 1,08 grama. Qual é o peso total de 100 adesivos?',
+        choices: ['10.8 g', '1080 g', '1.08 g', '108 g'],
+        answer: 3
+      }
+    ], exOptions);
+
+    buildQuiz('ex-price', [
+      {
+        question: 'A toy car costs $12.75 at Store A and $12.57 at Store B. Which store sells the toy car for a cheaper price?',
+        translation: 'Um carrinho de brinquedo custa $12,75 na Loja A e $12,57 na Loja B. Em qual loja o carrinho é mais barato?',
+        choices: ['Store A', 'Both cost the same', 'Store B', 'Not enough information'],
+        answer: 2
+      },
+      {
+        question: 'Notebook A costs $4.30, Notebook B costs $4.03, and Notebook C costs $4.29. Which notebook is the most expensive?',
+        translation: 'O Caderno A custa $4,30, o Caderno B custa $4,03 e o Caderno C custa $4,29. Qual caderno é o mais caro?',
+        choices: ['Notebook B', 'Notebook C', 'They all cost the same', 'Notebook A'],
+        answer: 3
+      },
+      {
+        question: 'A movie ticket costs $8.50 on Monday and $8.05 on Wednesday. On which day is the ticket cheaper?',
+        translation: 'Um ingresso de cinema custa $8,50 na segunda-feira e $8,05 na quarta-feira. Em qual dia o ingresso é mais barato?',
+        choices: ['Monday', 'Not enough information', 'Both cost the same', 'Wednesday'],
+        answer: 3
+      },
+      {
+        question: 'Four fruits have these prices per kilogram: Apple $3.20, Banana $2.75, Grape $3.02, Orange $2.99. Which fruit is the cheapest?',
+        translation: 'Quatro frutas têm estes preços por quilo: Maçã $3,20, Banana $2,75, Uva $3,02, Laranja $2,99. Qual fruta é a mais barata?',
+        choices: ['Grape', 'Orange', 'Banana', 'Apple'],
+        answer: 2
+      }
+    ], exOptions);
 
     initScrollSpy();
   </script>
