@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Matemática - Números decimais: multiplicação por potências de 10, comparação, situações-problema e material dourado (5º ano)">
+  <title>Matemática • Números Decimais</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔢</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <header class="hero" style="background:#241b4d">
+      <a class="back-link" href="index.html">← Voltar para Aula</a>
+      <div class="hero-badge">🔢 MapleBear • Matemática • Year Five</div>
+      <h1>Números Decimais</h1>
+      <p>Vamos praticar multiplicação por potências de 10, comparação de decimais, situações-problema com soma e subtração, e representar números decimais na grade do material dourado.</p>
+      <div class="hero-tags"><span>✖️ Potências de 10</span><span>⚖️ Comparação</span><span>🧮 Situações-problema</span><span>🟨 Material dourado</span></div>
+    </header>
+
+    <section class="progress-card" aria-label="Progresso" style="--accent:#7657ff">
+      <div class="progress-row"><strong>Seu progresso</strong><span id="progressText">0%</span></div>
+      <div class="progress-bar"><span id="progressBar"></span></div>
+      <div class="stats"><span>✅ <b id="answered">0</b> respondidas</span><span>⭐ <b id="correctCount">0</b> corretas</span></div>
+    </section>
+
+    <nav class="section-nav" aria-label="Seções" style="--accent:#7657ff">
+      <a class="home" href="index.html">🏠 Início</a>
+      <a href="#potencias">1. Potências de 10</a>
+      <a href="#comparacao">2. Comparação</a>
+      <a href="#problemas">3. Situações-problema</a>
+      <a href="#grade">4. Material dourado</a>
+    </nav>
+
+    <main>
+      <!-- ================= SEÇÃO 1 ================= -->
+      <section class="topic-section" id="potencias" style="--accent:#7657ff;--accent-soft:#efe9ff">
+        <div class="topic-title">
+          <span class="emoji">✖️</span>
+          <div>
+            <p class="eyebrow">SEÇÃO 1</p>
+            <h2>Multiplicação por potências de 10</h2>
+            <p>Multiplicando números decimais por 10, 100 e 1000.</p>
+          </div>
+        </div>
+
+        <article class="lesson">
+          <h3>🔟 Para onde vai a vírgula?</h3>
+          <p>Quando multiplicamos um número decimal por uma potência de 10, a vírgula "anda" para a direita: <b>uma casa</b> ao multiplicar por <b>10</b>, <b>duas casas</b> ao multiplicar por <b>100</b> e <b>três casas</b> ao multiplicar por <b>1000</b>. Se faltarem algarismos, completamos com zero.</p>
+          <div class="vocab-box">
+            <h4>📐 Exemplos</h4>
+            <ul>
+              <li><b>2,5 × 10 = 25</b> (a vírgula anda uma casa)</li>
+              <li><b>2,5 × 100 = 250</b> (a vírgula anda duas casas, completando com zero)</li>
+              <li><b>0,34 × 10 = 3,4</b></li>
+              <li><b>0,34 × 100 = 34</b></li>
+              <li><b>1,2 × 1000 = 1200</b></li>
+            </ul>
+          </div>
+        </article>
+
+        <div class="section-head"><span>🎯</span><div><h3>Pratique • Quiz</h3><p>5 questões de múltipla escolha.</p></div></div>
+        <div id="quiz1" class="question-list"></div>
+
+        <div class="section-head"><span>🔗</span><div><h3>Ligue os itens</h3><p>Ligue cada multiplicação ao seu resultado.</p></div></div>
+        <div id="match1"></div>
+      </section>
+
+      <!-- ================= SEÇÃO 2 ================= -->
+      <section class="topic-section" id="comparacao" style="--accent:#2f8fe0;--accent-soft:#e8f4ff">
+        <div class="topic-title">
+          <span class="emoji">⚖️</span>
+          <div>
+            <p class="eyebrow">SEÇÃO 2</p>
+            <h2>Comparação de números decimais</h2>
+            <p>Usando os sinais de maior (&gt;), menor (&lt;) e igual (=).</p>
+          </div>
+        </div>
+
+        <article class="lesson">
+          <h3>🔍 Como comparar?</h3>
+          <p>Para comparar dois números decimais, primeiro comparamos a <b>parte inteira</b>. Se forem iguais, comparamos casa por casa depois da vírgula: primeiro os <b>décimos</b>, depois os <b>centésimos</b>.</p>
+          <p>Cuidado com uma pegadinha comum: um número com <b>mais casas decimais nem sempre é maior</b>! Por exemplo, 0,5 é igual a 0,50 — e 0,50 é <b>maior</b> que 0,45, mesmo "45" parecendo maior que "5" à primeira vista.</p>
+          <div class="vocab-box">
+            <h4>📐 Exemplo</h4>
+            <ul>
+              <li><b>0,5 = 0,50</b> (completar com zero não muda o valor)</li>
+              <li><b>0,50 &gt; 0,45</b>, pois 50 centésimos é mais que 45 centésimos</li>
+              <li><b>1,08 &lt; 1,8</b>, pois 1,8 = 1,80 e 80 centésimos é mais que 08 centésimos</li>
+            </ul>
+          </div>
+        </article>
+
+        <div class="section-head"><span>🎯</span><div><h3>Pratique • Quiz</h3><p>Escolha o sinal correto: &gt;, &lt; ou =.</p></div></div>
+        <div id="quiz2" class="question-list"></div>
+      </section>
+
+      <!-- ================= SEÇÃO 3 ================= -->
+      <section class="topic-section" id="problemas" style="--accent:#e0574f;--accent-soft:#ffece9">
+        <div class="topic-title">
+          <span class="emoji">🧮</span>
+          <div>
+            <p class="eyebrow">SEÇÃO 3</p>
+            <h2>Situações-problema</h2>
+            <p>Somando e subtraindo números decimais em problemas do dia a dia.</p>
+          </div>
+        </div>
+
+        <article class="lesson">
+          <h3>➕➖ Alinhando a vírgula</h3>
+          <p>Para somar ou subtrair números decimais, alinhamos a <b>vírgula</b> de um número embaixo da vírgula do outro, completando as casas que faltarem com zero. Depois, somamos ou subtraímos normalmente, como fazemos com números naturais.</p>
+          <div class="vocab-box">
+            <h4>📐 Exemplo</h4>
+            <ul>
+              <li><b>12,50 + 3,25 = 15,75</b></li>
+              <li><b>20,00 − 8,35 = 11,65</b></li>
+            </ul>
+          </div>
+        </article>
+
+        <div class="section-head"><span>🎯</span><div><h3>Pratique • Quiz</h3><p>5 situações-problema de múltipla escolha.</p></div></div>
+        <div id="quiz3" class="question-list"></div>
+      </section>
+
+      <!-- ================= SEÇÃO 4 ================= -->
+      <section class="topic-section" id="grade" style="--accent:#c9962c;--accent-soft:#fff3dc">
+        <div class="topic-title">
+          <span class="emoji">🟨</span>
+          <div>
+            <p class="eyebrow">SEÇÃO 4</p>
+            <h2>Representando decimais na grade</h2>
+            <p>Pintando "chapas" do material dourado (grade de 10 linhas e 10 colunas).</p>
+          </div>
+        </div>
+
+        <article class="lesson">
+          <h3>🟨 A chapa do material dourado</h3>
+          <p>A <b>chapa</b> do material dourado é um quadrado dividido em <b>10 linhas</b> e <b>10 colunas</b>, formando <b>100 quadradinhos</b>. A chapa inteira representa o número <b>1 (um inteiro)</b>, e cada quadradinho representa <b>1 centésimo (0,01)</b>.</p>
+          <p>Para representar um número decimal, pintamos a quantidade de quadradinhos correspondente. Por exemplo, para representar <b>0,34</b>, pintamos <b>34 quadradinhos</b> — o mesmo que 3 linhas inteiras (30 quadradinhos) mais 4 quadradinhos de outra linha.</p>
+        </article>
+
+        <div class="section-head"><span>🖍️</span><div><h3>Pratique • Pinte a grade</h3><p>Clique nos quadradinhos para pintar e depois confira sua resposta.</p></div></div>
+        <div id="grid1"></div>
+        <div style="height:16px"></div>
+        <div id="grid2"></div>
+        <div style="height:16px"></div>
+        <div id="grid3"></div>
+        <div style="height:16px"></div>
+        <div id="grid4"></div>
+      </section>
+    </main>
+
+    <footer>🔢 Matemática • Números Decimais • 5º ano</footer>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    buildQuiz('quiz1', [
+      {
+        question: '3,6 × 10 = ?',
+        choices: ['36', '3,6', '0,36', '360'],
+        answer: 0
+      },
+      {
+        question: '0,08 × 100 = ?',
+        choices: ['0,8', '8', '0,008', '80'],
+        answer: 1
+      },
+      {
+        question: '12,4 × 1000 = ?',
+        choices: ['124', '1,24', '1240', '12400'],
+        answer: 3
+      },
+      {
+        question: '5,2 × 100 = ?',
+        choices: ['52', '520', '5200', '0,52'],
+        answer: 1
+      },
+      {
+        question: '0,7 × 10 = ?',
+        choices: ['0,07', '0,7', '70', '7'],
+        answer: 3
+      }
+    ], {
+      correctMsg: '✅ Resposta correta!',
+      wrongMsg: '❌ Tente novamente da próxima vez.',
+      scoreLabel: 'Pontuação'
+    });
+
+    buildMatching('match1', [
+      { left: '4,3 × 10', right: '43' },
+      { left: '4,3 × 100', right: '430' },
+      { left: '0,9 × 10', right: '9' },
+      { left: '0,05 × 100', right: '5' },
+      { left: '1,08 × 1000', right: '1080' }
+    ]);
+
+    buildQuiz('quiz2', [
+      {
+        question: '0,5 ___ 0,45',
+        choices: ['>', '<', '='],
+        answer: 0
+      },
+      {
+        question: '2,3 ___ 2,30',
+        choices: ['>', '<', '='],
+        answer: 2
+      },
+      {
+        question: '1,08 ___ 1,8',
+        choices: ['>', '<', '='],
+        answer: 1
+      },
+      {
+        question: '3,64 ___ 3,6',
+        choices: ['>', '<', '='],
+        answer: 0
+      },
+      {
+        question: '0,9 ___ 0,89',
+        choices: ['>', '<', '='],
+        answer: 0
+      }
+    ], {
+      correctMsg: '✅ Resposta correta!',
+      wrongMsg: '❌ Tente novamente da próxima vez.',
+      scoreLabel: 'Pontuação'
+    });
+
+    buildQuiz('quiz3', [
+      {
+        question: 'Ana comprou um caderno por R$ 12,50 e uma caneta por R$ 3,25. Quanto ela gastou no total?',
+        choices: ['R$ 15,75', 'R$ 15,50', 'R$ 9,25', 'R$ 16,75'],
+        answer: 0
+      },
+      {
+        question: 'João tinha R$ 20,00 e gastou R$ 8,35 em um lanche. Quanto sobrou?',
+        choices: ['R$ 12,65', 'R$ 11,75', 'R$ 11,65', 'R$ 28,35'],
+        answer: 2
+      },
+      {
+        question: 'Uma garrafa tem 1,5 litro de suco. Se forem usados 0,75 litro, quanto sobra?',
+        choices: ['0,25 L', '2,25 L', '1,25 L', '0,75 L'],
+        answer: 3
+      },
+      {
+        question: 'Marcos correu 3,2 km na segunda-feira e 2,45 km na terça-feira. Quantos km ele correu ao todo nos dois dias?',
+        choices: ['5,45 km', '5,65 km', '5,25 km', '6,65 km'],
+        answer: 1
+      },
+      {
+        question: 'Uma peça de tecido media 4,8 m. Foram cortados 1,35 m para uma costura. Quanto restou?',
+        choices: ['3,55 m', '3,35 m', '3,45 m', '6,15 m'],
+        answer: 2
+      }
+    ], {
+      correctMsg: '✅ Resposta correta!',
+      wrongMsg: '❌ Tente novamente da próxima vez.',
+      scoreLabel: 'Pontuação'
+    });
+
+    buildDecimalGrid('grid1', 0.08);
+    buildDecimalGrid('grid2', 0.34);
+    buildDecimalGrid('grid3', 0.6);
+    buildDecimalGrid('grid4', 0.75);
+
+    initScrollSpy();
+  </script>
+</body>
+</html>
