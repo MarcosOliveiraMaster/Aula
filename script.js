@@ -291,6 +291,259 @@ function buildMatching(containerId, pairs, options) {
   updateScore();
 }
 
+/* ===================== Graph reading (random data each load) ===================== */
+
+const GRAPH_COLORS = ['#7657ff', '#ff5f91', '#17a589', '#2f8fe0', '#e0a530'];
+
+function shuffleArray(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function randInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function pickDistinctInts(min, max, count) {
+  const pool = [];
+  for (let i = min; i <= max; i++) pool.push(i);
+  return shuffleArray(pool).slice(0, count);
+}
+
+function numericDistractors(correct, count, spread) {
+  const set = new Set([correct]);
+  const out = [];
+  let guard = 0;
+  while (out.length < count && guard < 60) {
+    guard++;
+    const delta = randInt(1, Math.max(2, spread)) * (Math.random() < 0.5 ? -1 : 1);
+    const val = correct + delta;
+    if (val > 0 && !set.has(val)) {
+      set.add(val);
+      out.push(val);
+    }
+  }
+  let bump = spread + 1;
+  while (out.length < count) {
+    const val = correct + bump;
+    if (!set.has(val)) { set.add(val); out.push(val); }
+    bump++;
+  }
+  return out;
+}
+
+function makeChoiceQuestion(questionEN, translationPT, correctText, distractorTexts) {
+  const choices = shuffleArray([correctText, ...distractorTexts]);
+  const answer = choices.indexOf(correctText);
+  return { question: questionEN, translation: translationPT, choices, answer };
+}
+
+function generateGraphData(theme) {
+  const n = theme.count || 4;
+  const cats = theme.keepOrder ? theme.categories.slice(0, n) : shuffleArray(theme.categories).slice(0, n);
+  const values = pickDistinctInts(theme.min, theme.max, n);
+  return cats.map((c, i) => ({ en: c.en, pt: c.pt, value: values[i] }));
+}
+
+function buildGraphQuestions(data, theme) {
+  const maxItem = data.reduce((a, b) => (b.value > a.value ? b : a));
+  const q1 = makeChoiceQuestion(
+    theme.questions.max.en,
+    theme.questions.max.pt,
+    `${maxItem.en} • ${maxItem.pt}`,
+    data.filter(d => d !== maxItem).map(d => `${d.en} • ${d.pt}`)
+  );
+
+  const [ia, ib] = shuffleArray(data.map((_, i) => i)).slice(0, 2);
+  const A = data[ia].value > data[ib].value ? data[ia] : data[ib];
+  const B = data[ia].value > data[ib].value ? data[ib] : data[ia];
+  const diff = A.value - B.value;
+  const q2 = makeChoiceQuestion(
+    theme.questions.diff.en(A, B),
+    theme.questions.diff.pt(A, B),
+    String(diff),
+    numericDistractors(diff, 3, Math.max(2, Math.round(diff * 0.5))).map(String)
+  );
+
+  const total = data.reduce((s, d) => s + d.value, 0);
+  const q3 = makeChoiceQuestion(
+    theme.questions.total.en,
+    theme.questions.total.pt,
+    String(total),
+    numericDistractors(total, 3, Math.max(5, Math.round(total * 0.15))).map(String)
+  );
+
+  return shuffleArray([q1, q2, q3]);
+}
+
+function renderHBarChart(containerId, data, unitEN, unitPT) {
+  const el = document.getElementById(containerId);
+  el.innerHTML = '';
+  const max = Math.max(...data.map(d => d.value));
+  const wrap = document.createElement('div');
+  wrap.className = 'hbar-chart';
+  data.forEach((d, i) => {
+    const row = document.createElement('div');
+    row.className = 'hbar-row';
+    const label = document.createElement('div');
+    label.className = 'hbar-label';
+    label.textContent = `${d.en} • ${d.pt}`;
+    const track = document.createElement('div');
+    track.className = 'hbar-track';
+    const fill = document.createElement('div');
+    fill.className = 'hbar-fill';
+    fill.style.width = `${(d.value / max) * 100}%`;
+    fill.style.background = GRAPH_COLORS[i % GRAPH_COLORS.length];
+    const value = document.createElement('span');
+    value.className = 'hbar-value';
+    value.textContent = d.value;
+    fill.appendChild(value);
+    track.appendChild(fill);
+    row.appendChild(label);
+    row.appendChild(track);
+    wrap.appendChild(row);
+  });
+  el.appendChild(wrap);
+  appendGraphCaption(el, unitEN, unitPT);
+}
+
+function renderVBarChart(containerId, data, unitEN, unitPT) {
+  const el = document.getElementById(containerId);
+  el.innerHTML = '';
+  const max = Math.max(...data.map(d => d.value));
+  const wrap = document.createElement('div');
+  wrap.className = 'vbar-chart';
+  data.forEach((d, i) => {
+    const col = document.createElement('div');
+    col.className = 'vbar-col';
+    const value = document.createElement('div');
+    value.className = 'vbar-value';
+    value.textContent = d.value;
+    const bar = document.createElement('div');
+    bar.className = 'vbar-bar';
+    bar.style.height = `${(d.value / max) * 100}%`;
+    bar.style.background = GRAPH_COLORS[i % GRAPH_COLORS.length];
+    const label = document.createElement('div');
+    label.className = 'vbar-label';
+    label.textContent = `${d.en} • ${d.pt}`;
+    col.appendChild(value);
+    col.appendChild(bar);
+    col.appendChild(label);
+    wrap.appendChild(col);
+  });
+  el.appendChild(wrap);
+  appendGraphCaption(el, unitEN, unitPT);
+}
+
+function renderPieChart(containerId, data, unitEN, unitPT) {
+  const el = document.getElementById(containerId);
+  el.innerHTML = '';
+  const total = data.reduce((s, d) => s + d.value, 0);
+  const cx = 110, cy = 110, r = 100;
+  let angleStart = -90;
+  const paths = [];
+  data.forEach((d, i) => {
+    const sliceAngle = (d.value / total) * 360;
+    const angleEnd = angleStart + sliceAngle;
+    const large = sliceAngle > 180 ? 1 : 0;
+    const x1 = cx + r * Math.cos(angleStart * Math.PI / 180);
+    const y1 = cy + r * Math.sin(angleStart * Math.PI / 180);
+    const x2 = cx + r * Math.cos(angleEnd * Math.PI / 180);
+    const y2 = cy + r * Math.sin(angleEnd * Math.PI / 180);
+    const d1 = `M${cx},${cy} L${x1.toFixed(2)},${y1.toFixed(2)} A${r},${r} 0 ${large} 1 ${x2.toFixed(2)},${y2.toFixed(2)} Z`;
+    paths.push(`<path d="${d1}" fill="${GRAPH_COLORS[i % GRAPH_COLORS.length]}" stroke="#fff" stroke-width="2"/>`);
+    angleStart = angleEnd;
+  });
+
+  const wrap = document.createElement('div');
+  wrap.className = 'pie-wrap';
+  wrap.innerHTML = `<svg viewBox="0 0 220 220" class="pie-svg">${paths.join('')}</svg>`;
+
+  const legend = document.createElement('div');
+  legend.className = 'pie-legend';
+  data.forEach((d, i) => {
+    const pct = Math.round((d.value / total) * 100);
+    const item = document.createElement('div');
+    item.className = 'legend-item';
+    item.innerHTML = `<span class="legend-swatch" style="background:${GRAPH_COLORS[i % GRAPH_COLORS.length]}"></span> ${d.en} • ${d.pt} — <b>${d.value}</b> (${pct}%)`;
+    legend.appendChild(item);
+  });
+  wrap.appendChild(legend);
+  el.appendChild(wrap);
+  appendGraphCaption(el, unitEN, unitPT);
+}
+
+function renderTable(containerId, data, unitEN, unitPT) {
+  const el = document.getElementById(containerId);
+  el.innerHTML = '';
+  const wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  const table = document.createElement('table');
+  table.className = 'data-table';
+  table.innerHTML = `<thead><tr><th>Category • Categoria</th><th>${unitEN} • ${unitPT}</th></tr></thead>`;
+  const tbody = document.createElement('tbody');
+  data.forEach(d => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${d.en} • ${d.pt}</td><td>${d.value}</td>`;
+    tbody.appendChild(tr);
+  });
+  table.appendChild(tbody);
+  wrap.appendChild(table);
+  el.appendChild(wrap);
+}
+
+function renderLineChart(containerId, data, unitEN, unitPT) {
+  const el = document.getElementById(containerId);
+  el.innerHTML = '';
+  const w = 460, h = 220, pad = 34;
+  const max = Math.max(...data.map(d => d.value));
+  const min = Math.min(...data.map(d => d.value));
+  const span = Math.max(2, max - min);
+  const yMax = max + Math.ceil(span * 0.25);
+  const yMin = Math.max(0, min - Math.ceil(span * 0.25));
+  const stepX = (w - pad * 2) / (data.length - 1);
+  const scaleY = v => h - pad - ((v - yMin) / (yMax - yMin)) * (h - pad * 2);
+  const points = data.map((d, i) => [pad + i * stepX, scaleY(d.value)]);
+  const linePath = points.map((p, i) => `${i === 0 ? 'M' : 'L'}${p[0].toFixed(1)},${p[1].toFixed(1)}`).join(' ');
+
+  let svg = `<svg viewBox="0 0 ${w} ${h}" class="line-svg">`;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad + (i * (h - pad * 2) / 4);
+    svg += `<line x1="${pad}" y1="${y}" x2="${w - 10}" y2="${y}" stroke="#eee2cf" stroke-width="1"/>`;
+  }
+  svg += `<path d="${linePath}" fill="none" stroke="${GRAPH_COLORS[4]}" stroke-width="3"/>`;
+  points.forEach((p, i) => {
+    svg += `<circle cx="${p[0]}" cy="${p[1]}" r="5" fill="${GRAPH_COLORS[4]}"/>`;
+    svg += `<text x="${p[0]}" y="${p[1] - 12}" text-anchor="middle" font-size="12" font-weight="700" fill="#172033">${data[i].value}</text>`;
+    svg += `<text x="${p[0]}" y="${h - 8}" text-anchor="middle" font-size="10" fill="#667085">${data[i].en}</text>`;
+  });
+  svg += `</svg>`;
+  el.innerHTML = svg;
+  appendGraphCaption(el, unitEN, unitPT);
+}
+
+function appendGraphCaption(el, unitEN, unitPT) {
+  const caption = document.createElement('p');
+  caption.className = 'graph-unit-caption';
+  caption.textContent = `${unitEN} • ${unitPT}`;
+  el.appendChild(caption);
+}
+
+function setupGraphSection(theme) {
+  const data = generateGraphData(theme);
+  theme.render(`${theme.id}-graph`, data, theme.unitEN, theme.unitPT);
+  const questions = buildGraphQuestions(data, theme);
+  buildQuiz(`${theme.id}-quiz`, questions, {
+    correctMsg: '✅ Correct! • Correto!',
+    wrongMsg: '❌ Try again next time • Tente novamente da próxima vez',
+    scoreLabel: 'Score • Pontuação'
+  });
+}
+
 function initScrollSpy() {
   const links = document.querySelectorAll('.section-nav a[href^="#"]');
   const sections = Array.from(links)

@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Reading and interpreting graphs - horizontal bars, vertical bars, pie charts, tables and line graphs (Grade 5)">
+  <title>Graphs • Reading & Interpreting Data</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <header class="hero" style="background:#0d3b3b">
+      <a class="back-link" href="index.html">← Voltar para Aula • Back to Aula</a>
+      <div class="hero-badge">📊 MapleBear • Graphs • Year Five</div>
+      <h1>Reading & Interpreting Graphs</h1>
+      <p>Practice reading data in horizontal bar graphs, vertical bar graphs, pie charts, tables and line graphs. Every time you reload the page, the numbers and the question order change!</p>
+      <p class="pt">Pratique a leitura de dados em gráficos de barras horizontais, barras verticais, gráficos de setores, tabelas e gráficos de linhas. Toda vez que você recarregar a página, os números e a ordem das perguntas mudam!</p>
+      <div class="hero-tags"><span>📶 Horizontal Bars</span><span>📊 Vertical Bars</span><span>🥧 Pie Chart</span><span>📋 Table</span><span>📈 Line Graph</span></div>
+    </header>
+
+    <section class="progress-card" aria-label="Progress" style="--accent:#17a589">
+      <div class="progress-row"><strong>Your progress • Seu progresso</strong><span id="progressText">0%</span></div>
+      <div class="progress-bar"><span id="progressBar"></span></div>
+      <div class="stats"><span>✅ <b id="answered">0</b> answered</span><span>⭐ <b id="correctCount">0</b> correct</span></div>
+    </section>
+
+    <nav class="section-nav" aria-label="Sections" style="--accent:#17a589">
+      <a class="home" href="index.html">🏠 Início</a>
+      <a href="#horizontal">1. Horizontal Bars</a>
+      <a href="#vertical">2. Vertical Bars</a>
+      <a href="#pie">3. Pie Chart</a>
+      <a href="#table">4. Table</a>
+      <a href="#line">5. Line Graph</a>
+    </nav>
+
+    <main>
+      <!-- ================= 1. HORIZONTAL BARS ================= -->
+      <section class="topic-section" id="horizontal" style="--accent:#7657ff;--accent-soft:#efe9ff">
+        <div class="topic-title">
+          <span class="emoji">📶</span>
+          <div>
+            <p class="eyebrow">GRAPH 1 • GRÁFICO 1</p>
+            <h2>Horizontal Bar Graph</h2>
+            <p>Reading data shown as horizontal bars.</p>
+            <p class="pt">Lendo dados apresentados em barras horizontais.</p>
+          </div>
+        </div>
+
+        <article class="lesson">
+          <h3>🏆 Favorite Sport Survey</h3>
+          <p class="en"><b>English:</b> 50 Grade 5 students were asked: "What is your favorite sport?" The horizontal bar graph below shows how many students chose each sport.</p>
+          <p class="pt-line"><b>Português:</b> 50 alunos do 5º ano foram perguntados: "Qual é o seu esporte favorito?" O gráfico de barras horizontais abaixo mostra quantos alunos escolheram cada esporte.</p>
+          <div class="graph-wrap" id="horizontal-graph"></div>
+        </article>
+
+        <div class="section-head"><span>🎯</span><div><h3>Practice • Pratique</h3><p>3 questions about the graph above.</p></div></div>
+        <div id="horizontal-quiz" class="question-list"></div>
+      </section>
+
+      <!-- ================= 2. VERTICAL BARS ================= -->
+      <section class="topic-section" id="vertical" style="--accent:#ff5f91;--accent-soft:#ffeaf1">
+        <div class="topic-title">
+          <span class="emoji">📊</span>
+          <div>
+            <p class="eyebrow">GRAPH 2 • GRÁFICO 2</p>
+            <h2>Vertical Bar Graph</h2>
+            <p>Reading data shown as vertical bars (columns).</p>
+            <p class="pt">Lendo dados apresentados em barras verticais (colunas).</p>
+          </div>
+        </div>
+
+        <article class="lesson">
+          <h3>🐾 Favorite Animal Vote</h3>
+          <p class="en"><b>English:</b> A class asked visitors at the school fair to vote for their favorite animal. The vertical bar graph below shows how many votes each animal received.</p>
+          <p class="pt-line"><b>Português:</b> Uma turma pediu para os visitantes da feira da escola votarem no seu animal favorito. O gráfico de barras verticais abaixo mostra quantos votos cada animal recebeu.</p>
+          <div class="graph-wrap" id="vertical-graph"></div>
+        </article>
+
+        <div class="section-head"><span>🎯</span><div><h3>Practice • Pratique</h3><p>3 questions about the graph above.</p></div></div>
+        <div id="vertical-quiz" class="question-list"></div>
+      </section>
+
+      <!-- ================= 3. PIE CHART ================= -->
+      <section class="topic-section" id="pie" style="--accent:#17a589;--accent-soft:#e2f6f1">
+        <div class="topic-title">
+          <span class="emoji">🥧</span>
+          <div>
+            <p class="eyebrow">GRAPH 3 • GRÁFICO 3</p>
+            <h2>Pie Chart</h2>
+            <p>Reading data shown as slices of a circle.</p>
+            <p class="pt">Lendo dados apresentados em fatias de um círculo (setores).</p>
+          </div>
+        </div>
+
+        <article class="lesson">
+          <h3>🍦 Favorite Ice Cream Flavor</h3>
+          <p class="en"><b>English:</b> A group of students chose their favorite ice cream flavor. The pie chart below shows how many students chose each flavor.</p>
+          <p class="pt-line"><b>Português:</b> Um grupo de alunos escolheu seu sabor de sorvete favorito. O gráfico de setores abaixo mostra quantos alunos escolheram cada sabor.</p>
+          <div class="graph-wrap" id="pie-graph"></div>
+        </article>
+
+        <div class="section-head"><span>🎯</span><div><h3>Practice • Pratique</h3><p>3 questions about the chart above.</p></div></div>
+        <div id="pie-quiz" class="question-list"></div>
+      </section>
+
+      <!-- ================= 4. TABLE ================= -->
+      <section class="topic-section" id="table" style="--accent:#2f8fe0;--accent-soft:#e8f4ff">
+        <div class="topic-title">
+          <span class="emoji">📋</span>
+          <div>
+            <p class="eyebrow">GRAPH 4 • GRÁFICO 4</p>
+            <h2>Table</h2>
+            <p>Reading data organized in rows and columns.</p>
+            <p class="pt">Lendo dados organizados em linhas e colunas.</p>
+          </div>
+        </div>
+
+        <article class="lesson">
+          <h3>📚 Favorite School Subject</h3>
+          <p class="en"><b>English:</b> The table below shows how many Grade 5 students chose each subject as their favorite.</p>
+          <p class="pt-line"><b>Português:</b> A tabela abaixo mostra quantos alunos do 5º ano escolheram cada matéria como sua favorita.</p>
+          <div class="graph-wrap" id="table-graph"></div>
+        </article>
+
+        <div class="section-head"><span>🎯</span><div><h3>Practice • Pratique</h3><p>3 questions about the table above.</p></div></div>
+        <div id="table-quiz" class="question-list"></div>
+      </section>
+
+      <!-- ================= 5. LINE GRAPH ================= -->
+      <section class="topic-section" id="line" style="--accent:#e0a530;--accent-soft:#fff3dc">
+        <div class="topic-title">
+          <span class="emoji">📈</span>
+          <div>
+            <p class="eyebrow">GRAPH 5 • GRÁFICO 5</p>
+            <h2>Line Graph</h2>
+            <p>Reading data that changes over time.</p>
+            <p class="pt">Lendo dados que mudam ao longo do tempo.</p>
+          </div>
+        </div>
+
+        <article class="lesson">
+          <h3>🌡️ Temperature During the Week</h3>
+          <p class="en"><b>English:</b> The line graph below shows the highest temperature recorded each day, from Monday to Friday.</p>
+          <p class="pt-line"><b>Português:</b> O gráfico de linhas abaixo mostra a temperatura máxima registrada em cada dia, de segunda a sexta-feira.</p>
+          <div class="graph-wrap" id="line-graph"></div>
+        </article>
+
+        <div class="section-head"><span>🎯</span><div><h3>Practice • Pratique</h3><p>3 questions about the graph above.</p></div></div>
+        <div id="line-quiz" class="question-list"></div>
+      </section>
+    </main>
+
+    <footer>📊 Graphs • Reading & Interpreting Data • Grade 5</footer>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    const GRAPH_THEMES = [
+      {
+        id: 'horizontal',
+        min: 4, max: 28, count: 4, keepOrder: false,
+        unitEN: 'students', unitPT: 'alunos',
+        categories: [
+          { en: 'Soccer', pt: 'Futebol' },
+          { en: 'Basketball', pt: 'Basquete' },
+          { en: 'Swimming', pt: 'Natação' },
+          { en: 'Tennis', pt: 'Tênis' },
+          { en: 'Volleyball', pt: 'Vôlei' }
+        ],
+        questions: {
+          max: { en: 'Which sport got the most votes?', pt: 'Qual esporte recebeu mais votos?' },
+          diff: {
+            en: (A, B) => `How many more students chose ${A.en} than ${B.en}?`,
+            pt: (A, B) => `Quantos alunos a mais escolheram ${A.pt} do que ${B.pt}?`
+          },
+          total: { en: 'How many students answered the survey in total?', pt: 'Quantos alunos responderam à pesquisa ao todo?' }
+        },
+        render: renderHBarChart
+      },
+      {
+        id: 'vertical',
+        min: 3, max: 25, count: 4, keepOrder: false,
+        unitEN: 'votes', unitPT: 'votos',
+        categories: [
+          { en: 'Dogs', pt: 'Cachorros' },
+          { en: 'Cats', pt: 'Gatos' },
+          { en: 'Birds', pt: 'Pássaros' },
+          { en: 'Fish', pt: 'Peixes' },
+          { en: 'Rabbits', pt: 'Coelhos' }
+        ],
+        questions: {
+          max: { en: 'Which animal received the most votes?', pt: 'Qual animal recebeu mais votos?' },
+          diff: {
+            en: (A, B) => `How many more votes did ${A.en} get than ${B.en}?`,
+            pt: (A, B) => `Quantos votos a mais ${A.pt} recebeu do que ${B.pt}?`
+          },
+          total: { en: 'How many votes were given in total?', pt: 'Quantos votos foram dados ao todo?' }
+        },
+        render: renderVBarChart
+      },
+      {
+        id: 'pie',
+        min: 5, max: 40, count: 4, keepOrder: false,
+        unitEN: 'students', unitPT: 'alunos',
+        categories: [
+          { en: 'Chocolate', pt: 'Chocolate' },
+          { en: 'Vanilla', pt: 'Baunilha' },
+          { en: 'Strawberry', pt: 'Morango' },
+          { en: 'Mint', pt: 'Menta' },
+          { en: 'Cookies and Cream', pt: 'Cookies e Creme' }
+        ],
+        questions: {
+          max: { en: 'Which flavor was chosen by the most students?', pt: 'Qual sabor foi escolhido pelo maior número de alunos?' },
+          diff: {
+            en: (A, B) => `How many more students chose ${A.en} than ${B.en}?`,
+            pt: (A, B) => `Quantos alunos a mais escolheram ${A.pt} do que ${B.pt}?`
+          },
+          total: { en: 'How many students were asked in total?', pt: 'Quantos alunos foram perguntados ao todo?' }
+        },
+        render: renderPieChart
+      },
+      {
+        id: 'table',
+        min: 6, max: 30, count: 4, keepOrder: false,
+        unitEN: 'students', unitPT: 'alunos',
+        categories: [
+          { en: 'Math', pt: 'Matemática' },
+          { en: 'Science', pt: 'Ciências' },
+          { en: 'Art', pt: 'Arte' },
+          { en: 'P.E.', pt: 'Educação Física' },
+          { en: 'Music', pt: 'Música' }
+        ],
+        questions: {
+          max: { en: 'Which subject is the favorite of the most students?', pt: 'Qual matéria é a favorita do maior número de alunos?' },
+          diff: {
+            en: (A, B) => `How many more students prefer ${A.en} than ${B.en}?`,
+            pt: (A, B) => `Quantos alunos a mais preferem ${A.pt} do que ${B.pt}?`
+          },
+          total: { en: 'How many students are represented in the table in total?', pt: 'Quantos alunos estão representados na tabela ao todo?' }
+        },
+        render: renderTable
+      },
+      {
+        id: 'line',
+        min: 15, max: 34, count: 5, keepOrder: true,
+        unitEN: '°C', unitPT: '°C',
+        categories: [
+          { en: 'Monday', pt: 'Segunda' },
+          { en: 'Tuesday', pt: 'Terça' },
+          { en: 'Wednesday', pt: 'Quarta' },
+          { en: 'Thursday', pt: 'Quinta' },
+          { en: 'Friday', pt: 'Sexta' }
+        ],
+        questions: {
+          max: { en: 'On which day was the temperature the highest?', pt: 'Em qual dia a temperatura foi mais alta?' },
+          diff: {
+            en: (A, B) => `How many degrees warmer was ${A.en} than ${B.en}?`,
+            pt: (A, B) => `Quantos graus a mais fez em ${A.pt} do que em ${B.pt}?`
+          },
+          total: { en: 'What is the sum of the temperatures of all five days?', pt: 'Qual é a soma das temperaturas dos cinco dias?' }
+        },
+        render: renderLineChart
+      }
+    ];
+
+    GRAPH_THEMES.forEach(setupGraphSection);
+    initScrollSpy();
+  </script>
+</body>
+</html>
