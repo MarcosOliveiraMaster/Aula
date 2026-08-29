@@ -1,0 +1,576 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Revisão da 2ª prova (Matemática e Ciências) com números que mudam a cada carregamento da página, tradução em português e resolução em múltipla escolha (5º ano)">
+  <title>Revisão prova • Matemática & Ciências</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📝</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <header class="hero" style="background:#4d1b30">
+      <a class="back-link" href="index.html">← Voltar para Aula</a>
+      <div class="hero-badge">📝 MapleBear • Revisão da 2ª prova • Year Five</div>
+      <h1>Revisão da Prova</h1>
+      <p>Aqui estão todas as questões da sua 2ª prova de Matemática e Ciências, com o enunciado original em inglês, a tradução em português e alternativas de múltipla escolha. Os números mudam toda vez que você recarrega a página, mas o raciocínio para resolver é sempre o mesmo!</p>
+      <div class="hero-tags"><span>🔢 Matemática</span><span>🔬 Ciências</span><span>🔁 Números variam</span><span>📝 Múltipla escolha</span></div>
+    </header>
+
+    <section class="progress-card" aria-label="Progresso" style="--accent:#d94f7a">
+      <div class="progress-row"><strong>Seu progresso</strong><span id="progressText">0%</span></div>
+      <div class="progress-bar"><span id="progressBar"></span></div>
+      <div class="stats"><span>✅ <b id="answered">0</b> respondidas</span><span>⭐ <b id="correctCount">0</b> corretas</span></div>
+      <button type="button" class="primary" id="reloadBtn" style="margin-top:14px">🔁 Gerar novos números</button>
+    </section>
+
+    <nav class="section-nav" aria-label="Seções" style="--accent:#d94f7a">
+      <a class="home" href="index.html">🏠 Início</a>
+      <a href="#matematica">🔢 Matemática</a>
+      <a href="#ciencias">🔬 Ciências</a>
+    </nav>
+
+    <main>
+      <!-- ================= MATEMÁTICA ================= -->
+      <section class="topic-section" id="matematica" style="--accent:#d94f7a;--accent-soft:#ffe6ee">
+        <div class="topic-title">
+          <span class="emoji">🔢</span>
+          <div>
+            <p class="eyebrow">PARTE 1</p>
+            <h2>Matemática</h2>
+            <p>As 10 questões da prova de Matemática, uma a uma.</p>
+          </div>
+        </div>
+
+        <div class="section-head"><span>1️⃣</span><div><h3>Mean, Mode & Range • Média, Moda e Amplitude</h3><p>This table shows the number of games the top 5 National Basketball Association scorers played. • Esta tabela mostra o número de jogos disputados pelos 5 maiores pontuadores da NBA.</p></div></div>
+        <div id="q1-table"></div>
+        <div id="q1-quiz" class="question-list"></div>
+
+        <div class="section-head"><span>2️⃣</span><div><h3>Fractions as Decimals • Frações como Decimais</h3><p>Write each fraction or mixed number as a decimal. • Escreva cada fração ou número misto como decimal.</p></div></div>
+        <div id="q2-quiz" class="question-list"></div>
+
+        <div class="section-head"><span>3️⃣</span><div><h3>Multiply or Divide by 10 • Multiplicar ou Dividir por 10</h3><p>Multiply or divide the alternatives below. • Multiplique ou divida as alternativas abaixo.</p></div></div>
+        <div id="q3-quiz" class="question-list"></div>
+
+        <div class="section-head"><span>4️⃣</span><div><h3>Constant Speed • Velocidade Constante</h3><p>A cyclist problem. • Um problema sobre um ciclista.</p></div></div>
+        <div id="q4-quiz" class="question-list"></div>
+
+        <div class="section-head"><span>5️⃣</span><div><h3>Order Capacities • Ordenar Capacidades</h3><p>Order these capacities from greatest to least. • Ordene estas capacidades da maior para a menor.</p></div></div>
+        <div id="q5-quiz" class="question-list"></div>
+
+        <div class="section-head"><span>6️⃣</span><div><h3>Mass of the Load • Massa da Carga</h3><p>An empty trailer and its load. • Uma carreta vazia e sua carga.</p></div></div>
+        <div id="q6-quiz" class="question-list"></div>
+
+        <div class="section-head"><span>7️⃣</span><div><h3>Distance of One Lap • Distância de Uma Volta</h3><p>Patti rode her bike around the block. • Patti andou de bicicleta ao redor do quarteirão.</p></div></div>
+        <div id="q7-quiz" class="question-list"></div>
+
+        <div class="section-head"><span>8️⃣</span><div><h3>Mean Height & Circumference • Média de Altura e Circunferência</h3><p>This table shows the heights and circumferences of Jack's trees. • Esta tabela mostra as alturas e circunferências das árvores de Jack.</p></div></div>
+        <div id="q8-table"></div>
+        <div id="q8-quiz" class="question-list"></div>
+
+        <div class="section-head"><span>9️⃣</span><div><h3>Order Masses • Ordenar Massas</h3><p>Order these masses from least to greatest. • Ordene estas massas da menor para a maior.</p></div></div>
+        <div id="q9a-quiz" class="question-list"></div>
+        <div id="q9b-quiz" class="question-list"></div>
+
+        <div class="section-head"><span>🔟</span><div><h3>How Many Trips? • Quantas Viagens?</h3><p>Jerry carries water in a jug to fill a birdbath. • Jerry carrega água em uma jarra para encher um bebedouro de pássaros.</p></div></div>
+        <div id="q10-quiz" class="question-list"></div>
+      </section>
+
+      <!-- ================= CIÊNCIAS ================= -->
+      <section class="topic-section" id="ciencias" style="--accent:#4a6bff;--accent-soft:#e8ecff">
+        <div class="topic-title">
+          <span class="emoji">🔬</span>
+          <div>
+            <p class="eyebrow">PARTE 2</p>
+            <h2>Ciências</h2>
+            <p>As 2 questões da prova de Ciências.</p>
+          </div>
+        </div>
+
+        <div class="section-head"><span>1️⃣</span><div><h3>Scientific Words • Palavras Científicas</h3><p>Match the everyday scenario with the correct scientific word. • Relacione o cenário do dia a dia com a palavra científica correta.</p></div></div>
+        <div id="s1-quiz" class="question-list"></div>
+
+        <div class="section-head"><span>2️⃣</span><div><h3>True or False • Verdadeiro ou Falso</h3><p>Read the statement about friction and choose True or False. • Leia a afirmação sobre atrito e escolha Verdadeiro ou Falso.</p></div></div>
+        <div id="s2-quiz" class="question-list"></div>
+      </section>
+    </main>
+
+    <footer>📝 Revisão prova • Matemática & Ciências • 5º ano</footer>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    /* ===================== Helpers ===================== */
+
+    function decDistractors(correct, count, maxDelta, decimals) {
+      const scale = Math.pow(10, decimals);
+      const correctInt = Math.round(correct * scale);
+      const maxDeltaInt = Math.max(1, Math.round(maxDelta * scale));
+      const set = new Set([correctInt]);
+      const out = [];
+      let guard = 0;
+      while (out.length < count && guard < 200) {
+        guard++;
+        const delta = randInt(1, maxDeltaInt) * (Math.random() < 0.5 ? -1 : 1);
+        const valInt = correctInt + delta;
+        if (valInt >= 0 && !set.has(valInt)) { set.add(valInt); out.push(valInt); }
+      }
+      let bump = maxDeltaInt + 1;
+      while (out.length < count) {
+        const valInt = correctInt + bump;
+        if (!set.has(valInt)) { set.add(valInt); out.push(valInt); }
+        bump++;
+      }
+      return out.map(v => (v / scale).toFixed(decimals));
+    }
+
+    function shuffleOrders(items, correctOrder, count) {
+      const key = arr => arr.join('|');
+      const correctKey = key(correctOrder);
+      const seen = new Set([correctKey]);
+      const orders = [];
+      let guard = 0;
+      while (orders.length < count && guard < 60) {
+        guard++;
+        const shuffled = shuffleArray(items);
+        const k = key(shuffled);
+        if (!seen.has(k)) { seen.add(k); orders.push(shuffled); }
+      }
+      while (orders.length < count) {
+        orders.push(shuffleArray(items));
+      }
+      return orders;
+    }
+
+    /* ===================== Q1: Mean, Mode & Range ===================== */
+
+    function buildQ1() {
+      const namesPool = ['Allen', 'Bryant', 'Duncan', 'Garnett', 'Iverson', 'Curry', 'Durant', 'Wade', 'Paul', 'James'];
+      let names, values, sum, mean, range, modeVal;
+      let tries = 0;
+      do {
+        names = shuffleArray(namesPool).slice(0, 5);
+        const base = [randInt(60, 95), randInt(60, 95), randInt(60, 95), randInt(60, 95)];
+        modeVal = base[randInt(0, 3)];
+        values = shuffleArray([...base, modeVal]);
+        sum = values.reduce((a, b) => a + b, 0);
+        const counts = {};
+        values.forEach(v => counts[v] = (counts[v] || 0) + 1);
+        const maxCount = Math.max(...Object.values(counts));
+        const modes = Object.keys(counts).filter(k => counts[k] === maxCount);
+        tries++;
+        if (maxCount >= 2 && modes.length === 1) break;
+      } while (tries < 40);
+
+      mean = Math.round((sum / 5) * 10) / 10;
+      range = Math.max(...values) - Math.min(...values);
+
+      document.getElementById('q1-table').innerHTML = `<div class="table-scroll"><table class="data-table"><thead><tr><th>Name • Nome</th><th>Games Played • Jogos disputados</th></tr></thead><tbody>${
+        names.map((n, i) => `<tr><td>${n}</td><td>${values[i]}</td></tr>`).join('')
+      }</tbody></table></div>`;
+
+      const q1 = makeChoiceQuestion(
+        'a) Find the mean number of games played.',
+        'a) Encontre a média de jogos disputados.',
+        mean.toFixed(1),
+        decDistractors(mean, 3, 3, 1)
+      );
+      const q2 = makeChoiceQuestion(
+        'b) Find the mode.',
+        'b) Encontre a moda.',
+        String(modeVal),
+        numericDistractors(modeVal, 3, 4)
+      );
+      const q3 = makeChoiceQuestion(
+        'c) Find the range of the data.',
+        'c) Encontre a amplitude dos dados.',
+        String(range),
+        numericDistractors(range, 3, 4)
+      );
+
+      buildQuiz('q1-quiz', [q1, q2, q3], quizOpts());
+    }
+
+    /* ===================== Q2: Fractions as Decimals ===================== */
+
+    function buildQ2() {
+      const items = [];
+
+      // a) x/10
+      {
+        const x = randInt(1, 9);
+        const correct = (x / 10).toFixed(1);
+        items.push(makeChoiceQuestion(
+          `a) Write the fraction as a decimal: ${x}/10`,
+          `a) Escreva a fração como decimal: ${x}/10`,
+          correct,
+          decDistractors(x / 10, 3, 0.4, 2)
+        ));
+      }
+      // b) A B/100 (two-digit hundredths, e.g. 3 14/100 = 3.14)
+      {
+        const A = randInt(1, 9);
+        const B = randInt(10, 99);
+        const val = A + B / 100;
+        items.push(makeChoiceQuestion(
+          `b) Write the mixed number as a decimal: ${A} ${B}/100`,
+          `b) Escreva o número misto como decimal: ${A} ${B}/100`,
+          val.toFixed(2),
+          decDistractors(val, 3, 0.5, 2)
+        ));
+      }
+      // c) A 1-digit/100 (e.g. 20 1/100 = 20.01)
+      {
+        const A = randInt(11, 40);
+        const B = randInt(1, 9);
+        const val = A + B / 100;
+        items.push(makeChoiceQuestion(
+          `c) Write the mixed number as a decimal: ${A} ${B}/100`,
+          `c) Escreva o número misto como decimal: ${A} ${B}/100`,
+          val.toFixed(2),
+          decDistractors(val, 3, 0.5, 2)
+        ));
+      }
+      // d) C/100 (two-digit hundredths, e.g. 67/100 = 0.67)
+      {
+        const C = randInt(10, 99);
+        const val = C / 100;
+        items.push(makeChoiceQuestion(
+          `d) Write the fraction as a decimal: ${C}/100`,
+          `d) Escreva a fração como decimal: ${C}/100`,
+          val.toFixed(2),
+          decDistractors(val, 3, 0.3, 2)
+        ));
+      }
+
+      buildQuiz('q2-quiz', items, quizOpts());
+    }
+
+    /* ===================== Q3: Multiply or Divide by 10 ===================== */
+
+    function buildQ3() {
+      const items = [];
+
+      // a) X × 10, X with 1 decimal
+      {
+        const X = randInt(11, 99) / 10;
+        const correct = Math.round(X * 10);
+        items.push(makeChoiceQuestion(
+          `a) ${X.toFixed(1)} × 10`,
+          `a) ${X.toFixed(1)} × 10`,
+          String(correct),
+          numericDistractors(correct, 3, 6)
+        ));
+      }
+      // b) Y ÷ 10, Y with 1 decimal
+      {
+        const Y = randInt(101, 199) / 10;
+        const correct = Y / 10;
+        items.push(makeChoiceQuestion(
+          `b) ${Y.toFixed(1)} ÷ 10`,
+          `b) ${Y.toFixed(1)} ÷ 10`,
+          correct.toFixed(2),
+          decDistractors(correct, 3, 0.5, 2)
+        ));
+      }
+      // c) Z × 10, Z with 2 decimals
+      {
+        const Z = randInt(1001, 9999) / 100;
+        const correct = Math.round(Z * 1000) / 100;
+        items.push(makeChoiceQuestion(
+          `c) ${Z.toFixed(2)} × 10`,
+          `c) ${Z.toFixed(2)} × 10`,
+          correct.toFixed(1),
+          decDistractors(correct, 3, 6, 1)
+        ));
+      }
+      // d) W ÷ 10, W with 1 decimal
+      {
+        const W = randInt(1, 9) / 10;
+        const correct = W / 10;
+        items.push(makeChoiceQuestion(
+          `d) ${W.toFixed(1)} ÷ 10`,
+          `d) ${W.toFixed(1)} ÷ 10`,
+          correct.toFixed(2),
+          decDistractors(correct, 3, 0.2, 2)
+        ));
+      }
+
+      buildQuiz('q3-quiz', items, quizOpts());
+    }
+
+    /* ===================== Q4: Constant Speed ===================== */
+
+    function buildQ4() {
+      const speed = randInt(15, 45);
+      const hours = randInt(3, 8);
+      const target = speed * hours;
+
+      const q = makeChoiceQuestion(
+        `A cyclist travels ${speed} km in 1 h and ${speed * 2} km in 2 h. Suppose the cyclist continues at the same speed. How long will it take her to travel ${target} km? Explain.`,
+        `Um ciclista percorre ${speed} km em 1 h e ${speed * 2} km em 2 h. Supondo que o ciclista continue na mesma velocidade, quanto tempo ela levará para percorrer ${target} km? Explique.`,
+        `${hours} h`,
+        numericDistractors(hours, 3, 2).map(v => `${v} h`)
+      );
+
+      buildQuiz('q4-quiz', [q], quizOpts());
+    }
+
+    /* ===================== Q5: Order Capacities ===================== */
+
+    function buildQ5() {
+      const mlValues = shuffleArray(pickDistinctInts(15, 45, 4)).map(v => v * 100); // multiples of 100 mL, 1500-4500
+      const displays = mlValues.map(ml => {
+        if (ml % 1000 === 0) return `${ml / 1000} L`;
+        if (ml % 500 === 0 && Math.random() < 0.5) return `${(ml / 1000).toFixed(1)} L`;
+        return `${ml} mL`;
+      });
+      const order = displays
+        .map((d, i) => ({ d, ml: mlValues[i] }))
+        .sort((a, b) => b.ml - a.ml)
+        .map(x => x.d);
+
+      const distractorOrders = shuffleOrders(displays, order, 3).map(o => o.join(' > '));
+
+      const q = makeChoiceQuestion(
+        `Order these capacities from greatest to least: ${displays.join(', ')}`,
+        `Ordene estas capacidades da maior para a menor: ${displays.join(', ')}`,
+        order.join(' > '),
+        distractorOrders
+      );
+
+      buildQuiz('q5-quiz', [q], quizOpts());
+    }
+
+    /* ===================== Q6: Mass of the Load ===================== */
+
+    function buildQ6() {
+      const empty = randInt(700, 950);
+      const loadedT = randInt(11, 25) / 10;
+      const loadedKg = loadedT * 1000;
+      const load = loadedKg - empty;
+
+      const q = makeChoiceQuestion(
+        `An empty trailer has a mass of ${empty} kg. When the trailer carries a load, its mass is ${loadedT.toFixed(1)} t. What is the mass of the load?`,
+        `Uma carreta vazia tem massa de ${empty} kg. Quando a carreta carrega uma carga, sua massa é ${loadedT.toFixed(1)} t. Qual é a massa da carga?`,
+        `${load} kg`,
+        numericDistractors(load, 3, 80).map(v => `${v} kg`)
+      );
+
+      buildQuiz('q6-quiz', [q], quizOpts());
+    }
+
+    /* ===================== Q7: Distance of One Lap ===================== */
+
+    function buildQ7() {
+      const N = randInt(5, 12);
+      const lapDist = randInt(50, 150) / 100;
+      const total = Math.round(N * lapDist * 100) / 100;
+
+      const q = makeChoiceQuestion(
+        `Patti rode her bike around the block ${N} times. She rode a total of ${total.toFixed(2)} km. What is the distance of one lap around the block?`,
+        `Patti andou de bicicleta ao redor do quarteirão ${N} vezes. Ela percorreu um total de ${total.toFixed(2)} km. Qual é a distância de uma volta ao redor do quarteirão?`,
+        `${lapDist.toFixed(2)} km`,
+        decDistractors(lapDist, 3, 0.3, 2).map(v => `${v} km`)
+      );
+
+      buildQuiz('q7-quiz', [q], quizOpts());
+    }
+
+    /* ===================== Q8: Mean Height & Circumference ===================== */
+
+    function buildQ8() {
+      const trees = shuffleArray(['Oak', 'Elm', 'Maple', 'Birch', 'Poplar', 'Cedar', 'Pine', 'Willow']).slice(0, 5);
+      const heights = trees.map(() => randInt(8, 25));
+      const circumferences = trees.map(() => randInt(15, 90));
+
+      const sumH = heights.reduce((a, b) => a + b, 0);
+      const sumC = circumferences.reduce((a, b) => a + b, 0);
+      const meanH = Math.round((sumH / 5) * 10) / 10;
+      const meanC = Math.round((sumC / 5) * 10) / 10;
+
+      document.getElementById('q8-table').innerHTML = `<div class="table-scroll"><table class="data-table"><thead><tr><th>Tree • Árvore</th><th>Height (m) • Altura (m)</th><th>Circumference (cm) • Circunferência (cm)</th></tr></thead><tbody>${
+        trees.map((t, i) => `<tr><td>${t}</td><td>${heights[i]}</td><td>${circumferences[i]}</td></tr>`).join('')
+      }</tbody></table></div>`;
+
+      const q1 = makeChoiceQuestion(
+        'a) What is the mean height?',
+        'a) Qual é a média das alturas?',
+        `${meanH.toFixed(1)} m`,
+        decDistractors(meanH, 3, 3, 1).map(v => `${v} m`)
+      );
+      const q2 = makeChoiceQuestion(
+        'b) What is the mean circumference?',
+        'b) Qual é a média das circunferências?',
+        `${meanC.toFixed(1)} cm`,
+        decDistractors(meanC, 3, 8, 1).map(v => `${v} cm`)
+      );
+
+      buildQuiz('q8-quiz', [q1, q2], quizOpts());
+    }
+
+    /* ===================== Q9: Order Masses ===================== */
+
+    function buildQ9() {
+      // a) mg, g, kg
+      {
+        const mg = randInt(10, 90) * 100; // e.g. 3000 mg
+        const g = randInt(2, 9) * 100; // e.g. 600 g
+        const kg = randInt(2, 9); // e.g. 6 kg
+        const items = [`${mg} mg`, `${g} g`, `${kg} kg`];
+        const grams = [mg / 1000, g, kg * 1000];
+        const order = items
+          .map((it, i) => ({ it, g: grams[i] }))
+          .sort((a, b) => a.g - b.g)
+          .map(x => x.it);
+        const distractorOrders = shuffleOrders(items, order, 3).map(o => o.join(' < '));
+        const q = makeChoiceQuestion(
+          `a) Order these masses from least to greatest: ${items.join(', ')}`,
+          `a) Ordene estas massas da menor para a maior: ${items.join(', ')}`,
+          order.join(' < '),
+          distractorOrders
+        );
+        buildQuiz('q9a-quiz', [q], quizOpts());
+      }
+      // b) t, kg, t
+      {
+        const t1 = randInt(10, 20) / 10; // e.g. 1.0-2.0 t
+        const kg = randInt(20, 45) * 100; // e.g. 2000-4500 kg
+        const t2 = randInt(25, 45) / 10; // e.g. 2.5-4.5 t
+        const items = [`${t1.toFixed(1)} t`, `${kg} kg`, `${t2.toFixed(1)} t`];
+        const kgs = [t1 * 1000, kg, t2 * 1000];
+        const order = items
+          .map((it, i) => ({ it, kg: kgs[i] }))
+          .sort((a, b) => a.kg - b.kg)
+          .map(x => x.it);
+        const distractorOrders = shuffleOrders(items, order, 3).map(o => o.join(' < '));
+        const q = makeChoiceQuestion(
+          `b) Order these masses from least to greatest: ${items.join(', ')}`,
+          `b) Ordene estas massas da menor para a maior: ${items.join(', ')}`,
+          order.join(' < '),
+          distractorOrders
+        );
+        buildQuiz('q9b-quiz', [q], quizOpts());
+      }
+    }
+
+    /* ===================== Q10: How Many Trips? ===================== */
+
+    function buildQ10() {
+      const jug = randInt(2, 5);
+      const bath = randInt(jug + 2, jug * 4);
+      const trips = Math.ceil(bath / jug);
+
+      const q = makeChoiceQuestion(
+        `Jerry carries water in a ${jug}-L jug to fill his birdbath. If the birdbath holds ${bath} L of water, how many trips will Jerry have to make to fill the birdbath? Explain.`,
+        `Jerry carrega água em uma jarra de ${jug} L para encher seu bebedouro de pássaros. Se o bebedouro comporta ${bath} L de água, quantas viagens Jerry terá que fazer para enchê-lo? Explique.`,
+        `${trips} trips`,
+        numericDistractors(trips, 3, 2).map(v => `${v} trips`)
+      );
+
+      buildQuiz('q10-quiz', [q], quizOpts());
+    }
+
+    /* ===================== Science 1: Scientific Words ===================== */
+
+    function buildS1() {
+      const objectPairs = [
+        ['a bowling ball', 'a beach ball'],
+        ['a bag of rocks', 'a bag of feathers'],
+        ['a metal ball', 'a foam ball'],
+        ['a full backpack', 'an empty backpack']
+      ];
+      const [obj1, obj2] = objectPairs[randInt(0, objectPairs.length - 1)];
+      const planets = ['the Moon', 'Mars', 'Jupiter'];
+      const planet = planets[randInt(0, planets.length - 1)];
+
+      const terms = ['Gravity', 'Weight', 'Mass', 'Newton (N)'];
+
+      const items = [
+        makeChoiceQuestion(
+          `1. ${obj1[0].toUpperCase() + obj1.slice(1)} has more stuff inside it than ${obj2}, even if they are the same size. What scientific word matches this scenario?`,
+          `1. ${obj1} tem mais matéria dentro dele do que ${obj2}, mesmo que tenham o mesmo tamanho. Qual palavra científica combina com este cenário?`,
+          'Mass',
+          terms.filter(t => t !== 'Mass')
+        ),
+        makeChoiceQuestion(
+          '2. The invisible pull that makes an apple drop from a tree down to the grass. What scientific word matches this scenario?',
+          '2. A força invisível que faz uma maçã cair de uma árvore até a grama. Qual palavra científica combina com este cenário?',
+          'Gravity',
+          terms.filter(t => t !== 'Gravity')
+        ),
+        makeChoiceQuestion(
+          `3. An astronaut feels much lighter on ${planet} because the pull there is weaker. What scientific word matches this scenario?`,
+          `3. Um astronauta se sente muito mais leve em ${planet === 'the Moon' ? 'na Lua' : planet} porque a força de atração lá é mais fraca. Qual palavra científica combina com este cenário?`,
+          'Weight',
+          terms.filter(t => t !== 'Weight')
+        ),
+        makeChoiceQuestion(
+          '4. The unit you write down on your paper after measuring how hard a pull is. What scientific word matches this scenario?',
+          '4. A unidade que você anota no papel depois de medir a intensidade de uma força. Qual palavra científica combina com este cenário?',
+          'Newton (N)',
+          terms.filter(t => t !== 'Newton (N)')
+        )
+      ];
+
+      buildQuiz('s1-quiz', items, quizOpts());
+    }
+
+    /* ===================== Science 2: True or False (Friction) ===================== */
+
+    function buildS2() {
+      const pairs = [
+        { smoothEN: 'a smooth, tiled kitchen floor', roughEN: 'a rough, grassy yard', smoothPT: 'um piso liso e ladrilhado de cozinha', roughPT: 'um quintal áspero e gramado' },
+        { smoothEN: 'a smooth ice rink', roughEN: 'a rough, sandy beach', smoothPT: 'uma pista de gelo lisa', roughPT: 'uma praia áspera e arenosa' },
+        { smoothEN: 'a polished wood floor', roughEN: 'a rough gravel path', smoothPT: 'um piso de madeira polido', roughPT: 'um caminho áspero de cascalho' },
+        { smoothEN: 'a slippery marble floor', roughEN: 'a rough carpet', smoothPT: 'um piso de mármore escorregadio', roughPT: 'um tapete áspero' }
+      ];
+      const p = pairs[randInt(0, pairs.length - 1)];
+
+      const q = makeChoiceQuestion(
+        `If you roll a toy car across ${p.smoothEN}, there is more friction slowing it down than if you roll it across ${p.roughEN}.`,
+        `Se você rolar um carrinho de brinquedo sobre ${p.smoothPT}, há mais atrito o desacelerando do que se você o rolar sobre ${p.roughPT}. (Verdadeiro ou Falso?)`,
+        'False',
+        ['True']
+      );
+
+      buildQuiz('s2-quiz', [q], {
+        correctMsg: '✅ Correto! A superfície áspera tem mais atrito, então a afirmação é falsa.',
+        wrongMsg: '❌ Tente novamente. Lembre-se: superfícies ásperas têm mais atrito do que superfícies lisas.',
+        scoreLabel: 'Score • Pontuação'
+      });
+    }
+
+    function quizOpts() {
+      return {
+        correctMsg: '✅ Correct! • Correto!',
+        wrongMsg: '❌ Try again next time • Tente novamente da próxima vez',
+        scoreLabel: 'Score • Pontuação'
+      };
+    }
+
+    function buildAll() {
+      buildQ1();
+      buildQ2();
+      buildQ3();
+      buildQ4();
+      buildQ5();
+      buildQ6();
+      buildQ7();
+      buildQ8();
+      buildQ9();
+      buildQ10();
+      buildS1();
+      buildS2();
+    }
+
+    buildAll();
+    initScrollSpy();
+
+    document.getElementById('reloadBtn').addEventListener('click', () => location.reload());
+  </script>
+</body>
+</html>

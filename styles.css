@@ -49,6 +49,7 @@ h1,h2,h3,h4{font-family:var(--font-head);font-weight:700}
 .card-sci{background:linear-gradient(155deg,#22308a,#4a6bff 60%,#9db4ff)}
 .card-math{background:linear-gradient(155deg,#7a3b12,#e0a530 60%,#ffd98a)}
 .card-graphs{background:linear-gradient(155deg,#0d4a47,#17a589 60%,#8fe0d2)}
+.card-revisao{background:linear-gradient(155deg,#7a1f3d,#d94f7a 60%,#ffb3cb)}
 .home-info{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:26px 0}
 .info-pill{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:var(--shadow-sm);transition:transform .15s}
 .info-pill:hover{transform:translateY(-3px)}
