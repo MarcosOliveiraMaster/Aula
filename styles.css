@@ -49,6 +49,7 @@ h1,h2,h3,h4{font-family:var(--font-head);font-weight:700}
 .card-sci{background:linear-gradient(155deg,#22308a,#4a6bff 60%,#9db4ff)}
 .card-math{background:linear-gradient(155deg,#7a3b12,#e0a530 60%,#ffd98a)}
 .card-graphs{background:linear-gradient(155deg,#0d4a47,#17a589 60%,#8fe0d2)}
+.card-revisao{background:linear-gradient(155deg,#5c1030,#c2255c 60%,#ff9dbe)}
 .home-info{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:26px 0}
 .info-pill{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:var(--shadow-sm);transition:transform .15s}
 .info-pill:hover{transform:translateY(-3px)}
@@ -183,6 +184,9 @@ h1,h2,h3,h4{font-family:var(--font-head);font-weight:700}
 .legend-swatch{display:inline-block;width:14px;height:14px;border-radius:4px;margin-right:6px;vertical-align:middle}
 
 .table-scroll{overflow-x:auto}
+.question-table{margin:12px 0 16px;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.question-table .data-table{margin-top:0}
+.question-table th,.question-table td{padding:9px 12px;font-size:.92rem}
 .data-table{width:100%;border-collapse:collapse;margin-top:2px}
 .data-table th,.data-table td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line)}
 .data-table th{background:var(--accent-soft);font-family:var(--font-head);font-weight:700}
@@ -199,10 +203,10 @@ h1,h2,h3,h4{font-family:var(--font-head);font-weight:700}
 .open-answer-input:disabled{opacity:.8}
 
 /* Order (click-to-sequence) exercises */
-.order-pool{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.order-pool{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;row-gap:16px;column-gap:12px;margin-top:16px;padding:4px}
 .order-token{padding:10px 14px;border:2px solid var(--line);border-radius:12px;background:#fff;cursor:pointer;font-weight:700;font-family:var(--font-head);transition:.15s}
 .order-token:hover{border-color:var(--accent);background:var(--accent-soft)}
-.order-sequence{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.order-sequence{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;row-gap:16px;column-gap:12px;margin-top:18px;padding:4px}
 .order-slot{min-width:76px;padding:10px 12px;border:2px dashed var(--line);border-radius:12px;text-align:center;font-weight:700;color:var(--muted);font-family:var(--font-head)}
 .order-slot.filled{border-style:solid;border-color:var(--accent);color:var(--ink);background:var(--accent-soft)}
 .order-note{margin-top:8px;font-weight:800;min-height:0}

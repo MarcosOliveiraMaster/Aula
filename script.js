@@ -398,6 +398,35 @@ function renderOrderCore(container, tokens, correctOrder, options) {
   container.appendChild(note);
 }
 
+function renderQuestionTable(container, table) {
+  const wrap = document.createElement('div');
+  wrap.className = 'table-scroll question-table';
+  const el = document.createElement('table');
+  el.className = 'data-table';
+  const thead = document.createElement('thead');
+  const headRow = document.createElement('tr');
+  table.headers.forEach(h => {
+    const th = document.createElement('th');
+    th.textContent = h;
+    headRow.appendChild(th);
+  });
+  thead.appendChild(headRow);
+  const tbody = document.createElement('tbody');
+  table.rows.forEach(r => {
+    const tr = document.createElement('tr');
+    r.forEach(cell => {
+      const td = document.createElement('td');
+      td.textContent = cell;
+      tr.appendChild(td);
+    });
+    tbody.appendChild(tr);
+  });
+  el.appendChild(thead);
+  el.appendChild(tbody);
+  wrap.appendChild(el);
+  container.appendChild(wrap);
+}
+
 function buildOpenAnswer(containerId, items, options) {
   const container = document.getElementById(containerId);
   if (!container) return;
@@ -427,6 +456,8 @@ function buildOpenAnswer(containerId, items, options) {
       tr.textContent = item.translation;
       card.appendChild(tr);
     }
+
+    if (item.table) renderQuestionTable(card, item.table);
 
     const row = document.createElement('div');
     row.className = 'open-answer-row';
@@ -512,6 +543,8 @@ function buildMixedRound(containerId, specs, options) {
       tr.textContent = spec.translation;
       card.appendChild(tr);
     }
+
+    if (spec.table) renderQuestionTable(card, spec.table);
 
     const feedback = document.createElement('div');
     feedback.className = 'feedback';
