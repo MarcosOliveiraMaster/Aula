@@ -222,6 +222,12 @@ h1,h2,h3,h4{font-family:var(--font-head);font-weight:700}
 .final-grade-result{margin-top:14px;font-size:1.05rem;font-weight:800;font-family:var(--font-head);min-height:0;color:var(--ink)}
 .final-grade-result.show{padding:16px;background:var(--accent-soft);border-radius:14px}
 .final-grade-result span{display:block;font-size:.82rem;font-weight:600;color:var(--muted);margin-top:6px;font-family:var(--font-body)}
+.final-grade-result.bad{color:var(--red)}
+.final-grade-name-label{display:block;font-weight:800;font-family:var(--font-head);margin-bottom:8px;color:var(--ink)}
+.final-grade-name-input{max-width:320px;margin:0 auto 16px;display:block;text-align:center}
+.final-grade-result .saving{color:var(--muted);font-weight:600}
+.final-grade-result .saved-ok{color:var(--green);font-weight:800;font-family:var(--font-head)}
+.final-grade-result .saved-err{color:var(--red);font-weight:700}
 
 /* Mixed-format review questions */
 .format-badge{display:inline-block;margin:0 0 10px 36px;padding:4px 11px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-size:.74rem;font-weight:800;font-family:var(--font-head);letter-spacing:.02em}

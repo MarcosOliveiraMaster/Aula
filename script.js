@@ -703,11 +703,31 @@ function buildFinalGradeButton(containerId, getTotals, options) {
   const container = document.getElementById(containerId);
   if (!container) return;
   const opts = Object.assign({
-    buttonLabel: '🏁 Calcular nota final • Calculate final grade'
+    buttonLabel: '🏁 Calcular nota final • Calculate final grade',
+    nameLabel: '✍️ Nome • Name',
+    namePlaceholder: 'Digite seu nome... • Type your name...',
+    nameRequiredMsg: '⚠️ Please type your name first • Digite seu nome primeiro',
+    savingMsg: '💾 Saving... • Salvando...',
+    savedMsg: '✅ Score saved! • Pontuação salva!',
+    saveErrorMsg: '⚠️ Could not save your score, but here is your grade • Não foi possível salvar sua pontuação, mas aqui está sua nota',
+    onSubmit: null
   }, options);
 
   const wrap = document.createElement('div');
   wrap.className = 'final-grade-wrap';
+
+  const nameLabel = document.createElement('label');
+  nameLabel.className = 'final-grade-name-label';
+  nameLabel.textContent = opts.nameLabel;
+  nameLabel.setAttribute('for', 'finalGradeName_' + containerId);
+
+  const nameInput = document.createElement('input');
+  nameInput.type = 'text';
+  nameInput.id = 'finalGradeName_' + containerId;
+  nameInput.className = 'open-answer-input final-grade-name-input';
+  nameInput.placeholder = opts.namePlaceholder;
+  nameInput.maxLength = 100;
+
   const btn = document.createElement('button');
   btn.type = 'button';
   btn.className = 'primary big';
@@ -715,13 +735,42 @@ function buildFinalGradeButton(containerId, getTotals, options) {
   const resultEl = document.createElement('div');
   resultEl.className = 'final-grade-result';
 
-  btn.addEventListener('click', () => {
+  btn.addEventListener('click', async () => {
+    const name = nameInput.value.trim();
+    if (!name) {
+      resultEl.textContent = opts.nameRequiredMsg;
+      resultEl.className = 'final-grade-result show bad';
+      nameInput.focus();
+      return;
+    }
+
     const { totalPoints, maxPoints, answeredCount, totalCount } = getTotals();
     const pct = maxPoints ? Math.round((totalPoints / maxPoints) * 100) : 0;
-    resultEl.innerHTML = `🏆 Final grade • Nota final: <b>${totalPoints} / ${maxPoints} points • pontos</b> (${pct}%)<br><span>${answeredCount} / ${totalCount} questions answered • questões respondidas</span>`;
-    resultEl.classList.add('show');
+    const summary = `🏆 Final grade • Nota final: <b>${totalPoints} / ${maxPoints} points • pontos</b> (${pct}%)<br><span>${answeredCount} / ${totalCount} questions answered • questões respondidas</span>`;
+
+    if (!opts.onSubmit) {
+      resultEl.innerHTML = summary;
+      resultEl.className = 'final-grade-result show';
+      return;
+    }
+
+    btn.disabled = true;
+    nameInput.disabled = true;
+    resultEl.innerHTML = `${summary}<span class="saving">${opts.savingMsg}</span>`;
+    resultEl.className = 'final-grade-result show';
+
+    try {
+      await opts.onSubmit({ name, totalPoints, maxPoints, answeredCount, totalCount });
+      resultEl.innerHTML = `${summary}<span class="saved-ok">${opts.savedMsg}</span>`;
+    } catch (e) {
+      resultEl.innerHTML = `${summary}<span class="saved-err">${opts.saveErrorMsg}</span>`;
+      btn.disabled = false;
+      nameInput.disabled = false;
+    }
   });
 
+  wrap.appendChild(nameLabel);
+  wrap.appendChild(nameInput);
   wrap.appendChild(btn);
   wrap.appendChild(resultEl);
   container.appendChild(wrap);

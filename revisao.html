@@ -741,13 +741,35 @@
 
     buildScoredQuiz('revisao-ops', opQuestions, scoreOptions);
 
+    const SUPABASE_URL = 'https://yazpmyrhttpnvhslwlbi.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_uexHX90o6JeD6xChYy3hqw_18zxUb-e';
+
     buildFinalGradeButton('final-grade', () => ({
       totalPoints,
       maxPoints: MAX_POINTS,
       answeredCount: totalAnswered,
       totalCount: TOTAL_QUESTIONS
     }), {
-      buttonLabel: '🏁 Calcular nota final • Calculate final grade'
+      buttonLabel: '🏁 Calcular nota final • Calculate final grade',
+      onSubmit: async ({ name, totalPoints, maxPoints, answeredCount, totalCount }) => {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/revisao_scores`, {
+          method: 'POST',
+          headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': `Bearer ${SUPABASE_KEY}`,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify({
+            name,
+            score: totalPoints,
+            max_score: maxPoints,
+            answered_count: answeredCount,
+            total_questions: totalCount
+          })
+        });
+        if (!res.ok) throw new Error('Supabase insert failed: ' + res.status);
+      }
     });
 
     initScrollSpy();
