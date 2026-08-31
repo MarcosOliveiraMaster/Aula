@@ -427,6 +427,45 @@ function renderQuestionTable(container, table) {
   container.appendChild(wrap);
 }
 
+function attachScoreUI(card, translationText, opts) {
+  const pointsBadge = document.createElement('span');
+  pointsBadge.className = 'points-badge';
+  pointsBadge.textContent = `⭐ Worth ${opts.fullPoints} points • Vale ${opts.fullPoints} pontos`;
+  card.appendChild(pointsBadge);
+
+  let revealed = false;
+  let trBtn = null;
+
+  if (translationText) {
+    trBtn = document.createElement('button');
+    trBtn.type = 'button';
+    trBtn.className = 'secondary translation-toggle';
+    trBtn.textContent = opts.showTranslationLabel;
+    card.appendChild(trBtn);
+
+    const trWrap = document.createElement('div');
+    trWrap.className = 'translation hidden';
+    trWrap.textContent = translationText;
+    card.appendChild(trWrap);
+
+    trBtn.addEventListener('click', () => {
+      if (revealed) return;
+      revealed = true;
+      trWrap.classList.remove('hidden');
+      trBtn.disabled = true;
+      trBtn.textContent = opts.shownLabel;
+      pointsBadge.textContent = `⭐ Now worth ${opts.reducedPoints} points • Agora vale ${opts.reducedPoints} pontos`;
+      pointsBadge.classList.add('reduced');
+    });
+  }
+
+  return {
+    getRevealed: () => revealed,
+    lockTranslationButton: () => { if (trBtn) trBtn.disabled = true; },
+    pointsFor: ok => (ok ? (revealed ? opts.reducedPoints : opts.fullPoints) : 0)
+  };
+}
+
 function buildOpenAnswer(containerId, items, options) {
   const container = document.getElementById(containerId);
   if (!container) return;
@@ -435,6 +474,10 @@ function buildOpenAnswer(containerId, items, options) {
     wrongMsgPrefix: '❌ Not quite. The correct answer is • A resposta correta é',
     checkLabel: 'Check • Conferir',
     placeholder: 'Type your answer... • Digite sua resposta...',
+    fullPoints: 5,
+    reducedPoints: 3,
+    showTranslationLabel: '🌐 Show translation • Mostrar tradução',
+    shownLabel: '🌐 Translation shown • Tradução exibida',
     onAnswer: null
   }, options);
 
@@ -450,12 +493,7 @@ function buildOpenAnswer(containerId, items, options) {
     h4.appendChild(document.createTextNode(item.question));
     card.appendChild(h4);
 
-    if (item.translation) {
-      const tr = document.createElement('div');
-      tr.className = 'translation';
-      tr.textContent = item.translation;
-      card.appendChild(tr);
-    }
+    const scoreUI = attachScoreUI(card, item.translation, opts);
 
     if (item.table) renderQuestionTable(card, item.table);
 
@@ -488,16 +526,18 @@ function buildOpenAnswer(containerId, items, options) {
       answered = true;
       input.disabled = true;
       btn.disabled = true;
+      scoreUI.lockTranslationButton();
+      const pts = scoreUI.pointsFor(ok);
       if (ok) {
-        feedback.textContent = opts.correctMsg;
+        feedback.textContent = `${opts.correctMsg} +${pts} pts`;
         feedback.className = 'feedback ok';
         input.classList.add('correct');
       } else {
-        feedback.textContent = `${opts.wrongMsgPrefix}: ${item.correctAnswerText}`;
+        feedback.textContent = `${opts.wrongMsgPrefix}: ${item.correctAnswerText} +0 pts`;
         feedback.className = 'feedback bad';
         input.classList.add('wrong');
       }
-      if (opts.onAnswer) opts.onAnswer(ok);
+      if (opts.onAnswer) opts.onAnswer(pts);
     }
 
     btn.addEventListener('click', submit);
@@ -515,6 +555,10 @@ function buildMixedRound(containerId, specs, options) {
   const opts = Object.assign({
     correctMsg: '✅ Correct! • Correto!',
     wrongMsg: '❌ Not quite. • Não foi dessa vez.',
+    fullPoints: 5,
+    reducedPoints: 3,
+    showTranslationLabel: '🌐 Show translation • Mostrar tradução',
+    shownLabel: '🌐 Translation shown • Tradução exibida',
     onAnswer: null
   }, options);
 
@@ -537,12 +581,7 @@ function buildMixedRound(containerId, specs, options) {
       card.appendChild(badge);
     }
 
-    if (spec.translation) {
-      const tr = document.createElement('div');
-      tr.className = 'translation';
-      tr.textContent = spec.translation;
-      card.appendChild(tr);
-    }
+    const scoreUI = attachScoreUI(card, spec.translation, opts);
 
     if (spec.table) renderQuestionTable(card, spec.table);
 
@@ -562,12 +601,14 @@ function buildMixedRound(containerId, specs, options) {
         btn.textContent = choice;
         btn.addEventListener('click', () => {
           Array.from(choicesWrap.children).forEach(b => b.disabled = true);
+          scoreUI.lockTranslationButton();
           const ok = ci === spec.answer;
+          const pts = scoreUI.pointsFor(ok);
           btn.classList.add(ok ? 'correct' : 'wrong');
           if (!ok) choicesWrap.children[spec.answer].classList.add('correct');
-          feedback.textContent = ok ? opts.correctMsg : opts.wrongMsg;
+          feedback.textContent = `${ok ? opts.correctMsg : opts.wrongMsg} +${pts} pts`;
           feedback.className = 'feedback ' + (ok ? 'ok' : 'bad');
-          if (opts.onAnswer) opts.onAnswer(ok);
+          if (opts.onAnswer) opts.onAnswer(pts);
         });
         choicesWrap.appendChild(btn);
       });
@@ -576,17 +617,21 @@ function buildMixedRound(containerId, specs, options) {
       renderMatchingCore(body, spec.pairs, {
         showScore: false,
         onComplete: () => {
-          feedback.textContent = opts.correctMsg;
+          scoreUI.lockTranslationButton();
+          const pts = scoreUI.pointsFor(true);
+          feedback.textContent = `${opts.correctMsg} +${pts} pts`;
           feedback.className = 'feedback ok';
-          if (opts.onAnswer) opts.onAnswer(true);
+          if (opts.onAnswer) opts.onAnswer(pts);
         }
       });
     } else if (spec.format === 'order') {
       renderOrderCore(body, spec.tokens, spec.correctOrder, {
         onComplete: ok => {
-          feedback.textContent = ok ? opts.correctMsg : opts.wrongMsg;
+          scoreUI.lockTranslationButton();
+          const pts = scoreUI.pointsFor(ok);
+          feedback.textContent = `${ok ? opts.correctMsg : opts.wrongMsg} +${pts} pts`;
           feedback.className = 'feedback ' + (ok ? 'ok' : 'bad');
-          if (opts.onAnswer) opts.onAnswer(ok);
+          if (opts.onAnswer) opts.onAnswer(pts);
         }
       });
     }
@@ -595,6 +640,91 @@ function buildMixedRound(containerId, specs, options) {
     card.appendChild(feedback);
     container.appendChild(card);
   });
+}
+
+function buildScoredQuiz(containerId, questions, options) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  const opts = Object.assign({
+    fullPoints: 5,
+    reducedPoints: 3,
+    correctMsg: '✅ Correct! • Correto!',
+    wrongMsg: '❌ Not quite. • Não foi dessa vez.',
+    showTranslationLabel: '🌐 Show translation • Mostrar tradução',
+    shownLabel: '🌐 Translation shown • Tradução exibida',
+    onAnswer: null
+  }, options);
+
+  questions.forEach((q, qi) => {
+    const card = document.createElement('div');
+    card.className = 'question';
+
+    const h4 = document.createElement('h4');
+    const qnum = document.createElement('span');
+    qnum.className = 'qnum';
+    qnum.textContent = qi + 1;
+    h4.appendChild(qnum);
+    h4.appendChild(document.createTextNode(q.question));
+    card.appendChild(h4);
+
+    const scoreUI = attachScoreUI(card, q.translation, opts);
+
+    const choicesWrap = document.createElement('div');
+    choicesWrap.className = 'choices';
+    const feedback = document.createElement('div');
+    feedback.className = 'feedback';
+
+    q.choices.forEach((choice, ci) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'choice';
+      btn.textContent = choice;
+      btn.addEventListener('click', () => {
+        Array.from(choicesWrap.children).forEach(b => b.disabled = true);
+        scoreUI.lockTranslationButton();
+        const ok = ci === q.answer;
+        const pts = scoreUI.pointsFor(ok);
+        btn.classList.add(ok ? 'correct' : 'wrong');
+        if (!ok) choicesWrap.children[q.answer].classList.add('correct');
+        feedback.textContent = `${ok ? opts.correctMsg : opts.wrongMsg} +${pts} pts`;
+        feedback.className = 'feedback ' + (ok ? 'ok' : 'bad');
+        if (opts.onAnswer) opts.onAnswer(pts);
+      });
+      choicesWrap.appendChild(btn);
+    });
+
+    card.appendChild(choicesWrap);
+    card.appendChild(feedback);
+    container.appendChild(card);
+  });
+}
+
+function buildFinalGradeButton(containerId, getTotals, options) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  const opts = Object.assign({
+    buttonLabel: '🏁 Calcular nota final • Calculate final grade'
+  }, options);
+
+  const wrap = document.createElement('div');
+  wrap.className = 'final-grade-wrap';
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'primary big';
+  btn.textContent = opts.buttonLabel;
+  const resultEl = document.createElement('div');
+  resultEl.className = 'final-grade-result';
+
+  btn.addEventListener('click', () => {
+    const { totalPoints, maxPoints, answeredCount, totalCount } = getTotals();
+    const pct = maxPoints ? Math.round((totalPoints / maxPoints) * 100) : 0;
+    resultEl.innerHTML = `🏆 Final grade • Nota final: <b>${totalPoints} / ${maxPoints} points • pontos</b> (${pct}%)<br><span>${answeredCount} / ${totalCount} questions answered • questões respondidas</span>`;
+    resultEl.classList.add('show');
+  });
+
+  wrap.appendChild(btn);
+  wrap.appendChild(resultEl);
+  container.appendChild(wrap);
 }
 
 function numericAnswerCheck(expected, tolerance) {

@@ -16,24 +16,26 @@
       <a class="back-link" href="index.html">← Voltar para Aula</a>
       <div class="hero-badge">🔁 MapleBear • Revisão Recuperação • Year Five</div>
       <h1>Revisão Recuperação</h1>
-      <p>20 questões baseadas na prova bilíngue de Matemática do 5º ano. Os valores, a ordem e o formato mudam a cada vez que a página é carregada!</p>
-      <div class="hero-tags"><span>✍️ Perguntas abertas</span><span>🎲 Formatos variados</span><span>🔄 Sempre diferente</span></div>
+      <p>40 questões de revisão: 20 baseadas na prova bilíngue de Matemática do 5º ano, e mais 20 situações-problema de operações básicas. Todas valem pontos! Os valores, a ordem e o formato mudam a cada vez que a página é carregada.</p>
+      <div class="hero-tags"><span>✍️ Perguntas abertas</span><span>🎲 Formatos variados</span><span>🧮 Operações básicas</span><span>⭐ Pontuação</span></div>
     </header>
 
     <section class="progress-card" aria-label="Progresso" style="--accent:#c2255c">
-      <div class="progress-row"><strong>🏆 Placar da revisão</strong><span id="revisao-score">0 / 20 respondidas</span></div>
+      <div class="progress-row"><strong>🏆 Placar da revisão</strong><span id="revisao-score">⭐ 0 / 200 pontos • 0 / 40 respondidas</span></div>
     </section>
 
     <nav class="section-nav" aria-label="Seções" style="--accent:#c2255c">
       <a class="home" href="index.html">🏠 Início</a>
       <a href="#parte1">1. Perguntas abertas</a>
       <a href="#parte2">2. Novo formato</a>
+      <a href="#parte3">3. Operações básicas</a>
     </nav>
 
     <main>
       <article class="lesson" style="--accent:#c2255c;border-top-color:#c2255c">
         <h3>📋 Como funciona</h3>
-        <p>Esta revisão traz as <b>10 questões da prova</b> em dois formatos diferentes. Primeiro, <b>10 perguntas abertas</b>: digite sua resposta no campo de texto e aperte <b>Enter</b> (ou clique em Conferir). Depois, as <b>mesmas 10 questões</b> aparecem de novo — só que em outro formato (múltipla escolha, ligar itens, ordenar ou verdadeiro/falso), sorteado a cada carregamento da página. Os valores dos enunciados e o que é pedido em cada questão também mudam, então leia com atenção!</p>
+        <p>Esta revisão tem <b>40 questões</b> no total, divididas em 3 partes. Primeiro, <b>10 perguntas abertas</b> (Parte 1): digite sua resposta no campo de texto e aperte <b>Enter</b> (ou clique em Conferir). Depois, as <b>mesmas 10 questões</b> aparecem de novo (Parte 2) — só que em outro formato (múltipla escolha, ligar itens, ordenar ou verdadeiro/falso), sorteado a cada carregamento da página. Por fim, mais <b>20 situações-problema</b> de operações básicas (Parte 3): soma, subtração, multiplicação e divisão.</p>
+        <p><b>Todas as 40 questões valem pontos:</b> cada uma vale <b>5 pontos</b>. A tradução em português começa <b>oculta</b> — você pode exibi-la com o botão "Mostrar tradução", mas se fizer isso, aquela questão passa a valer apenas <b>3 pontos</b>, mesmo que você acerte. No final da página, clique em "Calcular nota final" para ver sua pontuação total, de no máximo 200 pontos.</p>
       </article>
 
       <section class="topic-section" id="parte1" style="--accent:#c2255c;--accent-soft:#fde7ef">
@@ -45,6 +47,28 @@
         <div class="section-head"><span>🎲</span><div><h3>Parte 2 — Mesmas questões, novo formato • Same questions, new format</h3><p>O formato de cada questão é sorteado a cada carregamento da página.</p></div></div>
         <div id="revisao-alt" class="question-list"></div>
       </section>
+
+      <section class="topic-section" id="parte3" style="--accent:#c2660a;--accent-soft:#fff1de">
+        <div class="topic-title">
+          <span class="emoji">🧮</span>
+          <div>
+            <p class="eyebrow">PARTE 3</p>
+            <h2>Operações básicas • Basic Operations</h2>
+            <p>20 situações-problema de soma, subtração, multiplicação e divisão, com pontuação.</p>
+          </div>
+        </div>
+
+        <article class="lesson" style="--accent:#c2660a;border-top-color:#c2660a">
+          <h3>🧮 Situações-problema</h3>
+          <p><b>English:</b> Read each word problem and choose the correct answer. Remember: revealing the translation drops that question from 5 to 3 points!</p>
+          <p class="pt-line"><b>Português:</b> Leia cada situação-problema e escolha a resposta correta. Lembre-se: exibir a tradução faz aquela questão cair de 5 para 3 pontos!</p>
+        </article>
+
+        <div class="section-head"><span>🧮</span><div><h3>Pratique • Practice</h3><p>5 questões de cada operação: soma, subtração, multiplicação e divisão.</p></div></div>
+        <div id="revisao-ops" class="question-list"></div>
+      </section>
+
+      <div id="final-grade"></div>
     </main>
 
     <footer>🔁 Revisão Recuperação • Matemática • 5º ano</footer>
@@ -560,27 +584,170 @@
 
     const problems = [genP1(), genP2(), genP3(), genP4(), genP5(), genP6(), genP7(), genP8(), genP9(), genP10()];
 
-    let revAnswered = 0, revCorrect = 0;
-    function revTrack(ok) {
-      revAnswered++;
-      if (ok) revCorrect++;
+    const TOTAL_QUESTIONS = 40;
+    const MAX_POINTS = TOTAL_QUESTIONS * 5;
+    let totalPoints = 0;
+    let totalAnswered = 0;
+    function trackPoints(pts) {
+      totalPoints += pts;
+      totalAnswered++;
       const el = document.getElementById('revisao-score');
-      if (el) el.textContent = `${revCorrect} / ${revAnswered} corretas • ${revAnswered} / 20 respondidas`;
+      if (el) el.textContent = `⭐ ${totalPoints} / ${MAX_POINTS} pontos • ${totalAnswered} / ${TOTAL_QUESTIONS} respondidas`;
     }
 
-    const openItems = shuffleArray(problems).map(p => p.makeOpen());
-    buildOpenAnswer('revisao-open', openItems, {
-      correctMsg: '✅ Correct! • Correto!',
-      wrongMsgPrefix: '❌ Not quite. The correct answer is • A resposta correta é',
-      checkLabel: 'Check • Conferir',
-      onAnswer: revTrack
-    });
-
-    const altSpecs = shuffleArray(problems).map(p => p.makeAlt(p.altFormats[randInt(0, p.altFormats.length - 1)]));
-    buildMixedRound('revisao-alt', altSpecs, {
+    const scoreOptions = {
       correctMsg: '✅ Correct! • Correto!',
       wrongMsg: '❌ Not quite. • Não foi dessa vez.',
-      onAnswer: revTrack
+      wrongMsgPrefix: '❌ Not quite. The correct answer is • A resposta correta é',
+      checkLabel: 'Check • Conferir',
+      fullPoints: 5,
+      reducedPoints: 3,
+      showTranslationLabel: '🌐 Show translation • Mostrar tradução',
+      shownLabel: '🌐 Translation shown • Tradução exibida',
+      onAnswer: trackPoints
+    };
+
+    const openItems = shuffleArray(problems).map(p => p.makeOpen());
+    buildOpenAnswer('revisao-open', openItems, scoreOptions);
+
+    const altSpecs = shuffleArray(problems).map(p => p.makeAlt(p.altFormats[randInt(0, p.altFormats.length - 1)]));
+    buildMixedRound('revisao-alt', altSpecs, scoreOptions);
+
+    /* ===================== Parte 3 — Operações básicas ===================== */
+    function opQuestion(kind, textEN, textPT, correct, formatFn) {
+      const fmt = formatFn || (v => String(v));
+      const spread = Math.max(1, Math.round(correct * 0.15));
+      const distractors = decimalDistractors(correct, 3, spread, 0);
+      const choices = shuffleArray([correct, ...distractors].map(fmt));
+      return { kind, question: textEN, translation: textPT, choices, answer: choices.indexOf(fmt(correct)) };
+    }
+
+    function genAdd1() {
+      const a = randInt(10, 60), b = randInt(10, 60);
+      return opQuestion('add', `Maria has ${a} stickers. Her friend gives her ${b} more. How many stickers does Maria have now?`,
+        `Maria tem ${a} adesivos. Sua amiga dá mais ${b} para ela. Quantos adesivos Maria tem agora?`, a + b);
+    }
+    function genAdd2() {
+      const a = randInt(15, 50), b = randInt(10, 40);
+      return opQuestion('add', `A bus had ${a} passengers. At the next stop, ${b} more passengers got on. How many passengers are on the bus now?`,
+        `Um ônibus tinha ${a} passageiros. No próximo ponto, mais ${b} passageiros entraram. Quantos passageiros há no ônibus agora?`, a + b);
+    }
+    function genAdd3() {
+      const a = randInt(20, 70), b = randInt(20, 70);
+      return opQuestion('add', `Tom read ${a} pages of a book on Monday and ${b} pages on Tuesday. How many pages did he read in total?`,
+        `Tom leu ${a} páginas de um livro na segunda-feira e ${b} páginas na terça-feira. Quantas páginas ele leu ao todo?`, a + b);
+    }
+    function genAdd4() {
+      const a = randInt(30, 80), b = randInt(10, 40);
+      return opQuestion('add', `A farmer has ${a} cows and buys ${b} more. How many cows does the farmer have now?`,
+        `Um fazendeiro tem ${a} vacas e compra mais ${b}. Quantas vacas o fazendeiro tem agora?`, a + b);
+    }
+    function genAdd5() {
+      const a = randInt(100, 180), b = randInt(90, 160);
+      return opQuestion('add', `In a school, there are ${a} boys and ${b} girls. How many students are there in total?`,
+        `Em uma escola, há ${a} meninos e ${b} meninas. Quantos alunos há ao todo?`, a + b);
+    }
+
+    function genSub1() {
+      const a = randInt(60, 99), b = randInt(20, a - 5);
+      return opQuestion('sub', `A store had ${a} apples. It sold ${b} apples. How many apples are left?`,
+        `Uma loja tinha ${a} maçãs. Ela vendeu ${b} maçãs. Quantas maçãs restaram?`, a - b);
+    }
+    function genSub2() {
+      const a = randInt(70, 120), b = randInt(20, a - 10);
+      return opQuestion('sub', `Lucas had $${a}. He spent $${b} on a video game. How much money does he have left?`,
+        `Lucas tinha $${a}. Ele gastou $${b} em um videogame. Quanto dinheiro sobrou?`, a - b, v => `$${v}`);
+    }
+    function genSub3() {
+      const a = randInt(100, 180), b = randInt(40, a - 20);
+      return opQuestion('sub', `A parking lot has ${a} spaces. ${b} are occupied. How many spaces are empty?`,
+        `Um estacionamento tem ${a} vagas. ${b} estão ocupadas. Quantas vagas estão vazias?`, a - b);
+    }
+    function genSub4() {
+      const a = randInt(150, 240), b = randInt(80, a - 30);
+      return opQuestion('sub', `A movie theater has ${a} seats. ${b} are already taken. How many seats are still available?`,
+        `Um cinema tem ${a} assentos. ${b} já estão ocupados. Quantos assentos ainda estão disponíveis?`, a - b);
+    }
+    function genSub5() {
+      const a = randInt(50, 90), b = randInt(15, a - 10);
+      return opQuestion('sub', `Emma had ${a} marbles. She gave ${b} to her brother. How many marbles does Emma have now?`,
+        `Emma tinha ${a} bolinhas de gude. Ela deu ${b} para o irmão. Quantas bolinhas Emma tem agora?`, a - b);
+    }
+
+    function genMul1() {
+      const a = randInt(6, 15), b = randInt(4, 9);
+      return opQuestion('mul', `A box holds ${a} eggs. How many eggs are there in ${b} boxes?`,
+        `Uma caixa tem ${a} ovos. Quantos ovos há em ${b} caixas?`, a * b);
+    }
+    function genMul2() {
+      const a = randInt(18, 28), b = randInt(3, 7);
+      return opQuestion('mul', `Each classroom has ${a} students. How many students are there in ${b} classrooms?`,
+        `Cada sala de aula tem ${a} alunos. Quantos alunos há em ${b} salas de aula?`, a * b);
+    }
+    function genMul3() {
+      const a = randInt(40, 80), b = randInt(3, 6);
+      return opQuestion('mul', `A car travels ${a} km every hour. How many kilometers does it travel in ${b} hours?`,
+        `Um carro percorre ${a} km a cada hora. Quantos quilômetros ele percorre em ${b} horas?`, a * b, v => `${v} km`);
+    }
+    function genMul4() {
+      const a = randInt(20, 45), b = randInt(4, 8);
+      return opQuestion('mul', `A bakery makes ${a} muffins every day. How many muffins does it make in ${b} days?`,
+        `Uma padaria faz ${a} muffins todo dia. Quantos muffins ela faz em ${b} dias?`, a * b);
+    }
+    function genMul5() {
+      const a = randInt(10, 20), b = randInt(4, 9);
+      return opQuestion('mul', `Each shelf holds ${a} books. How many books are on ${b} shelves?`,
+        `Cada prateleira tem ${a} livros. Quantos livros há em ${b} prateleiras?`, a * b);
+    }
+
+    function genDiv1() {
+      const each = randInt(4, 12), n = randInt(4, 9);
+      const total = each * n;
+      return opQuestion('div', `There are ${total} candies to be shared equally among ${n} children. How many candies does each child get?`,
+        `Há ${total} balas para serem divididas igualmente entre ${n} crianças. Quantas balas cada criança recebe?`, each);
+    }
+    function genDiv2() {
+      const perBag = randInt(6, 15), bags = randInt(5, 10);
+      const total = perBag * bags;
+      return opQuestion('div', `A farmer has ${total} apples and wants to put them into bags of ${perBag}. How many bags will he need?`,
+        `Um fazendeiro tem ${total} maçãs e quer colocá-las em sacos de ${perBag}. Quantos sacos ele vai precisar?`, bags);
+    }
+    function genDiv3() {
+      const perTeam = randInt(3, 8), teams = randInt(6, 12);
+      const total = perTeam * teams;
+      return opQuestion('div', `${total} students are divided into teams of ${perTeam}. How many teams are there?`,
+        `${total} alunos são divididos em times de ${perTeam}. Quantos times há?`, teams);
+    }
+    function genDiv4() {
+      const pieceLen = randInt(4, 15), pieces = randInt(5, 12);
+      const total = pieceLen * pieces;
+      return opQuestion('div', `A rope of ${total} meters is cut into ${pieces} equal pieces. How long is each piece?`,
+        `Uma corda de ${total} metros é cortada em ${pieces} pedaços iguais. Qual é o comprimento de cada pedaço?`, pieceLen, v => `${v} m`);
+    }
+    function genDiv5() {
+      const perRow = randInt(6, 15), rows = randInt(6, 12);
+      const total = perRow * rows;
+      return opQuestion('div', `There are ${total} chairs to be arranged into rows of ${perRow}. How many rows will there be?`,
+        `Há ${total} cadeiras para serem organizadas em fileiras de ${perRow}. Quantas fileiras haverá?`, rows);
+    }
+
+    const opGenerators = [
+      genAdd1, genAdd2, genAdd3, genAdd4, genAdd5,
+      genSub1, genSub2, genSub3, genSub4, genSub5,
+      genMul1, genMul2, genMul3, genMul4, genMul5,
+      genDiv1, genDiv2, genDiv3, genDiv4, genDiv5
+    ];
+    const opQuestions = shuffleArray(opGenerators).map(fn => fn());
+
+    buildScoredQuiz('revisao-ops', opQuestions, scoreOptions);
+
+    buildFinalGradeButton('final-grade', () => ({
+      totalPoints,
+      maxPoints: MAX_POINTS,
+      answeredCount: totalAnswered,
+      totalCount: TOTAL_QUESTIONS
+    }), {
+      buttonLabel: '🏁 Calcular nota final • Calculate final grade'
     });
 
     initScrollSpy();
