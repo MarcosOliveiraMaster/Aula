@@ -207,10 +207,8 @@ function buildDecimalGrid(containerId, target, options) {
   updateCounter();
 }
 
-function buildMatching(containerId, pairs, options) {
-  const container = document.getElementById(containerId);
-  if (!container) return;
-  const opts = Object.assign({ doneMsg: '🎉 Todos os pares encontrados!' }, options);
+function renderMatchingCore(container, pairs, options) {
+  const opts = Object.assign({ doneMsg: '🎉 Todos os pares encontrados!', showScore: true, onComplete: null }, options);
 
   const wrap = document.createElement('div');
   wrap.className = 'matching-grid';
@@ -220,11 +218,7 @@ function buildMatching(containerId, pairs, options) {
   const colRight = document.createElement('div');
   colRight.className = 'match-col';
 
-  const rightOrder = pairs.map((p, i) => i);
-  for (let i = rightOrder.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [rightOrder[i], rightOrder[j]] = [rightOrder[j], rightOrder[i]];
-  }
+  const rightOrder = shuffleArray(pairs.map((p, i) => i));
 
   let selected = null; // { id, el, side }
   let matchedCount = 0;
@@ -260,9 +254,10 @@ function buildMatching(containerId, pairs, options) {
         btn.classList.add('matched');
         selected = null;
         matchedCount++;
-        updateScore();
+        if (opts.showScore) updateScore();
         if (matchedCount === pairs.length) {
-          scoreEl.textContent = opts.doneMsg;
+          if (opts.showScore) scoreEl.textContent = opts.doneMsg;
+          if (opts.onComplete) opts.onComplete();
         }
       } else {
         const prevEl = selected.el;
@@ -283,12 +278,334 @@ function buildMatching(containerId, pairs, options) {
   wrap.appendChild(colLeft);
   wrap.appendChild(colRight);
   container.appendChild(wrap);
-  container.appendChild(scoreEl);
+  if (opts.showScore) {
+    container.appendChild(scoreEl);
+    updateScore();
+  }
 
   function updateScore() {
     scoreEl.textContent = `${matchedCount} / ${pairs.length} pares encontrados`;
   }
-  updateScore();
+}
+
+function buildMatching(containerId, pairs, options) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  renderMatchingCore(container, pairs, options);
+}
+
+function renderOrderCore(container, tokens, correctOrder, options) {
+  const opts = Object.assign({
+    checkLabel: 'Check order • Conferir ordem',
+    resetLabel: 'Reset • Recomeçar',
+    incompleteMsg: '✏️ Order all the items first! • Ordene todos os itens primeiro!',
+    onComplete: null
+  }, options);
+
+  const shuffledIdx = shuffleArray(tokens.map((_, i) => i));
+  const pool = document.createElement('div');
+  pool.className = 'order-pool';
+  const sequence = document.createElement('div');
+  sequence.className = 'order-sequence';
+  for (let i = 0; i < tokens.length; i++) {
+    const slot = document.createElement('div');
+    slot.className = 'order-slot';
+    slot.textContent = i + 1;
+    sequence.appendChild(slot);
+  }
+
+  let picked = [];
+  let answered = false;
+
+  function renderPool() {
+    pool.innerHTML = '';
+    shuffledIdx.forEach(idx => {
+      if (picked.includes(idx)) return;
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'order-token';
+      btn.textContent = tokens[idx];
+      btn.addEventListener('click', () => {
+        if (answered) return;
+        picked.push(idx);
+        renderPool();
+        renderSequence();
+      });
+      pool.appendChild(btn);
+    });
+  }
+
+  function renderSequence() {
+    const slots = sequence.querySelectorAll('.order-slot');
+    slots.forEach((slot, i) => {
+      if (picked[i] !== undefined) {
+        slot.textContent = tokens[picked[i]];
+        slot.classList.add('filled');
+      } else {
+        slot.textContent = i + 1;
+        slot.classList.remove('filled');
+      }
+    });
+  }
+
+  renderPool();
+
+  const controls = document.createElement('div');
+  controls.className = 'grid-controls';
+  const checkBtn = document.createElement('button');
+  checkBtn.type = 'button';
+  checkBtn.className = 'primary';
+  checkBtn.textContent = opts.checkLabel;
+  const resetBtn = document.createElement('button');
+  resetBtn.type = 'button';
+  resetBtn.className = 'secondary';
+  resetBtn.textContent = opts.resetLabel;
+
+  const note = document.createElement('div');
+  note.className = 'order-note';
+
+  checkBtn.addEventListener('click', () => {
+    if (answered) return;
+    if (picked.length !== tokens.length) {
+      note.textContent = opts.incompleteMsg;
+      note.className = 'order-note bad';
+      return;
+    }
+    const ok = picked.every((idx, i) => idx === correctOrder[i]);
+    answered = true;
+    if (!ok) {
+      picked = correctOrder.slice();
+      renderSequence();
+    }
+    if (opts.onComplete) opts.onComplete(ok);
+  });
+
+  resetBtn.addEventListener('click', () => {
+    if (answered) return;
+    picked = [];
+    renderPool();
+    renderSequence();
+    note.textContent = '';
+    note.className = 'order-note';
+  });
+
+  controls.appendChild(checkBtn);
+  controls.appendChild(resetBtn);
+
+  container.appendChild(pool);
+  container.appendChild(sequence);
+  container.appendChild(controls);
+  container.appendChild(note);
+}
+
+function buildOpenAnswer(containerId, items, options) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  const opts = Object.assign({
+    correctMsg: '✅ Correct! • Correto!',
+    wrongMsgPrefix: '❌ Not quite. The correct answer is • A resposta correta é',
+    checkLabel: 'Check • Conferir',
+    placeholder: 'Type your answer... • Digite sua resposta...',
+    onAnswer: null
+  }, options);
+
+  items.forEach((item, qi) => {
+    const card = document.createElement('div');
+    card.className = 'question';
+
+    const h4 = document.createElement('h4');
+    const qnum = document.createElement('span');
+    qnum.className = 'qnum';
+    qnum.textContent = qi + 1;
+    h4.appendChild(qnum);
+    h4.appendChild(document.createTextNode(item.question));
+    card.appendChild(h4);
+
+    if (item.translation) {
+      const tr = document.createElement('div');
+      tr.className = 'translation';
+      tr.textContent = item.translation;
+      card.appendChild(tr);
+    }
+
+    const row = document.createElement('div');
+    row.className = 'open-answer-row';
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.className = 'open-answer-input';
+    input.placeholder = item.placeholder || opts.placeholder;
+
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'primary';
+    btn.textContent = opts.checkLabel;
+
+    row.appendChild(input);
+    row.appendChild(btn);
+    card.appendChild(row);
+
+    const feedback = document.createElement('div');
+    feedback.className = 'feedback';
+    card.appendChild(feedback);
+
+    let answered = false;
+    function submit() {
+      if (answered) return;
+      const val = input.value.trim();
+      if (!val) return;
+      const ok = item.check(val);
+      answered = true;
+      input.disabled = true;
+      btn.disabled = true;
+      if (ok) {
+        feedback.textContent = opts.correctMsg;
+        feedback.className = 'feedback ok';
+        input.classList.add('correct');
+      } else {
+        feedback.textContent = `${opts.wrongMsgPrefix}: ${item.correctAnswerText}`;
+        feedback.className = 'feedback bad';
+        input.classList.add('wrong');
+      }
+      if (opts.onAnswer) opts.onAnswer(ok);
+    }
+
+    btn.addEventListener('click', submit);
+    input.addEventListener('keydown', e => {
+      if (e.key === 'Enter') submit();
+    });
+
+    container.appendChild(card);
+  });
+}
+
+function buildMixedRound(containerId, specs, options) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  const opts = Object.assign({
+    correctMsg: '✅ Correct! • Correto!',
+    wrongMsg: '❌ Not quite. • Não foi dessa vez.',
+    onAnswer: null
+  }, options);
+
+  specs.forEach((spec, qi) => {
+    const card = document.createElement('div');
+    card.className = 'question';
+
+    const h4 = document.createElement('h4');
+    const qnum = document.createElement('span');
+    qnum.className = 'qnum';
+    qnum.textContent = qi + 1;
+    h4.appendChild(qnum);
+    h4.appendChild(document.createTextNode(spec.question));
+    card.appendChild(h4);
+
+    if (spec.formatLabel) {
+      const badge = document.createElement('span');
+      badge.className = 'format-badge';
+      badge.textContent = spec.formatLabel;
+      card.appendChild(badge);
+    }
+
+    if (spec.translation) {
+      const tr = document.createElement('div');
+      tr.className = 'translation';
+      tr.textContent = spec.translation;
+      card.appendChild(tr);
+    }
+
+    const feedback = document.createElement('div');
+    feedback.className = 'feedback';
+
+    const body = document.createElement('div');
+    body.className = 'mixed-body';
+
+    if (spec.format === 'mc' || spec.format === 'tf') {
+      const choicesWrap = document.createElement('div');
+      choicesWrap.className = 'choices';
+      spec.choices.forEach((choice, ci) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'choice';
+        btn.textContent = choice;
+        btn.addEventListener('click', () => {
+          Array.from(choicesWrap.children).forEach(b => b.disabled = true);
+          const ok = ci === spec.answer;
+          btn.classList.add(ok ? 'correct' : 'wrong');
+          if (!ok) choicesWrap.children[spec.answer].classList.add('correct');
+          feedback.textContent = ok ? opts.correctMsg : opts.wrongMsg;
+          feedback.className = 'feedback ' + (ok ? 'ok' : 'bad');
+          if (opts.onAnswer) opts.onAnswer(ok);
+        });
+        choicesWrap.appendChild(btn);
+      });
+      body.appendChild(choicesWrap);
+    } else if (spec.format === 'matching') {
+      renderMatchingCore(body, spec.pairs, {
+        showScore: false,
+        onComplete: () => {
+          feedback.textContent = opts.correctMsg;
+          feedback.className = 'feedback ok';
+          if (opts.onAnswer) opts.onAnswer(true);
+        }
+      });
+    } else if (spec.format === 'order') {
+      renderOrderCore(body, spec.tokens, spec.correctOrder, {
+        onComplete: ok => {
+          feedback.textContent = ok ? opts.correctMsg : opts.wrongMsg;
+          feedback.className = 'feedback ' + (ok ? 'ok' : 'bad');
+          if (opts.onAnswer) opts.onAnswer(ok);
+        }
+      });
+    }
+
+    card.appendChild(body);
+    card.appendChild(feedback);
+    container.appendChild(card);
+  });
+}
+
+function numericAnswerCheck(expected, tolerance) {
+  const tol = tolerance === undefined ? 0.01 : tolerance;
+  return val => {
+    const cleaned = String(val).replace(',', '.').replace(/[^0-9.\-]/g, '');
+    const n = parseFloat(cleaned);
+    if (isNaN(n)) return false;
+    return Math.abs(n - expected) <= tol;
+  };
+}
+
+function letterSequenceCheck(expectedLetters) {
+  return val => {
+    const parts = String(val).toUpperCase().split(',').map(s => s.trim().replace(/[^A-Z]/g, '')).filter(Boolean);
+    if (parts.length !== expectedLetters.length) return false;
+    return parts.every((p, i) => p === expectedLetters[i]);
+  };
+}
+
+function decimalDistractors(correct, count, step, decimals) {
+  const factor = Math.pow(10, decimals);
+  const correctInt = Math.round(correct * factor);
+  const stepInt = Math.max(1, Math.round(step * factor));
+  const set = new Set([correctInt]);
+  const out = [];
+  let guard = 0;
+  while (out.length < count && guard < 60) {
+    guard++;
+    const mult = randInt(1, 5);
+    const delta = stepInt * mult * (Math.random() < 0.5 ? -1 : 1);
+    const valInt = correctInt + delta;
+    if (valInt > 0 && !set.has(valInt)) {
+      set.add(valInt);
+      out.push(valInt / factor);
+    }
+  }
+  let bump = 1;
+  while (out.length < count) {
+    const valInt = correctInt + stepInt * (count + bump);
+    if (!set.has(valInt)) { set.add(valInt); out.push(valInt / factor); }
+    bump++;
+  }
+  return out;
 }
 
 /* ===================== Graph reading (random data each load) ===================== */

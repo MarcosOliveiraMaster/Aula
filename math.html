@@ -17,7 +17,7 @@
       <div class="hero-badge">🔢 MapleBear • Matemática • Year Five</div>
       <h1>Números Decimais</h1>
       <p>Vamos praticar multiplicação por potências de 10, comparação de decimais, situações-problema com soma e subtração, e representar números decimais na grade do material dourado.</p>
-      <div class="hero-tags"><span>✖️ Potências de 10</span><span>⚖️ Comparação</span><span>🧮 Situações-problema</span><span>🟨 Material dourado</span><span>📝 Exercícios</span></div>
+      <div class="hero-tags"><span>✖️ Potências de 10</span><span>⚖️ Comparação</span><span>🧮 Situações-problema</span><span>🟨 Material dourado</span><span>📝 Exercícios</span><span>🔁 Revisão Recuperação</span></div>
     </header>
 
     <section class="progress-card" aria-label="Progresso" style="--accent:#7657ff">
@@ -33,6 +33,7 @@
       <a href="#problemas">3. Situações-problema</a>
       <a href="#grade">4. Material dourado</a>
       <a href="#exercicios">5. Exercícios</a>
+      <a href="#revisao">6. Revisão Recuperação</a>
     </nav>
 
     <main>
@@ -179,6 +180,32 @@
 
         <div class="section-head"><span>💰</span><div><h3>Compare Prices • Comparar preços</h3><p>4 questions • 4 questões</p></div></div>
         <div id="ex-price" class="question-list"></div>
+      </section>
+
+      <!-- ================= SEÇÃO 6 ================= -->
+      <section class="topic-section" id="revisao" style="--accent:#c2255c;--accent-soft:#fde7ef">
+        <div class="topic-title">
+          <span class="emoji">🔁</span>
+          <div>
+            <p class="eyebrow">SEÇÃO 6</p>
+            <h2>Revisão Recuperação</h2>
+            <p>20 questões baseadas na prova bilíngue de Matemática do 5º ano. Os valores, a ordem e o formato mudam a cada vez que a página é carregada!</p>
+          </div>
+        </div>
+
+        <article class="lesson">
+          <h3>📋 Como funciona</h3>
+          <p>Esta revisão traz as <b>10 questões da prova</b> em dois formatos diferentes. Primeiro, <b>10 perguntas abertas</b>: digite sua resposta no campo de texto e aperte <b>Enter</b> (ou clique em Conferir). Depois, as <b>mesmas 10 questões</b> aparecem de novo — só que em outro formato (múltipla escolha, ligar itens, ordenar ou verdadeiro/falso), sorteado a cada carregamento da página. Os valores dos enunciados e o que é pedido em cada questão também mudam, então leia com atenção!</p>
+          <div class="progress-card" style="--accent:#c2255c;margin-top:14px">
+            <div class="progress-row"><strong>🏆 Placar da revisão</strong><span id="revisao-score">0 / 20 respondidas</span></div>
+          </div>
+        </article>
+
+        <div class="section-head"><span>✍️</span><div><h3>Parte 1 — Perguntas abertas • Open questions</h3><p>Digite a resposta e aperte Enter, ou clique em Conferir.</p></div></div>
+        <div id="revisao-open" class="question-list"></div>
+
+        <div class="section-head"><span>🎲</span><div><h3>Parte 2 — Mesmas questões, novo formato • Same questions, new format</h3><p>O formato de cada questão é sorteado a cada carregamento da página.</p></div></div>
+        <div id="revisao-alt" class="question-list"></div>
       </section>
     </main>
 
@@ -409,6 +436,529 @@
         answer: 2
       }
     ], exOptions);
+
+    /* ===================== Seção 6 — Revisão Recuperação ===================== */
+    (function () {
+      const round1 = x => Math.round(x * 10) / 10;
+      const round2 = x => Math.round(x * 100) / 100;
+
+      function genP1() {
+        function data() {
+          const namesPool = ['Allen', 'Bryant', 'Duncan', 'Garnett', 'Iverson', 'James', 'Curry', 'Durant', 'Wade', 'Paul', 'Nash', 'Kobe'];
+          const names = shuffleArray(namesPool).slice(0, 5);
+          const modeValue = randInt(70, 95);
+          const values = [modeValue, modeValue, modeValue];
+          while (values.length < 5) {
+            const v = randInt(70, 95);
+            if (v !== modeValue) values.push(v);
+          }
+          const shuffledValues = shuffleArray(values);
+          const mean = round1(shuffledValues.reduce((a, b) => a + b, 0) / 5);
+          const range = Math.max(...shuffledValues) - Math.min(...shuffledValues);
+          return { names, values: shuffledValues, mean, mode: modeValue, range };
+        }
+        return {
+          altFormats: ['matching', 'mc'],
+          makeOpen() {
+            const d = data();
+            const rows = d.names.map((n, i) => `${n}: ${d.values[i]}`).join(', ');
+            const options = [
+              { label: 'mean', labelPt: 'média', value: d.mean },
+              { label: 'mode', labelPt: 'moda', value: d.mode },
+              { label: 'range', labelPt: 'amplitude', value: d.range }
+            ];
+            const pick = options[randInt(0, options.length - 1)];
+            return {
+              question: `This table shows the number of games played by 5 basketball players: ${rows}. What is the ${pick.label} of this data?`,
+              translation: `Esta tabela mostra o número de jogos disputados por 5 jogadores de basquete: ${rows}. Qual é a ${pick.labelPt} desses dados?`,
+              check: numericAnswerCheck(pick.value),
+              correctAnswerText: String(pick.value)
+            };
+          },
+          makeAlt(format) {
+            const d = data();
+            const rows = d.names.map((n, i) => `${n}: ${d.values[i]}`).join(', ');
+            const question = `This table shows the number of games played by 5 basketball players: ${rows}.`;
+            const translation = `Esta tabela mostra o número de jogos disputados por 5 jogadores de basquete: ${rows}.`;
+            if (format === 'matching') {
+              return {
+                format, question: question + ' Match each statistic to its correct value.',
+                translation: translation + ' Ligue cada estatística ao valor correto.',
+                formatLabel: '🔗 Matching • Ligar',
+                pairs: [
+                  { left: 'Mean • Média', right: String(d.mean) },
+                  { left: 'Mode • Moda', right: String(d.mode) },
+                  { left: 'Range • Amplitude', right: String(d.range) }
+                ]
+              };
+            }
+            const stat = ['mean', 'mode', 'range'][randInt(0, 2)];
+            const correct = stat === 'mean' ? d.mean : stat === 'mode' ? d.mode : d.range;
+            const distractors = decimalDistractors(correct, 3, 1, 1);
+            const choices = shuffleArray([correct, ...distractors].map(String));
+            return {
+              format, question: question + ` What is the ${stat}?`,
+              translation: translation + ` Qual é a ${{ mean: 'média', mode: 'moda', range: 'amplitude' }[stat]}?`,
+              formatLabel: '☑️ Multiple Choice • Múltipla escolha',
+              choices, answer: choices.indexOf(String(correct))
+            };
+          }
+        };
+      }
+
+      function genP2() {
+        function types() {
+          const a = randInt(1, 9);
+          const bW = randInt(1, 9), bF = randInt(10, 89);
+          const cW = randInt(10, 90);
+          const dN = randInt(10, 89);
+          return [
+            { text: `${a}/10`, value: round2(a / 10) },
+            { text: `${bW} ${bF}/100`, value: round2(bW + bF / 100) },
+            { text: `${cW} 1/100`, value: round2(cW + 0.01) },
+            { text: `${dN}/100`, value: round2(dN / 100) }
+          ];
+        }
+        return {
+          altFormats: ['matching', 'mc'],
+          makeOpen() {
+            const t = types();
+            const pick = t[randInt(0, 3)];
+            return {
+              question: `Write this fraction or mixed number as a decimal: ${pick.text}`,
+              translation: `Escreva esta fração ou número misto na forma decimal: ${pick.text}`,
+              check: numericAnswerCheck(pick.value),
+              correctAnswerText: String(pick.value)
+            };
+          },
+          makeAlt(format) {
+            const t = types();
+            if (format === 'matching') {
+              return {
+                format, question: 'Match each fraction or mixed number to its decimal form.',
+                translation: 'Ligue cada fração ou número misto à sua forma decimal.',
+                formatLabel: '🔗 Matching • Ligar',
+                pairs: t.map(x => ({ left: x.text, right: String(x.value) }))
+              };
+            }
+            const pick = t[randInt(0, 3)];
+            const distractors = decimalDistractors(pick.value, 3, Math.max(0.1, pick.value * 0.2), 2);
+            const choices = shuffleArray([pick.value, ...distractors].map(String));
+            return {
+              format, question: `What is ${pick.text} written as a decimal?`,
+              translation: `Qual é ${pick.text} escrito na forma decimal?`,
+              formatLabel: '☑️ Multiple Choice • Múltipla escolha',
+              choices, answer: choices.indexOf(String(pick.value))
+            };
+          }
+        };
+      }
+
+      function genP3() {
+        function types() {
+          const a1 = randInt(1, 9), a2 = randInt(1, 9);
+          const aVal = round2(a1 + a2 / 10);
+          const b1 = randInt(10, 89), b2 = randInt(1, 9);
+          const bVal = round2(b1 + b2 / 10);
+          const c1 = randInt(10, 89), c2 = randInt(10, 89);
+          const cVal = round2(c1 + c2 / 100);
+          const dVal = round2(randInt(1, 9) / 10);
+          return [
+            { expr: `${aVal} × 10`, value: round2(aVal * 10) },
+            { expr: `${bVal} ÷ 10`, value: round2(bVal / 10) },
+            { expr: `${cVal} × 10`, value: round2(cVal * 10) },
+            { expr: `${dVal} ÷ 10`, value: round2(dVal / 10) }
+          ];
+        }
+        return {
+          altFormats: ['matching', 'mc'],
+          makeOpen() {
+            const t = types();
+            const pick = t[randInt(0, 3)];
+            return {
+              question: `Calculate: ${pick.expr}`,
+              translation: `Calcule: ${pick.expr}`,
+              check: numericAnswerCheck(pick.value),
+              correctAnswerText: String(pick.value)
+            };
+          },
+          makeAlt(format) {
+            const t = types();
+            if (format === 'matching') {
+              return {
+                format, question: 'Match each expression to its result.',
+                translation: 'Ligue cada expressão ao seu resultado.',
+                formatLabel: '🔗 Matching • Ligar',
+                pairs: t.map(x => ({ left: x.expr, right: String(x.value) }))
+              };
+            }
+            const pick = t[randInt(0, 3)];
+            const distractors = decimalDistractors(pick.value, 3, Math.max(0.1, Math.abs(pick.value) * 0.1), 2);
+            const choices = shuffleArray([pick.value, ...distractors].map(String));
+            return {
+              format, question: `What is the result of ${pick.expr}?`,
+              translation: `Qual é o resultado de ${pick.expr}?`,
+              formatLabel: '☑️ Multiple Choice • Múltipla escolha',
+              choices, answer: choices.indexOf(String(pick.value))
+            };
+          }
+        };
+      }
+
+      function genP4() {
+        function data() {
+          const speed = randInt(15, 35);
+          const hoursTarget = randInt(3, 8);
+          const distTarget = speed * hoursTarget;
+          return { speed, hoursTarget, distTarget };
+        }
+        return {
+          altFormats: ['mc', 'tf'],
+          makeOpen() {
+            const d = data();
+            return {
+              question: `A cyclist travels ${d.speed} km in 1 hour and ${d.speed * 2} km in 2 hours. If she continues at the same speed, how many hours will it take her to travel ${d.distTarget} km?`,
+              translation: `Uma ciclista percorre ${d.speed} km em 1 hora e ${d.speed * 2} km em 2 horas. Se ela continuar na mesma velocidade, quantas horas ela levará para percorrer ${d.distTarget} km?`,
+              check: numericAnswerCheck(d.hoursTarget, 0.01),
+              correctAnswerText: `${d.hoursTarget} h`
+            };
+          },
+          makeAlt(format) {
+            const d = data();
+            const q = `A cyclist travels ${d.speed} km in 1 hour and ${d.speed * 2} km in 2 hours. At the same speed, how long will it take her to travel ${d.distTarget} km?`;
+            const qpt = `Uma ciclista percorre ${d.speed} km em 1 hora e ${d.speed * 2} km em 2 horas. Na mesma velocidade, quanto tempo ela levará para percorrer ${d.distTarget} km?`;
+            if (format === 'tf') {
+              const claimTrue = Math.random() < 0.5;
+              const claimed = claimTrue ? d.hoursTarget : d.hoursTarget + (Math.random() < 0.5 ? 1 : -1) * randInt(1, 2);
+              return {
+                format, question: `${q} True or False: it will take her ${claimed} hours.`,
+                translation: `${qpt} Verdadeiro ou falso: ela levará ${claimed} horas.`,
+                formatLabel: '✅ True or False • Verdadeiro ou Falso',
+                choices: ['True • Verdadeiro', 'False • Falso'],
+                answer: claimed === d.hoursTarget ? 0 : 1
+              };
+            }
+            const distractors = decimalDistractors(d.hoursTarget, 3, 1, 0);
+            const choices = shuffleArray([d.hoursTarget, ...distractors].map(v => `${v} h`));
+            return {
+              format, question: q, translation: qpt,
+              formatLabel: '☑️ Multiple Choice • Múltipla escolha',
+              choices, answer: choices.indexOf(`${d.hoursTarget} h`)
+            };
+          }
+        };
+      }
+
+      function genP5() {
+        function data() {
+          const litersA = round1(2 + Math.random() * 3);
+          const mlB = randInt(1500, 2900);
+          const litersC = round1(2 + Math.random() * 3);
+          const mlD = randInt(1500, 2900);
+          return [
+            { label: `${litersA} L`, mL: litersA * 1000 },
+            { label: `${mlB} mL`, mL: mlB },
+            { label: `${litersC} L`, mL: litersC * 1000 },
+            { label: `${mlD} mL`, mL: mlD }
+          ];
+        }
+        return {
+          altFormats: ['order'],
+          makeOpen() {
+            const items = data();
+            const letters = ['A', 'B', 'C', 'D'];
+            const withLetters = items.map((it, i) => ({ ...it, letter: letters[i] }));
+            const order = withLetters.slice().sort((a, b) => b.mL - a.mL).map(x => x.letter);
+            const list = withLetters.map(x => `${x.letter}) ${x.label}`).join(', ');
+            return {
+              question: `Order these capacities from greatest to least: ${list}. Type the letters in order, separated by commas (example: A, B, C, D).`,
+              translation: `Ordene estas capacidades da maior para a menor: ${list}. Digite as letras em ordem, separadas por vírgula (exemplo: A, B, C, D).`,
+              check: letterSequenceCheck(order),
+              correctAnswerText: order.join(', ')
+            };
+          },
+          makeAlt() {
+            const items = data();
+            const labels = items.map(x => x.label);
+            const order = items.slice().sort((a, b) => b.mL - a.mL).map(x => x.label);
+            return {
+              format: 'order',
+              question: 'Click the capacities in order, from greatest to least.',
+              translation: 'Clique nas capacidades em ordem, da maior para a menor.',
+              formatLabel: '🔀 Order • Ordenar',
+              tokens: labels,
+              correctOrder: order.map(label => labels.indexOf(label))
+            };
+          }
+        };
+      }
+
+      function genP6() {
+        function data() {
+          const emptyKg = randInt(700, 950);
+          const totalT = round1(1.1 + Math.random() * 0.8);
+          const loadKg = round1(totalT * 1000 - emptyKg);
+          return { emptyKg, totalT, loadKg };
+        }
+        return {
+          altFormats: ['mc', 'tf'],
+          makeOpen() {
+            const d = data();
+            return {
+              question: `An empty trailer has a mass of ${d.emptyKg} kg. When it carries a load, its total mass is ${d.totalT} t. What is the mass of the load, in kg?`,
+              translation: `Um reboque vazio tem massa de ${d.emptyKg} kg. Quando carregado, sua massa total é ${d.totalT} t. Qual é a massa da carga, em kg?`,
+              check: numericAnswerCheck(d.loadKg, 1),
+              correctAnswerText: `${d.loadKg} kg`
+            };
+          },
+          makeAlt(format) {
+            const d = data();
+            const q = `An empty trailer has a mass of ${d.emptyKg} kg. Loaded, its total mass is ${d.totalT} t.`;
+            const qpt = `Um reboque vazio tem massa de ${d.emptyKg} kg. Carregado, sua massa total é ${d.totalT} t.`;
+            if (format === 'tf') {
+              const claimTrue = Math.random() < 0.5;
+              const claimed = claimTrue ? d.loadKg : d.loadKg + (Math.random() < 0.5 ? 1 : -1) * randInt(50, 150);
+              return {
+                format, question: `${q} True or False: the load has a mass of ${claimed} kg.`,
+                translation: `${qpt} Verdadeiro ou falso: a carga tem massa de ${claimed} kg.`,
+                formatLabel: '✅ True or False • Verdadeiro ou Falso',
+                choices: ['True • Verdadeiro', 'False • Falso'],
+                answer: claimed === d.loadKg ? 0 : 1
+              };
+            }
+            const distractors = decimalDistractors(d.loadKg, 3, 50, 0);
+            const choices = shuffleArray([d.loadKg, ...distractors].map(v => `${v} kg`));
+            return {
+              format, question: q + ' What is the mass of the load?', translation: qpt + ' Qual é a massa da carga?',
+              formatLabel: '☑️ Multiple Choice • Múltipla escolha',
+              choices, answer: choices.indexOf(`${d.loadKg} kg`)
+            };
+          }
+        };
+      }
+
+      function genP7() {
+        function data() {
+          const laps = randInt(4, 12);
+          const perLap = round2(0.5 + Math.random() * 1.5);
+          const total = round2(perLap * laps);
+          return { laps, perLap, total };
+        }
+        return {
+          altFormats: ['mc', 'tf'],
+          makeOpen() {
+            const d = data();
+            return {
+              question: `Patti rode her bike around the block ${d.laps} times. She rode a total of ${d.total} km. What is the distance of one lap around the block?`,
+              translation: `Patti andou de bicicleta ao redor do quarteirão ${d.laps} vezes. Ela percorreu um total de ${d.total} km. Qual é a distância de uma volta ao redor do quarteirão?`,
+              check: numericAnswerCheck(d.perLap, 0.01),
+              correctAnswerText: `${d.perLap} km`
+            };
+          },
+          makeAlt(format) {
+            const d = data();
+            const q = `Patti rode her bike around the block ${d.laps} times, for a total of ${d.total} km.`;
+            const qpt = `Patti andou de bicicleta ao redor do quarteirão ${d.laps} vezes, percorrendo um total de ${d.total} km.`;
+            if (format === 'tf') {
+              const claimTrue = Math.random() < 0.5;
+              const claimed = claimTrue ? d.perLap : round2(d.perLap + (Math.random() < 0.5 ? 1 : -1) * 0.2);
+              return {
+                format, question: `${q} True or False: one lap is ${claimed} km.`,
+                translation: `${qpt} Verdadeiro ou falso: uma volta tem ${claimed} km.`,
+                formatLabel: '✅ True or False • Verdadeiro ou Falso',
+                choices: ['True • Verdadeiro', 'False • Falso'],
+                answer: claimed === d.perLap ? 0 : 1
+              };
+            }
+            const distractors = decimalDistractors(d.perLap, 3, 0.1, 2);
+            const choices = shuffleArray([d.perLap, ...distractors].map(v => `${v} km`));
+            return {
+              format, question: q + ' What is the distance of one lap?', translation: qpt + ' Qual é a distância de uma volta?',
+              formatLabel: '☑️ Multiple Choice • Múltipla escolha',
+              choices, answer: choices.indexOf(`${d.perLap} km`)
+            };
+          }
+        };
+      }
+
+      function genP8() {
+        function data() {
+          const treeNames = shuffleArray(['Oak', 'Elm', 'Maple', 'Birch', 'Poplar', 'Pine', 'Cedar', 'Willow']).slice(0, 5);
+          const heights = Array.from({ length: 5 }, () => randInt(8, 25));
+          const circs = Array.from({ length: 5 }, () => randInt(20, 90));
+          const meanHeight = round1(heights.reduce((a, b) => a + b, 0) / 5);
+          const meanCirc = round1(circs.reduce((a, b) => a + b, 0) / 5);
+          return { treeNames, heights, circs, meanHeight, meanCirc };
+        }
+        return {
+          altFormats: ['matching', 'mc'],
+          makeOpen() {
+            const d = data();
+            const rows = d.treeNames.map((n, i) => `${n}: ${d.heights[i]} m / ${d.circs[i]} cm`).join(', ');
+            const askHeight = Math.random() < 0.5;
+            return {
+              question: `This table shows the height and circumference of 5 trees (Height / Circumference): ${rows}. What is the mean ${askHeight ? 'height (in m)' : 'circumference (in cm)'}?`,
+              translation: `Esta tabela mostra a altura e a circunferência de 5 árvores (Altura / Circunferência): ${rows}. Qual é a ${askHeight ? 'altura média (em m)' : 'circunferência média (em cm)'}?`,
+              check: numericAnswerCheck(askHeight ? d.meanHeight : d.meanCirc),
+              correctAnswerText: String(askHeight ? d.meanHeight : d.meanCirc)
+            };
+          },
+          makeAlt(format) {
+            const d = data();
+            const rows = d.treeNames.map((n, i) => `${n}: ${d.heights[i]} m / ${d.circs[i]} cm`).join(', ');
+            const question = `This table shows the height and circumference of 5 trees (Height / Circumference): ${rows}.`;
+            const translation = `Esta tabela mostra a altura e a circunferência de 5 árvores (Altura / Circunferência): ${rows}.`;
+            if (format === 'matching') {
+              return {
+                format, question: question + ' Match each statistic to its correct value.',
+                translation: translation + ' Ligue cada estatística ao valor correto.',
+                formatLabel: '🔗 Matching • Ligar',
+                pairs: [
+                  { left: 'Mean height • Altura média', right: `${d.meanHeight} m` },
+                  { left: 'Mean circumference • Circunferência média', right: `${d.meanCirc} cm` }
+                ]
+              };
+            }
+            const askHeight = Math.random() < 0.5;
+            const correct = askHeight ? d.meanHeight : d.meanCirc;
+            const unit = askHeight ? 'm' : 'cm';
+            const distractors = decimalDistractors(correct, 3, askHeight ? 1 : 3, 1);
+            const choices = shuffleArray([correct, ...distractors].map(v => `${v} ${unit}`));
+            return {
+              format, question: question + ` What is the mean ${askHeight ? 'height' : 'circumference'}?`,
+              translation: translation + ` Qual é a ${askHeight ? 'altura média' : 'circunferência média'}?`,
+              formatLabel: '☑️ Multiple Choice • Múltipla escolha',
+              choices, answer: choices.indexOf(`${correct} ${unit}`)
+            };
+          }
+        };
+      }
+
+      function genP9() {
+        function data() {
+          const part = Math.random() < 0.5 ? 'a' : 'b';
+          if (part === 'a') {
+            const g = randInt(200, 900);
+            const kg = round1(1 + Math.random() * 8);
+            const mg = randInt(1000, 8000);
+            return { part, items: [
+              { label: `${g} g`, g: g },
+              { label: `${kg} kg`, g: kg * 1000 },
+              { label: `${mg} mg`, g: mg / 1000 }
+            ] };
+          }
+          const t1 = round1(1 + Math.random() * 3);
+          const kg = randInt(1200, 3800);
+          const t2 = round1(1 + Math.random() * 3);
+          return { part, items: [
+            { label: `${t1} t`, g: t1 * 1000000 },
+            { label: `${kg} kg`, g: kg * 1000 },
+            { label: `${t2} t`, g: t2 * 1000000 }
+          ] };
+        }
+        return {
+          altFormats: ['order'],
+          makeOpen() {
+            const d = data();
+            const letters = ['A', 'B', 'C'];
+            const withLetters = d.items.map((it, i) => ({ ...it, letter: letters[i] }));
+            const order = withLetters.slice().sort((a, b) => a.g - b.g).map(x => x.letter);
+            const list = withLetters.map(x => `${x.letter}) ${x.label}`).join(', ');
+            return {
+              question: `Order these masses from least to greatest: ${list}. Type the letters in order, separated by commas.`,
+              translation: `Ordene estas massas da menor para a maior: ${list}. Digite as letras em ordem, separadas por vírgula.`,
+              check: letterSequenceCheck(order),
+              correctAnswerText: order.join(', ')
+            };
+          },
+          makeAlt() {
+            const d = data();
+            const labels = d.items.map(x => x.label);
+            const order = d.items.slice().sort((a, b) => a.g - b.g).map(x => x.label);
+            return {
+              format: 'order',
+              question: 'Click the masses in order, from least to greatest.',
+              translation: 'Clique nas massas em ordem, da menor para a maior.',
+              formatLabel: '🔀 Order • Ordenar',
+              tokens: labels,
+              correctOrder: order.map(label => labels.indexOf(label))
+            };
+          }
+        };
+      }
+
+      function genP10() {
+        function data() {
+          const jug = randInt(2, 5);
+          const multiplier = randInt(2, 4);
+          const extra = randInt(1, Math.max(1, jug - 1));
+          const bath = jug * multiplier + extra;
+          const trips = Math.ceil(bath / jug);
+          return { jug, bath, trips };
+        }
+        return {
+          altFormats: ['mc', 'tf'],
+          makeOpen() {
+            const d = data();
+            return {
+              question: `Jerry carries water in a ${d.jug}-L jug to fill his birdbath. If the birdbath holds ${d.bath} L of water, how many trips will Jerry have to make to fill it completely?`,
+              translation: `Jerry carrega água em um jarro de ${d.jug} L para encher o bebedouro de pássaros. Se o bebedouro comporta ${d.bath} L de água, quantas viagens Jerry terá que fazer para enchê-lo completamente?`,
+              check: numericAnswerCheck(d.trips, 0),
+              correctAnswerText: `${d.trips} trips`
+            };
+          },
+          makeAlt(format) {
+            const d = data();
+            const q = `Jerry carries water in a ${d.jug}-L jug to fill his birdbath, which holds ${d.bath} L of water.`;
+            const qpt = `Jerry carrega água em um jarro de ${d.jug} L para encher o bebedouro, que comporta ${d.bath} L de água.`;
+            if (format === 'tf') {
+              const claimTrue = Math.random() < 0.5;
+              const claimed = claimTrue ? d.trips : d.trips + (Math.random() < 0.5 ? 1 : -1);
+              return {
+                format, question: `${q} True or False: Jerry needs to make ${claimed} trips to fill it completely.`,
+                translation: `${qpt} Verdadeiro ou falso: Jerry precisa fazer ${claimed} viagens para enchê-lo completamente.`,
+                formatLabel: '✅ True or False • Verdadeiro ou Falso',
+                choices: ['True • Verdadeiro', 'False • Falso'],
+                answer: claimed === d.trips ? 0 : 1
+              };
+            }
+            const distractors = decimalDistractors(d.trips, 3, 1, 0).filter(v => v > 0);
+            while (distractors.length < 3) distractors.push(d.trips + distractors.length + 1);
+            const choices = shuffleArray([d.trips, ...distractors.slice(0, 3)].map(v => `${v} trips`));
+            return {
+              format, question: q + ' How many trips does Jerry need to make?', translation: qpt + ' Quantas viagens Jerry precisa fazer?',
+              formatLabel: '☑️ Multiple Choice • Múltipla escolha',
+              choices, answer: choices.indexOf(`${d.trips} trips`)
+            };
+          }
+        };
+      }
+
+      const problems = [genP1(), genP2(), genP3(), genP4(), genP5(), genP6(), genP7(), genP8(), genP9(), genP10()];
+
+      let revAnswered = 0, revCorrect = 0;
+      function revTrack(ok) {
+        revAnswered++;
+        if (ok) revCorrect++;
+        const el = document.getElementById('revisao-score');
+        if (el) el.textContent = `${revCorrect} / ${revAnswered} corretas • ${revAnswered} / 20 respondidas`;
+      }
+
+      const openItems = shuffleArray(problems).map(p => p.makeOpen());
+      buildOpenAnswer('revisao-open', openItems, {
+        correctMsg: '✅ Correct! • Correto!',
+        wrongMsgPrefix: '❌ Not quite. The correct answer is • A resposta correta é',
+        checkLabel: 'Check • Conferir',
+        onAnswer: revTrack
+      });
+
+      const altSpecs = shuffleArray(problems).map(p => p.makeAlt(p.altFormats[randInt(0, p.altFormats.length - 1)]));
+      buildMixedRound('revisao-alt', altSpecs, {
+        correctMsg: '✅ Correct! • Correto!',
+        wrongMsg: '❌ Not quite. • Não foi dessa vez.',
+        onAnswer: revTrack
+      });
+    })();
 
     initScrollSpy();
   </script>
