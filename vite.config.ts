@@ -221,6 +221,13 @@ export default defineConfig({
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
   },
+  // A voz neural (Piper) roda num Web Worker com imports dinâmicos.
+  worker: {
+    format: "es",
+  },
+  optimizeDeps: {
+    exclude: ["@mintplex-labs/piper-tts-web", "onnxruntime-web"],
+  },
   server: {
     port: 3000,
     strictPort: false, // Will find next available port if 3000 is busy
