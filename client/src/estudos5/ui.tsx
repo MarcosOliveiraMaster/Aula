@@ -226,6 +226,8 @@ export function Quiz({ id, questions, accent, title = "Teste rápido" }: { id: s
         <div>
           <span className="k-eyebrow">Hora de praticar</span>
           <h2>🧠 {title}</h2>
+          <p className="k-quiz-sub">{answered}/{questions.length} respondidas · escolha uma alternativa e veja a explicação na hora</p>
+          <div className="k-progress-track k-quiz-track"><i style={{ width: `${(answered / questions.length) * 100}%` }} /></div>
         </div>
         <div className="k-quiz-score" aria-live="polite">
           {correct}/{questions.length} <small>acertos</small>

@@ -1,9 +1,10 @@
 import type { Topic } from "../types";
+import { questoesGeografia } from "./questoes-geografia";
 import { Bars, Callout, Card, CardGrid, Flow, Glossary, Section } from "../ui";
 
 const GEO = "#1f9d7a";
 
-export const geografia: Topic[] = [
+const topicos: Topic[] = [
   /* ------------------------------------------------------------------ */
   {
     id: "saneamento",
@@ -138,38 +139,6 @@ export const geografia: Topic[] = [
         </Section>
       </>
     ),
-    quiz: [
-      {
-        q: "Qual é o principal objetivo do saneamento básico?",
-        options: ["Deixar as cidades mais bonitas", "Garantir a saúde e a qualidade de vida da população", "Construir mais prédios", "Aumentar o número de carros"],
-        answer: 1,
-        why: "O saneamento existe para proteger a saúde e garantir qualidade de vida para as pessoas.",
-      },
-      {
-        q: "O que significa “água potável”?",
-        options: ["Água do mar", "Água da chuva", "Água tratada, própria para beber", "Água do esgoto"],
-        answer: 2,
-        why: "Potável quer dizer “que pode ser bebida”: é a água tratada e segura.",
-      },
-      {
-        q: "Qual destas doenças está ligada à falta de saneamento?",
-        options: ["Cólera", "Catapora", "Miopia", "Cárie"],
-        answer: 0,
-        why: "Cólera (assim como diarreia e hepatite A) se espalha pela água contaminada.",
-      },
-      {
-        q: "Qual destes NÃO faz parte do saneamento básico?",
-        options: ["Coleta de lixo", "Tratamento de esgoto", "Venda de celulares", "Controle de mosquitos"],
-        answer: 2,
-        why: "As partes do saneamento são água potável, esgoto, lixo e controle de vetores com higiene.",
-      },
-      {
-        q: "Por que a falta de saneamento aumenta os gastos públicos?",
-        options: ["Porque as ruas ficam mais largas", "Porque mais pessoas ficam doentes e precisam de hospitais e remédios", "Porque a água fica mais barata", "Porque as escolas fecham"],
-        answer: 1,
-        why: "Sem saneamento, surgem mais doenças, e o governo precisa gastar mais com saúde.",
-      },
-    ],
   },
 
   /* ------------------------------------------------------------------ */
@@ -276,38 +245,6 @@ export const geografia: Topic[] = [
         </Section>
       </>
     ),
-    quiz: [
-      {
-        q: "Quais são os três elementos estudados neste texto?",
-        options: ["Esporte, música e arte", "Educação, moradia e segurança", "Água, luz e internet", "Praia, campo e cidade"],
-        answer: 1,
-        why: "O texto fala de educação, moradia e segurança como fundamentais para o bem-estar.",
-      },
-      {
-        q: "Ter acesso a alimentos saudáveis e nutritivos todos os dias é chamado de:",
-        options: ["Segurança pública", "Segurança no trabalho", "Segurança alimentar", "Segurança digital"],
-        answer: 2,
-        why: "Segurança alimentar é ter comida saudável e suficiente sempre.",
-      },
-      {
-        q: "De quem é a responsabilidade pela segurança pública?",
-        options: ["Do Estado (governo)", "Só das crianças", "Das lojas", "Ninguém é responsável"],
-        answer: 0,
-        why: "O texto diz que a segurança pública é responsabilidade do Estado.",
-      },
-      {
-        q: "Uma moradia “insalubre” é uma moradia que:",
-        options: ["É muito grande", "Faz mal à saúde", "Fica perto da escola", "Tem piscina"],
-        answer: 1,
-        why: "Insalubre significa que faz mal à saúde.",
-      },
-      {
-        q: "Por que dizemos que educação, moradia e segurança estão interligadas?",
-        options: ["Porque são a mesma coisa", "Porque uma influencia a outra: educação ajuda no emprego, que ajuda na moradia, que ajuda na saúde e no aprendizado", "Porque só existem nas cidades grandes", "Porque não têm relação com a qualidade de vida"],
-        answer: 1,
-        why: "Elas funcionam como um ciclo: melhorar uma ajuda a melhorar as outras.",
-      },
-    ],
   },
 
   /* ------------------------------------------------------------------ */
@@ -434,38 +371,6 @@ export const geografia: Topic[] = [
         </Section>
       </>
     ),
-    quiz: [
-      {
-        q: "O que é a “cidade invisível”?",
-        options: ["Uma cidade que ainda não foi construída", "As desigualdades sociais das grandes cidades que muitas pessoas não enxergam", "Uma cidade de desenho animado", "Uma cidade que fica embaixo da terra"],
-        answer: 1,
-        why: "É um conceito sobre desigualdades que passam despercebidas pela maioria.",
-      },
-      {
-        q: "Segregação socioespacial é:",
-        options: ["Quando grupos sociais ficam separados em áreas diferentes da cidade", "Quando a cidade cresce em direção ao mar", "Uma festa de bairro", "A coleta de lixo reciclável"],
-        answer: 0,
-        why: "Sócio = sociedade; espacial = espaço. É a separação das pessoas no espaço da cidade.",
-      },
-      {
-        q: "Quando o processo de favelização começou no Brasil?",
-        options: ["No ano 2000", "No final do século XIX, após a abolição da escravatura e a Guerra de Canudos", "Quando o Brasil foi descoberto", "Depois da Copa do Mundo"],
-        answer: 1,
-        why: "Pessoas negras libertas, sem nenhum apoio, tiveram que morar em morros e moradias improvisadas.",
-      },
-      {
-        q: "Segundo o IBGE, o que aconteceu com o número de favelas entre 2010 e 2019?",
-        options: ["Diminuiu pela metade", "Ficou igual", "Praticamente dobrou (de 6.329 para 13.151)", "Acabou"],
-        answer: 2,
-        why: "Foi de 6.329 em 323 municípios para 13.151 em 743 cidades.",
-      },
-      {
-        q: "Qual destas ações ajuda a combater a cidade invisível?",
-        options: ["Construir muros entre os bairros", "Transporte público de qualidade e calçadas acessíveis para todos", "Fechar as praças", "Ignorar os problemas"],
-        answer: 1,
-        why: "Uma cidade acessível e com serviços para todos diminui as desigualdades.",
-      },
-    ],
   },
 
   /* ------------------------------------------------------------------ */
@@ -573,38 +478,6 @@ export const geografia: Topic[] = [
         </Section>
       </>
     ),
-    quiz: [
-      {
-        q: "Por que usamos a expressão “pessoas em situação de rua”?",
-        options: ["Porque é mais curta", "Porque mostra que é um momento da vida, que pode mudar, e respeita a pessoa", "Porque elas gostam da rua", "Porque é uma profissão"],
-        answer: 1,
-        why: "“Situação” indica algo que pode mudar e coloca a pessoa em primeiro lugar.",
-      },
-      {
-        q: "Qual era a estimativa de pessoas em situação de rua no Brasil em 2022?",
-        options: ["Cerca de 2.800", "Cerca de 28 mil", "Cerca de 281 mil", "Cerca de 28 milhões"],
-        answer: 2,
-        why: "A estimativa era de 281.472 pessoas.",
-      },
-      {
-        q: "Qual destas é uma das causas de alguém ir morar na rua, segundo o texto?",
-        options: ["Ganhar na loteria", "Falta de oportunidades de emprego e moradia", "Ter muitos amigos", "Gostar de acampar"],
-        answer: 1,
-        why: "O texto cita falta de emprego e moradia, violência familiar, saúde mental e dependência química.",
-      },
-      {
-        q: "O que quer dizer combater os estereótipos?",
-        options: ["Lutar contra ideias prontas e preconceituosas sobre as pessoas", "Fazer mais barulho", "Proibir doações", "Construir mais prédios"],
-        answer: 0,
-        why: "Estereótipos são ideias erradas sobre um grupo. Combatê-los ajuda a acabar com a discriminação.",
-      },
-      {
-        q: "Qual atitude ajuda a garantir a dignidade das pessoas em situação de rua?",
-        options: ["Ignorá-las", "Ouvi-las e deixá-las participar das decisões sobre suas vidas", "Rir delas", "Expulsá-las da cidade"],
-        answer: 1,
-        why: "O texto diz que elas devem ser ouvidas e participar ativamente, garantindo autonomia e dignidade.",
-      },
-    ],
   },
 
   /* ------------------------------------------------------------------ */
@@ -644,49 +517,8 @@ export const geografia: Topic[] = [
         </Section>
       </>
     ),
-    quiz: [
-      {
-        q: "O acúmulo de lixo nas ruas pode causar:",
-        options: ["Mais saúde para a população", "Doenças e piora na qualidade do ar e da água", "Mais áreas de lazer", "Diminuição dos mosquitos"],
-        answer: 1,
-        why: "Lixo acumulado atrai vetores e contamina o ambiente.",
-      },
-      {
-        q: "Qual alternativa mostra os quatro serviços do saneamento básico?",
-        options: ["Água potável, esgoto, coleta de lixo e controle de vetores", "Escola, hospital, polícia e bombeiros", "Luz, gás, internet e telefone", "Ônibus, metrô, trem e avião"],
-        answer: 0,
-        why: "Esses são os quatro componentes do saneamento básico.",
-      },
-      {
-        q: "Uma educação de qualidade pode ajudar uma família a ter uma moradia melhor porque:",
-        options: ["A escola dá casas para os alunos", "Abre portas para empregos melhores e mais renda", "Não tem relação nenhuma", "Faz as casas ficarem maiores"],
-        answer: 1,
-        why: "Educação → emprego melhor → mais renda → moradia adequada.",
-      },
-      {
-        q: "Por que a “cidade invisível” também é invisível para as autoridades?",
-        options: ["Porque as autoridades não usam óculos", "Porque muitas vezes elas nem sabem que existem certas áreas de pobreza extrema, que ficam fora das políticas públicas", "Porque essas áreas ficam em outro país", "Porque é proibido falar delas"],
-        answer: 1,
-        why: "Essas comunidades ficam à margem das políticas públicas e dos programas sociais.",
-      },
-      {
-        q: "Segundo os dados de 2022, a maioria das pessoas em situação de rua no Brasil é:",
-        options: ["Formada por crianças", "Formada por idosos", "Formada por homens adultos, e 68% são pessoas negras", "Formada por estrangeiros"],
-        answer: 2,
-        why: "87% são homens, 87% têm entre 18 e 59 anos e 68% são negros.",
-      },
-      {
-        q: "Microcrédito e capacitação profissional são exemplos de:",
-        options: ["Doenças", "Políticas de inclusão social", "Tipos de lixo", "Meios de transporte"],
-        answer: 1,
-        why: "São ações que ajudam as pessoas a ter renda e a se incluir na sociedade.",
-      },
-      {
-        q: "Qual é a atitude mais adequada diante das desigualdades sociais?",
-        options: ["Achar que não é problema nosso", "Ter consciência, respeito e solidariedade, e apoiar ações que garantam direitos", "Evitar falar do assunto", "Culpar as pessoas pela sua situação"],
-        answer: 1,
-        why: "O texto destaca conscientização, solidariedade e apoio a ações que promovam a dignidade.",
-      },
-    ],
   },
 ];
+
+// No fim de cada assunto: 20 questões de revisão.
+export const geografia: Topic[] = topicos.map((topico) => ({ ...topico, quiz: questoesGeografia[topico.id] }));

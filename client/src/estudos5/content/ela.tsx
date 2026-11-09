@@ -1,9 +1,10 @@
 import type { Topic } from "../types";
+import { questoesEla } from "./questoes-ela";
 import { Callout, Card, CardGrid, Example, FillBlanks, Glossary, Quiz, Section, Sorter, UpgradeTable, VennSorter, WordChips, WritingHelper } from "../ui";
 
 const ELA = "#7a5ad6";
 
-export const ela: Topic[] = [
+const topicos: Topic[] = [
   /* ------------------------------------------------------------------ */
   {
     id: "verbs",
@@ -113,44 +114,6 @@ export const ela: Topic[] = [
         </Section>
       </>
     ),
-    quiz: [
-      {
-        q: "Which word is the verb? “The dog barked loudly.”",
-        options: ["dog", "barked", "loudly", "the"],
-        answer: 1,
-        why: "Barked (latiu) é a ação que o cachorro fez.",
-      },
-      {
-        q: "Qual é um verbo mais forte (powerful verb) para “run”?",
-        options: ["whisper", "sprint", "gaze", "stroll"],
-        answer: 1,
-        why: "Sprint = correr a toda velocidade. Whisper é um tipo de “say”, gaze é “look” e stroll é “walk”.",
-      },
-      {
-        q: "“She ______ at the clock before leaving.” Qual verbo significa “dar uma olhadinha”?",
-        options: ["glanced", "bellowed", "dashed", "marched"],
-        answer: 0,
-        why: "Glance = dar uma olhada rápida.",
-      },
-      {
-        q: "Em “The students felt confident”, o verbo “felt” é um:",
-        options: ["Action verb (ação física)", "Linking verb (verbo de ligação)", "Adjective", "Adverb"],
-        answer: 1,
-        why: "Felt não mostra uma ação física: liga “students” ao sentimento “confident”.",
-      },
-      {
-        q: "Complete: “My mother ______ delicious pasta on Sundays.”",
-        options: ["cook", "cooks", "cooking", "to cook"],
-        answer: 1,
-        why: "My mother = she. No presente, com he/she/it, o verbo ganha -s: cooks.",
-      },
-      {
-        q: "Qual frase está no FUTURO?",
-        options: ["I played soccer.", "I play soccer.", "I will play soccer.", "I am soccer."],
-        answer: 2,
-        why: "Will + verbo indica o futuro.",
-      },
-    ],
   },
 
   /* ------------------------------------------------------------------ */
@@ -230,38 +193,6 @@ export const ela: Topic[] = [
         </Section>
       </>
     ),
-    quiz: [
-      {
-        q: "Which word is the adjective? “The tiny mouse ran away.”",
-        options: ["tiny", "mouse", "ran", "away"],
-        answer: 0,
-        why: "Tiny (minúsculo) descreve o substantivo mouse.",
-      },
-      {
-        q: "Qual é um adjetivo mais forte para “big”?",
-        options: ["microscopic", "gloomy", "gigantic", "pleasant"],
-        answer: 2,
-        why: "Gigantic = gigantesco. Microscopic é o contrário!",
-      },
-      {
-        q: "“Heartbroken” é uma versão mais forte de qual adjetivo?",
-        options: ["nice", "sad", "small", "big"],
-        answer: 1,
-        why: "Heartbroken = de coração partido, muito triste.",
-      },
-      {
-        q: "“A deafening roar” — o adjetivo “deafening” está ligado a qual sentido?",
-        options: ["Sight (visão)", "Sound (audição)", "Touch (tato)", "Taste (paladar)"],
-        answer: 1,
-        why: "Deafening = ensurdecedor, um som muito alto.",
-      },
-      {
-        q: "Qual frase está CORRETA em inglês?",
-        options: ["I have a dog big.", "I have two bigs dogs.", "I have a big dog.", "I have big a dog."],
-        answer: 2,
-        why: "Em inglês o adjetivo vem antes do substantivo e não vai para o plural.",
-      },
-    ],
   },
 
   /* ------------------------------------------------------------------ */
@@ -370,38 +301,6 @@ export const ela: Topic[] = [
         </Section>
       </>
     ),
-    quiz: [
-      {
-        q: "Which word is the adverb? “The baby slept peacefully.”",
-        options: ["baby", "slept", "peacefully", "the"],
-        answer: 2,
-        why: "Peacefully (tranquilamente) conta COMO o bebê dormiu.",
-      },
-      {
-        q: "“We will travel tomorrow.” A palavra “tomorrow” responde a qual pergunta?",
-        options: ["How? (Como?)", "When? (Quando?)", "Where? (Onde?)", "How often?"],
-        answer: 1,
-        why: "Tomorrow (amanhã) é um advérbio de tempo: diz QUANDO.",
-      },
-      {
-        q: "Complete: “Sarah is a ______ student. The tortoise walked ______.”",
-        options: ["slowly / smart", "smartly / slow", "slow / smartly", "smart / slowly"],
-        answer: 3,
-        why: "Smart descreve student (adjective). Slowly descreve walked (adverb).",
-      },
-      {
-        q: "Qual é o advérbio formado a partir de “careful”?",
-        options: ["carefuly", "carefully", "carefulness", "cared"],
-        answer: 1,
-        why: "careful + ly = carefully (com dois L!).",
-      },
-      {
-        q: "Qual destas palavras é um advérbio de frequência (how often)?",
-        options: ["always", "yesterday", "outside", "loudly"],
-        answer: 0,
-        why: "Always (sempre) diz com que frequência algo acontece.",
-      },
-    ],
   },
 
   /* ------------------------------------------------------------------ */
@@ -508,38 +407,6 @@ export const ela: Topic[] = [
         </Section>
       </>
     ),
-    quiz: [
-      {
-        q: "O que significa “persuade”?",
-        options: ["Descrever", "Convencer", "Contar uma história", "Explicar fatos"],
-        answer: 1,
-        why: "Persuade = convencer alguém a concordar com você.",
-      },
-      {
-        q: "Which sentence is a FACT?",
-        options: ["Cats are cuter than dogs.", "The Earth goes around the Sun.", "Math is the best subject.", "Rainy days are sad."],
-        answer: 1,
-        why: "Pode ser provado pela ciência. As outras são opiniões.",
-      },
-      {
-        q: "“Who doesn't love free ice cream?” é um exemplo de:",
-        options: ["Rhetorical question", "Fact", "Adverb of time", "Narrative paragraph"],
-        answer: 0,
-        why: "É uma pergunta que não espera resposta: a resposta parece óbvia.",
-      },
-      {
-        q: "Qual palavra liga a opinião a uma razão?",
-        options: ["because", "yesterday", "gigantic", "whisper"],
-        answer: 0,
-        why: "Because (porque) introduz a razão.",
-      },
-      {
-        q: "Qual modal verb mostra que algo é obrigatório/muito necessário?",
-        options: ["could", "must", "might", "may"],
-        answer: 1,
-        why: "Must = deve (obrigação forte). Should é um conselho; could é uma possibilidade.",
-      },
-    ],
   },
 
   /* ------------------------------------------------------------------ */
@@ -657,38 +524,6 @@ export const ela: Topic[] = [
         </Section>
       </>
     ),
-    quiz: [
-      {
-        q: "“The giant sea turtle has a hard, dark green shell covered in rough spots.” Que tipo de parágrafo começa assim?",
-        options: ["Narrative", "Descriptive", "Expository", "Persuasive"],
-        answer: 1,
-        why: "Usa muitos adjetivos e detalhes sensoriais (hard, dark green, rough) para criar uma imagem.",
-      },
-      {
-        q: "“Sea turtles are marine reptiles that live in oceans around the world.” Que tipo de parágrafo é este?",
-        options: ["Narrative", "Descriptive", "Expository", "Persuasive"],
-        answer: 2,
-        why: "Apresenta fatos, de forma neutra, sem opinião.",
-      },
-      {
-        q: "Qual tipo de parágrafo termina com um “call to action” (chamada para ação)?",
-        options: ["Narrative", "Descriptive", "Expository", "Persuasive"],
-        answer: 3,
-        why: "O persuasivo termina dizendo ao leitor o que pensar ou fazer.",
-      },
-      {
-        q: "Quais palavras de sinal são típicas do parágrafo NARRATIVO?",
-        options: ["first, then, suddenly, finally", "must, should, clearly", "soft, bright, rough", "such as, for example, therefore"],
-        answer: 0,
-        why: "São palavras de tempo que organizam a história em ordem cronológica.",
-      },
-      {
-        q: "No “paragraph burger”, qual parte apresenta o assunto?",
-        options: ["Concluding sentence", "Supporting sentence", "Topic sentence", "Call to action"],
-        answer: 2,
-        why: "A topic sentence é o “pão de cima”: apresenta o assunto.",
-      },
-    ],
   },
 
   /* ------------------------------------------------------------------ */
@@ -823,3 +658,6 @@ export const ela: Topic[] = [
     ),
   },
 ];
+
+// No fim de cada assunto: 20 questões de revisão.
+export const ela: Topic[] = topicos.map((topico) => ({ ...topico, quiz: questoesEla[topico.id] }));

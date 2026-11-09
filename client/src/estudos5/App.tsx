@@ -181,7 +181,7 @@ function Welcome({ done }: { done: string[] }) {
         <div className="k-howto-grid">
           <div><b>1. Leia</b><span>Cada assunto tem explicações curtas, com exemplos do dia a dia.</span></div>
           <div><b>2. Ouça</b><span>Toque em <em>🔊 Ouvir</em> para escutar a explicação. Em E.L.A., toque nas palavras em inglês para ouvir a pronúncia.</span></div>
-          <div><b>3. Pratique</b><span>No fim de cada assunto tem um teste rápido com a correção explicada.</span></div>
+          <div><b>3. Pratique</b><span>No fim de cada assunto há 20 questões de revisão, com a correção explicada.</span></div>
           <div><b>4. Marque</b><span>Quando terminar, marque “Já estudei” para acompanhar seu progresso.</span></div>
         </div>
       </section>
@@ -311,7 +311,7 @@ function TopicView({ topic, subject, done, onToggleDone }: { topic: Topic; subje
         <Body />
       </div>
 
-      {topic.quiz && <Quiz id={topic.id} questions={topic.quiz} accent={subject.color} />}
+      {topic.quiz && <Quiz id={topic.id} questions={topic.quiz} accent={subject.color} title={`Revisão: ${topic.quiz.length} questões`} />}
 
       <div className="k-topic-footer">
         <button className={`k-done ${done ? "on" : ""}`} onClick={onToggleDone}>
