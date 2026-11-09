@@ -36,15 +36,18 @@ const bySubject = (id: SubjectId) => topics.filter((t) => t.subject === id);
 
 type Route = { subject: SubjectId | null; topicId: string | null };
 
+// Endereços simples (#geo, #geo-saneamento, #ela-verbs): funcionam no GitHub Pages e na página publicada.
 function parseHash(): Route {
-  const [subject, topicId] = window.location.hash.replace(/^#\/?/, "").split("/");
+  const hash = window.location.hash.replace(/^#\/?/, "").replace("/", "-");
+  const subject = hash.slice(0, 3);
   if (subject !== "geo" && subject !== "ela") return { subject: null, topicId: null };
+  const topicId = hash.slice(4);
   const valid = topics.some((t) => t.subject === subject && t.id === topicId);
   return { subject, topicId: valid ? topicId : null };
 }
 
 function go(subject: SubjectId | null, topicId?: string | null) {
-  window.location.hash = subject ? `/${subject}${topicId ? `/${topicId}` : ""}` : "/";
+  window.location.hash = subject ? `${subject}${topicId ? `-${topicId}` : ""}` : "inicio";
 }
 
 export default function App() {

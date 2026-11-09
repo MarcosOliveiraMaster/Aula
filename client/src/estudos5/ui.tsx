@@ -97,11 +97,17 @@ export function Card({ emoji, title, children, tone }: { emoji?: string; title: 
 }
 
 /** Uma sequência de passos ligados por setas (vira coluna no celular). */
-export function Flow({ steps }: { steps: Array<{ emoji: string; text: string }> }) {
+export function Flow({ steps, animated = false }: { steps: Array<{ emoji: string; text: string }>; animated?: boolean }) {
+  const [atual, setAtual] = useState(0);
+  useEffect(() => {
+    if (!animated || window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return;
+    const id = window.setInterval(() => setAtual((a) => (a + 1) % steps.length), 1600);
+    return () => window.clearInterval(id);
+  }, [animated, steps.length]);
   return (
-    <ol className="k-flow">
+    <ol className={`k-flow ${animated ? "animated" : ""}`}>
       {steps.map((step, i) => (
-        <li key={i}>
+        <li key={i} className={animated && i === atual ? "lit" : ""}>
           <span className="k-flow-emoji" aria-hidden="true">{step.emoji}</span>
           <span>{step.text}</span>
         </li>

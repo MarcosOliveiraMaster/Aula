@@ -1,6 +1,7 @@
 import type { Topic } from "../types";
 import { questoesGeografia } from "./questoes-geografia";
-import { Bars, Callout, Card, CardGrid, Flow, Glossary, Section } from "../ui";
+import { BarrasFavelas, Banquinho, CicloAgua, LanternaCidade, Pictograma, RuaSaneamento } from "../visuais";
+import { Callout, Card, CardGrid, Flow, Glossary, Section } from "../ui";
 
 const GEO = "#1f9d7a";
 
@@ -49,15 +50,7 @@ const topicos: Topic[] = [
 
         <Section emoji="🔄" title="A viagem da água até a sua casa (e de volta)"
           narration="Vamos acompanhar a viagem da água. Primeiro, a água é retirada de um rio ou de uma represa. Depois, ela vai para uma estação de tratamento, onde é limpa. Em seguida, viaja por canos até as casas. Depois de usada, ela vira esgoto e vai por outros canos até uma estação de tratamento de esgoto. Lá ela é limpa de novo e só então pode voltar para a natureza.">
-          <Flow
-            steps={[
-              { emoji: "🏞️", text: "A água é retirada de um rio ou represa" },
-              { emoji: "🏭", text: "Vai para a estação de tratamento e fica limpinha" },
-              { emoji: "🏠", text: "Chega pelos canos na sua casa" },
-              { emoji: "🚿", text: "Depois de usada, vira esgoto" },
-              { emoji: "♻️", text: "O esgoto é tratado e a água volta limpa para a natureza" },
-            ]}
-          />
+          <CicloAgua />
           <Callout kind="sabia">
             Uma parte importante desse caminho não aparece: os canos ficam <b>embaixo da terra</b>! Por isso, às vezes a gente nem percebe quando um bairro <b>não tem</b> rede de esgoto.
           </Callout>
@@ -65,6 +58,8 @@ const topicos: Topic[] = [
 
         <Section emoji="🤒" title="Por que a falta de saneamento deixa as pessoas doentes?" accent={GEO}
           narration="Quando não há saneamento, o esgoto corre a céu aberto e o lixo se acumula. Isso suja o solo, os rios e a água que as pessoas usam. Aí aparecem doenças como diarreia, cólera e hepatite A. Segundo a Organização Mundial da Saúde, mais de 1,7 milhão de pessoas morrem por ano por causa de água contaminada e saneamento inadequado.">
+          <p>Compare as duas ruas: toque nos botões para ver a diferença.</p>
+          <RuaSaneamento />
           <p>Veja o que acontece, passo a passo, quando um lugar <b>não tem</b> saneamento:</p>
           <Flow
             steps={[
@@ -166,6 +161,8 @@ const topicos: Topic[] = [
           <p>
             Esses três elementos são <b>fundamentais</b> para o <b>desenvolvimento humano</b> (as pessoas crescerem com saúde, conhecimento e oportunidades) e para formar <b>comunidades saudáveis</b>.
           </p>
+          <p><b>Experimente:</b> tire uma perna do banquinho e veja o que acontece!</p>
+          <Banquinho />
         </Section>
 
         <Section emoji="📚" title="Educação">
@@ -205,7 +202,7 @@ const topicos: Topic[] = [
         <Section emoji="🔗" title="Tudo está ligado!" accent={GEO}
           narration="Educação, moradia e segurança estão ligadas, como os elos de uma corrente. Uma educação de qualidade ajuda a conseguir empregos melhores. Com um emprego melhor, a família ganha mais e pode ter uma moradia adequada e segura. Morando bem, com saúde e segurança, a criança consegue aprender melhor na escola. O contrário também acontece: sem moradia adequada, a saúde e a segurança pioram, e isso atrapalha o desempenho na escola.">
           <p>Veja como uma coisa puxa a outra, como um ciclo:</p>
-          <Flow
+          <Flow animated
             steps={[
               { emoji: "📚", text: "Educação de qualidade" },
               { emoji: "💼", text: "Empregos melhores" },
@@ -270,6 +267,8 @@ const topicos: Topic[] = [
           <Callout kind="lembre">
             <b>Desigualdade social</b> é quando algumas pessoas têm muito acesso a direitos e oportunidades (escola boa, saúde, transporte, lazer) e outras têm pouco ou nenhum.
           </Callout>
+          <p><b>Desafio da lanterna 🔦:</b> passe a lanterna pela cidade e descubra os problemas que estão “invisíveis”.</p>
+          <LanternaCidade />
         </Section>
 
         <Section emoji="🧱" title="Segregação socioespacial">
@@ -330,18 +329,7 @@ const topicos: Topic[] = [
 
         <Section emoji="📈" title="As favelas aumentaram muito">
           <p>Segundo o <b>IBGE</b> (o instituto que faz as pesquisas sobre o Brasil), o número de <b>aglomerados subnormais</b> (favelas, palafitas e outras moradias precárias) <b>dobrou</b>:</p>
-          <div className="k-compare">
-            <div>
-              <span className="k-compare-year">2010</span>
-              <div className="k-compare-bar" style={{ width: "48%" }} />
-              <p><b>6.329</b> favelas em <b>323</b> municípios</p>
-            </div>
-            <div>
-              <span className="k-compare-year">2019</span>
-              <div className="k-compare-bar" style={{ width: "100%" }} />
-              <p><b>13.151</b> favelas em <b>743</b> cidades</p>
-            </div>
-          </div>
+          <BarrasFavelas />
           <Callout kind="dica" title="Respeito acima de tudo">
             Favelas e comunidades não são só lugares de problemas: são também lugares de <b>trabalho, cultura, música, esporte e famílias</b>. O problema é a <b>falta de direitos</b>, não as pessoas que moram lá.
           </Callout>
@@ -400,15 +388,7 @@ const topicos: Topic[] = [
             <strong>281.472</strong>
             <span>pessoas em situação de rua no Brasil (estimativa de 2022)</span>
           </div>
-          <Bars
-            color={GEO}
-            items={[
-              { label: "São do sexo masculino", value: 87 },
-              { label: "Têm entre 18 e 59 anos (adultos)", value: 87 },
-              { label: "São negras (pretas e pardas)", value: 68 },
-              { label: "Não terminaram o ensino fundamental", value: 47 },
-            ]}
-          />
+          <Pictograma />
           <Callout kind="dica" title="O que esses números mostram?">
             Repare que a maioria das pessoas em situação de rua é <b>negra</b> e muitas <b>não puderam terminar a escola</b>. Isso se liga ao que vimos sobre a <b>cidade invisível</b>: as desigualdades vêm de longe e se acumulam.
           </Callout>

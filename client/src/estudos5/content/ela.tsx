@@ -1,5 +1,6 @@
 import type { Topic } from "../types";
 import { questoesEla } from "./questoes-ela";
+import { LinhaDoTempo, MaquinaAdjetivos, MedidorPersuasao, MonteHamburguer, PalcoVerbos, TartarugaAdverbios } from "../visuais";
 import { Callout, Card, CardGrid, Example, FillBlanks, Glossary, Quiz, Section, Sorter, UpgradeTable, VennSorter, WordChips, WritingHelper } from "../ui";
 
 const ELA = "#7a5ad6";
@@ -43,6 +44,8 @@ const topicos: Topic[] = [
               { basic: "look", basicPt: "olhar", strong: [["peer", "espiar com atenção"], ["glance", "dar uma olhadinha"], ["gaze", "contemplar"], ["stare", "encarar"]] },
             ]}
           />
+          <h3 className="k-h3">🎭 Veja os verbos em ação</h3>
+          <PalcoVerbos />
           <h3 className="k-h3">Examples</h3>
           <Example en="The cat crept through the tall grass." pt="O gato andou de mansinho pelo capim alto. (crept = passado de creep)" highlight={["crept"]} />
           <Example en={"\"Look out!\" bellowed the captain."} pt="“Cuidado!”, berrou o capitão." highlight={["bellowed"]} />
@@ -84,11 +87,8 @@ const topicos: Topic[] = [
 
         <Section emoji="⏳" title="Verb tenses (os tempos do verbo)" accent={ELA}
           narration="Os verbos mudam de acordo com o tempo. No passado, usamos muitas vezes a terminação e d, como played, que quer dizer jogou. No presente, usamos play, ou plays com s no final quando o sujeito é he, she ou it, ou um nome de uma pessoa só. No futuro, colocamos will antes do verbo, como will play, que quer dizer vai jogar.">
-          <div className="k-tenses">
-            <div><span>⬅️ Past (passado)</span><b lang="en">I played soccer yesterday.</b><small>Eu joguei futebol ontem.</small></div>
-            <div><span>⏺️ Present (presente)</span><b lang="en">I play soccer every day.</b><small>Eu jogo futebol todo dia.</small></div>
-            <div><span>➡️ Future (futuro)</span><b lang="en">I will play soccer tomorrow.</b><small>Eu vou jogar futebol amanhã.</small></div>
-          </div>
+          <p>Toque em <b>Past</b>, <b>Present</b> ou <b>Future</b> na linha do tempo:</p>
+          <LinhaDoTempo />
           <Callout kind="atencao" title="A regra do “s” no presente (cai muito em exercícios!)">
             Com <b lang="en">he, she, it</b> ou o nome de <b>uma pessoa/coisa só</b>, o verbo no presente ganha <b>-s</b> (ou <b>-es</b>):
             <ul className="k-list" lang="en">
@@ -143,6 +143,8 @@ const topicos: Topic[] = [
             <p>1. Em inglês o adjetivo vem <b>ANTES</b> do substantivo: <span lang="en"><b>a big dog</b></span> (e não <s lang="en">a dog big</s>).</p>
             <p>2. O adjetivo <b>não vai para o plural</b>: <span lang="en"><b>two big dogs</b></span> (e não <s lang="en">two bigs dogs</s>).</p>
           </Callout>
+          <h3 className="k-h3">👾 Máquina de adjetivos: monte o seu monstro</h3>
+          <MaquinaAdjetivos />
         </Section>
 
         <Section emoji="⬆️" title="Upgraded adjectives (adjetivos turbinados)" accent={ELA}
@@ -281,6 +283,7 @@ const topicos: Topic[] = [
 
         <Section emoji="⚖️" title="Adjective or adverb? (cai na prova!)" accent={ELA}
           narration="Como saber se é adjetivo ou advérbio? O adjetivo descreve um substantivo, uma pessoa, lugar ou coisa. O advérbio descreve um verbo, uma ação. Por exemplo: Sarah is a smart student. Smart descreve a estudante, então é adjetivo. The tortoise walked slowly. Slowly descreve como a tartaruga andou, então é advérbio.">
+          <TartarugaAdverbios />
           <div className="k-vs">
             <div>
               <span className="k-vs-tag">ADJECTIVE</span>
@@ -383,6 +386,11 @@ const topicos: Topic[] = [
           </CardGrid>
         </Section>
 
+        <Section emoji="📈" title="Medidor de persuasão">
+          <p>Vamos convencer a diretora a dar <b>mais tempo de recreio</b>? Escolha os ingredientes e veja o medidor subir!</p>
+          <MedidorPersuasao />
+        </Section>
+
         <Section emoji="🔗" title="Linking words (palavras de ligação)">
           <p>Elas ligam a opinião às razões e deixam o texto organizado:</p>
           <WordChips
@@ -430,6 +438,8 @@ const topicos: Topic[] = [
             <div className="fill c"><b>Supporting sentence</b><span>Mais um!</span></div>
             <div className="bun bottom"><b>Concluding sentence</b><span>Frase de conclusão: fecha a ideia.</span></div>
           </div>
+          <h3 className="k-h3">🍔 Agora é sua vez: monte o hambúrguer</h3>
+          <MonteHamburguer />
         </Section>
 
         <Section emoji="🎯" title="Qual é o objetivo? Cada tipo tem uma missão">
