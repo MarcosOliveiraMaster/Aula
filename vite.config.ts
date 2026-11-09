@@ -220,6 +220,12 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
+    rollupOptions: {
+      input: {
+        main: path.resolve(import.meta.dirname, "client", "index.html"),
+        estudos5: path.resolve(import.meta.dirname, "client", "5ano", "index.html"),
+      },
+    },
   },
   // A voz neural (Piper) roda num Web Worker com imports dinâmicos.
   worker: {
