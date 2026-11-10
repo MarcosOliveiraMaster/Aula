@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-export type SubjectId = "geo" | "ela";
+export type SubjectId = "geo" | "ela" | "hist";
 
 export type QuizQuestion = {
   q: string;
