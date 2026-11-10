@@ -5,6 +5,7 @@ import { stop as stopNarrator } from "@/lib/speech/narrator";
 import type { Subject, SubjectId, Topic } from "./types";
 import { geografia } from "./content/geografia";
 import { ela } from "./content/ela";
+import { historia } from "./content/historia";
 import { Quiz } from "./ui";
 import { load, save } from "./storage";
 
@@ -29,9 +30,21 @@ const subjects: Record<SubjectId, Subject> = {
     ink: "#4f35a8",
     intro: "Verbs, adjectives, adverbs, persuasive language and the four types of paragraphs — explicados em português.",
   },
+  hist: {
+    id: "hist",
+    name: "História",
+    emoji: "🏛️",
+    unit: "Unidade 3 · Ampliação da participação política e conquista de direitos",
+    color: "#b5532a",
+    soft: "#fbebe2",
+    ink: "#8a3a19",
+    intro: "Democracia, a Grécia Antiga e a Revolução Francesa, o passado escravagista do Brasil e os direitos da pessoa com deficiência.",
+  },
 };
 
-const topics: Topic[] = [...geografia, ...ela];
+const topics: Topic[] = [...geografia, ...ela, ...historia];
+const ordem: SubjectId[] = ["geo", "ela", "hist"];
+const nomeCurto = (id: SubjectId) => (id === "ela" ? "E.L.A." : subjects[id].name);
 const bySubject = (id: SubjectId) => topics.filter((t) => t.subject === id);
 
 type Route = { subject: SubjectId | null; topicId: string | null };
@@ -39,9 +52,10 @@ type Route = { subject: SubjectId | null; topicId: string | null };
 // Endereços simples (#geo, #geo-saneamento, #ela-verbs): funcionam no GitHub Pages e na página publicada.
 function parseHash(): Route {
   const hash = window.location.hash.replace(/^#\/?/, "").replace("/", "-");
-  const subject = hash.slice(0, 3);
-  if (subject !== "geo" && subject !== "ela") return { subject: null, topicId: null };
-  const topicId = hash.slice(4);
+  const corte = hash.indexOf("-");
+  const subject = (corte === -1 ? hash : hash.slice(0, corte)) as SubjectId;
+  if (!ordem.includes(subject)) return { subject: null, topicId: null };
+  const topicId = corte === -1 ? "" : hash.slice(corte + 1);
   const valid = topics.some((t) => t.subject === subject && t.id === topicId);
   return { subject, topicId: valid ? topicId : null };
 }
@@ -117,7 +131,7 @@ function Header({ route }: { route: Route }) {
           {(Object.values(subjects) as Subject[]).map((s) => (
             <button key={s.id} className={route.subject === s.id ? "on" : ""} onClick={() => go(s.id)} style={{ "--tab": s.color } as React.CSSProperties}>
               <span aria-hidden="true">{s.emoji}</span>
-              <span>{s.id === "ela" ? "E.L.A." : s.name}</span>
+              <span>{nomeCurto(s.id)}</span>
             </button>
           ))}
         </nav>
@@ -136,11 +150,12 @@ function Welcome({ done }: { done: string[] }) {
           <span className="k-eyebrow">Olá, estudante! 👋</span>
           <h1>Vamos estudar juntos para as provas?</h1>
           <p>
-            Aqui você encontra <b>todos os assuntos</b> de <b>Geografia</b> e <b>E.L.A.</b> explicados de um jeito fácil, com exemplos, curiosidades, áudio e exercícios para treinar.
+            Aqui você encontra <b>todos os assuntos</b> de <b>Geografia</b>, <b>E.L.A.</b> e <b>História</b> explicados de um jeito fácil, com exemplos, curiosidades, áudio e exercícios para treinar.
           </p>
           <div className="k-hero-actions">
             <button className="k-btn big" onClick={() => go("geo", geografia[0].id)}>🌎 Começar por Geografia</button>
             <button className="k-btn big alt" onClick={() => go("ela", ela[0].id)}>🇬🇧 Começar por E.L.A.</button>
+            <button className="k-btn big hist" onClick={() => go("hist", historia[0].id)}>🏛️ Começar por História</button>
           </div>
         </div>
         <div className="k-hero-art" aria-hidden="true">
@@ -235,7 +250,12 @@ function Sidebar({ subject, activeId, done }: { subject: Subject; activeId: stri
 function SubjectHome({ subject, done }: { subject: Subject; done: string[] }) {
   const list = bySubject(subject.id);
   const roteiro =
-    subject.id === "geo"
+    subject.id === "hist"
+      ? {
+          oque: ["Democracia: ampliação da participação política", "Brasil: um passado escravagista", "Direito da Pessoa com Deficiência"],
+          como: ["Definir uma rotina diária de estudos para a prova", "Ler os textos enviados", "Fazer resumos", "Tirar dúvidas com os professores"],
+        }
+      : subject.id === "geo"
       ? {
           oque: ["Saneamento básico, saúde e qualidade de vida", "Educação, moradia e segurança", "Desigualdades sociais: a cidade invisível e pessoas em situação de rua"],
           como: ["Definir uma rotina diária de estudos para a prova", "Ler os textos enviados", "Fazer resumos", "Tirar dúvidas com os professores"],
@@ -332,8 +352,8 @@ function TopicView({ topic, subject, done, onToggleDone }: { topic: Topic; subje
               <span className="k-hide-sm">{next.title}</span><span className="k-show-sm">Próximo</span> <ArrowRight size={16} />
             </button>
           ) : (
-            <button className="k-btn" onClick={() => go(subject.id === "geo" ? "ela" : "geo")}>
-              Ir para {subject.id === "geo" ? "E.L.A." : "Geografia"} <ArrowRight size={16} />
+            <button className="k-btn" onClick={() => go(ordem[(ordem.indexOf(subject.id) + 1) % ordem.length])}>
+              Ir para {nomeCurto(ordem[(ordem.indexOf(subject.id) + 1) % ordem.length])} <ArrowRight size={16} />
             </button>
           )}
         </div>
