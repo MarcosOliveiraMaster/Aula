@@ -6,6 +6,7 @@ import type { Subject, SubjectId, Topic } from "./types";
 import { geografia } from "./content/geografia";
 import { ela } from "./content/ela";
 import { historia } from "./content/historia";
+import { ciencias } from "./content/ciencias";
 import { Quiz } from "./ui";
 import { load, save } from "./storage";
 
@@ -40,11 +41,21 @@ const subjects: Record<SubjectId, Subject> = {
     ink: "#8a3a19",
     intro: "Democracia, a Grécia Antiga e a Revolução Francesa, o passado escravagista do Brasil e os direitos da pessoa com deficiência.",
   },
+  sci: {
+    id: "sci",
+    name: "Ciências (Science)",
+    emoji: "🔬",
+    unit: "U3 · Simple Machines · U4 · Weather",
+    color: "#0f8fa8",
+    soft: "#e3f6fa",
+    ink: "#0a6577",
+    intro: "Máquinas simples (alavanca, roda e eixo, polia) e o tempo (Sol, nuvens, previsão e tempo severo): em português e em inglês, com simuladores e jogos.",
+  },
 };
 
-const topics: Topic[] = [...geografia, ...ela, ...historia];
-const ordem: SubjectId[] = ["geo", "ela", "hist"];
-const nomeCurto = (id: SubjectId) => (id === "ela" ? "E.L.A." : subjects[id].name);
+const topics: Topic[] = [...geografia, ...ela, ...historia, ...ciencias];
+const ordem: SubjectId[] = ["geo", "ela", "hist", "sci"];
+const nomeCurto = (id: SubjectId) => (id === "ela" ? "E.L.A." : id === "sci" ? "Ciências" : subjects[id].name);
 const bySubject = (id: SubjectId) => topics.filter((t) => t.subject === id);
 
 type Route = { subject: SubjectId | null; topicId: string | null };
@@ -84,7 +95,7 @@ export default function App() {
   const toggleDone = (id: string) => setDone((list) => (list.includes(id) ? list.filter((x) => x !== id) : [...list, id]));
 
   const subject = route.subject ? subjects[route.subject] : null;
-  const topic = route.topicId ? topics.find((t) => t.id === route.topicId) ?? null : null;
+  const topic = route.topicId ? topics.find((t) => t.subject === route.subject && t.id === route.topicId) ?? null : null;
 
   useEffect(() => {
     document.title = topic ? `${topic.title} · Estudos do 5º ano` : subject ? `${subject.name} · Estudos do 5º ano` : "Estudos do 5º ano";
@@ -131,7 +142,7 @@ function Header({ route }: { route: Route }) {
           {(Object.values(subjects) as Subject[]).map((s) => (
             <button key={s.id} className={route.subject === s.id ? "on" : ""} onClick={() => go(s.id)} style={{ "--tab": s.color } as React.CSSProperties}>
               <span aria-hidden="true">{s.emoji}</span>
-              <span>{nomeCurto(s.id)}</span>
+              <span className="k-tab-label">{nomeCurto(s.id)}</span>
             </button>
           ))}
         </nav>
@@ -150,12 +161,13 @@ function Welcome({ done }: { done: string[] }) {
           <span className="k-eyebrow">Olá, estudante! 👋</span>
           <h1>Vamos estudar juntos para as provas?</h1>
           <p>
-            Aqui você encontra <b>todos os assuntos</b> de <b>Geografia</b>, <b>E.L.A.</b> e <b>História</b> explicados de um jeito fácil, com exemplos, curiosidades, áudio e exercícios para treinar.
+            Aqui você encontra <b>todos os assuntos</b> de <b>Geografia</b>, <b>E.L.A.</b>, <b>História</b> e <b>Ciências</b> explicados de um jeito fácil, com exemplos, curiosidades, áudio e exercícios para treinar.
           </p>
           <div className="k-hero-actions">
             <button className="k-btn big" onClick={() => go("geo", geografia[0].id)}>🌎 Começar por Geografia</button>
             <button className="k-btn big alt" onClick={() => go("ela", ela[0].id)}>🇬🇧 Começar por E.L.A.</button>
             <button className="k-btn big hist" onClick={() => go("hist", historia[0].id)}>🏛️ Começar por História</button>
+            <button className="k-btn big sci" onClick={() => go("sci", ciencias[0].id)}>🔬 Começar por Ciências</button>
           </div>
         </div>
         <div className="k-hero-art" aria-hidden="true">
@@ -250,7 +262,12 @@ function Sidebar({ subject, activeId, done }: { subject: Subject; activeId: stri
 function SubjectHome({ subject, done }: { subject: Subject; done: string[] }) {
   const list = bySubject(subject.id);
   const roteiro =
-    subject.id === "hist"
+    subject.id === "sci"
+      ? {
+          oque: ["U3 — Simple Machines: máquinas simples, alavanca, roda e eixo e polia", "U4 — Weather: energia do Sol, nuvens, previsão do tempo e tempo severo"],
+          como: ["Ler o Student Book e fazer resumos curtos de cada aula", "Revisar as Cornell Notes feitas em sala", "Sublinhar as partes importantes do texto", "Anotar as dúvidas e levar para a aula", "Comparar suas respostas com as dos colegas"],
+        }
+      : subject.id === "hist"
       ? {
           oque: ["Democracia: ampliação da participação política", "Brasil: um passado escravagista", "Direito da Pessoa com Deficiência"],
           como: ["Definir uma rotina diária de estudos para a prova", "Ler os textos enviados", "Fazer resumos", "Tirar dúvidas com os professores"],
