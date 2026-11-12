@@ -948,3 +948,42 @@ body { background: #fbf8f2; }
   .k-quiz-fig { margin-left: 0; }
   .k-lang-band { font-size: 16px; }
 }
+
+/* ------------------------------------ Math: Resumo PDF ------------------------------------ */
+.k-resumo-wrap { display: grid; gap: 4px; }
+.k-resumo { display: grid; gap: 12px; }
+.k-resumo-q { display: flex; gap: 12px; align-items: flex-start; }
+.k-resumo-enunciado { flex: 1; min-width: 0; font-size: 16.5px; font-weight: 700; }
+.k-resumo-enunciado p { margin: 0 0 6px !important; }
+.k-resumo-inline { display: inline-block; margin-right: 18px; }
+.k-resumo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr)); gap: 6px 14px; }
+.k-resumo-fig { min-width: 0; }
+.k-resumo-bloco { border-radius: 14px; padding: 12px 14px; min-width: 0; font-size: 15.5px; }
+.k-resumo-bloco > div > *:last-child { margin-bottom: 0; }
+.k-resumo-label { display: block; font-size: 13px; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 6px; }
+.k-resumo-bloco.trad { background: #f2f8ff; }
+.k-resumo-bloco.trad .k-resumo-label { color: #22447a; }
+.k-resumo-bloco.res { background: #fff8e6; }
+.k-resumo-bloco.res .k-resumo-label { color: #94680a; }
+.k-resumo-gab { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.k-resumo-bloco.gab-pt { background: #e6f6ef; border: 2px solid #2aa26f; }
+.k-resumo-bloco.gab-pt .k-resumo-label { color: #145c3e; }
+.k-resumo-bloco.gab-en { background: #eef2ff; border: 2px solid #3d63c9; }
+.k-resumo-bloco.gab-en .k-resumo-label { color: #2a4597; }
+.k-resumo-en { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.k-resumo-en li { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; font-weight: 700; background: #fff; border-radius: 10px; padding: 6px 8px; }
+.k-resumo-en li span { min-width: 0; overflow-wrap: anywhere; }
+.k-resumo-item { display: grid; gap: 6px; margin-bottom: 10px; }
+.k-resumo-item .k-pizzas { justify-content: flex-start; }
+.k-resumo-bag { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.k-resumo-legend { display: grid; gap: 4px; font-weight: 800; }
+.k-resumo-legend span { display: flex; align-items: center; gap: 6px; }
+.k-resumo-legend i { width: 14px; height: 14px; border-radius: 50%; display: inline-block; }
+@media (max-width: 760px) {
+  .k-resumo-gab { grid-template-columns: 1fr; }
+  .k-resumo-enunciado { font-size: 15.5px; }
+}
+.k-resumo-table th, .k-resumo-table td { padding: 6px 8px; text-align: center; white-space: normal !important; }
+.k-resumo-table th small { text-transform: none; letter-spacing: 0; }
+.k-resumo-table { width: 100%; table-layout: fixed; }
+.k-resumo-table th { overflow-wrap: normal; word-break: normal; font-size: 12.5px; text-transform: none; letter-spacing: 0; padding: 6px 2px; }
