@@ -7,6 +7,7 @@ import { AreaDecimal, AreaUnits, CompareShapes, FiguraNaMalha, FormigaPerimetro,
 import { AgrupeFatores, ConstrutorFib, FatorQueFalta, FindTheMistake, MatchProducts, OrderFib, ProximoFib, ZeroPattern, quizFibEN, quizFibPT, quizMultEN, quizMultPT } from "../mat/padroes";
 import { BuildSpinner, MonteOSaco, PredictAndDraw, RoletaChances, quizProbEN, quizProbPT } from "../mat/probabilidade";
 import { ProvaMath } from "../mat/prova";
+import { ResumoPDF } from "../mat/resumo";
 
 const MAT = "#d9661f";
 
@@ -338,6 +339,18 @@ const topicos: Topic[] = [
     summary: "As mesmas 9 questões da Review Activity do PDF, com valores diferentes a cada vez que a página carrega. Resolva, digite e confira.",
     narration: "Esta é a lista igual à prova: as nove questões da atividade de revisão de Math, com números novos a cada vez. Resolva no caderno, digite as respostas e confira. Se errar, veja a resolução e gere uma nova prova para treinar de novo.",
     body: () => <ProvaMath />,
+  },
+
+  /* ------------------------------------------------------------------ */
+  {
+    id: "resumo-pdf",
+    subject: "mat",
+    emoji: "📄",
+    title: "Resumo PDF · questões resolvidas",
+    subtitle: "Enunciado, tradução, resolução e gabarito",
+    summary: "As 9 questões da Review Activity resolvidas: enunciado em inglês, tradução, resolução passo a passo e gabarito em português e em inglês (como escrever na prova).",
+    narration: "Este é o resumo do PDF de Math. Para cada uma das nove questões da atividade de revisão, você vê o enunciado em inglês, a tradução, a resolução passo a passo e o gabarito, em português e em inglês, do jeito que a professora espera na prova. Os números mudam a cada vez, mas a estrutura é sempre a mesma.",
+    body: () => <ResumoPDF />,
   },
 ];
 
