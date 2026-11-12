@@ -7,6 +7,7 @@ import { geografia } from "./content/geografia";
 import { ela } from "./content/ela";
 import { historia } from "./content/historia";
 import { ciencias } from "./content/ciencias";
+import { matematica } from "./content/matematica";
 import { Quiz } from "./ui";
 import { load, save } from "./storage";
 
@@ -51,11 +52,21 @@ const subjects: Record<SubjectId, Subject> = {
     ink: "#0a6577",
     intro: "Máquinas simples (alavanca, roda e eixo, polia) e o tempo (Sol, nuvens, previsão e tempo severo): em português e em inglês, com simuladores e jogos.",
   },
+  mat: {
+    id: "mat",
+    name: "Math (Matemática)",
+    emoji: "➗",
+    unit: "U8 Fractions & decimals · U9 Perimeter & area · U10 Patterns · U11 Probability",
+    color: "#d9661f",
+    soft: "#fdeee2",
+    ink: "#9a4410",
+    intro: "Frações e decimais, perímetro e área, padrões na multiplicação, Fibonacci e probabilidade: em português e em inglês, com atividades interativas e números novos a cada vez.",
+  },
 };
 
-const topics: Topic[] = [...geografia, ...ela, ...historia, ...ciencias];
-const ordem: SubjectId[] = ["geo", "ela", "hist", "sci"];
-const nomeCurto = (id: SubjectId) => (id === "ela" ? "E.L.A." : id === "sci" ? "Ciências" : subjects[id].name);
+const topics: Topic[] = [...geografia, ...ela, ...historia, ...ciencias, ...matematica];
+const ordem: SubjectId[] = ["geo", "ela", "hist", "sci", "mat"];
+const nomeCurto = (id: SubjectId) => (id === "ela" ? "E.L.A." : id === "sci" ? "Ciências" : id === "mat" ? "Math" : subjects[id].name);
 const bySubject = (id: SubjectId) => topics.filter((t) => t.subject === id);
 
 type Route = { subject: SubjectId | null; topicId: string | null };
@@ -161,13 +172,14 @@ function Welcome({ done }: { done: string[] }) {
           <span className="k-eyebrow">Olá, estudante! 👋</span>
           <h1>Vamos estudar juntos para as provas?</h1>
           <p>
-            Aqui você encontra <b>todos os assuntos</b> de <b>Geografia</b>, <b>E.L.A.</b>, <b>História</b> e <b>Ciências</b> explicados de um jeito fácil, com exemplos, curiosidades, áudio e exercícios para treinar.
+            Aqui você encontra <b>todos os assuntos</b> de <b>Geografia</b>, <b>E.L.A.</b>, <b>História</b>, <b>Ciências</b> e <b>Math</b> explicados de um jeito fácil, com exemplos, curiosidades, áudio e exercícios para treinar.
           </p>
           <div className="k-hero-actions">
             <button className="k-btn big" onClick={() => go("geo", geografia[0].id)}>🌎 Começar por Geografia</button>
             <button className="k-btn big alt" onClick={() => go("ela", ela[0].id)}>🇬🇧 Começar por E.L.A.</button>
             <button className="k-btn big hist" onClick={() => go("hist", historia[0].id)}>🏛️ Começar por História</button>
             <button className="k-btn big sci" onClick={() => go("sci", ciencias[0].id)}>🔬 Começar por Ciências</button>
+            <button className="k-btn big mat" onClick={() => go("mat", matematica[0].id)}>➗ Começar por Math</button>
           </div>
         </div>
         <div className="k-hero-art" aria-hidden="true">
@@ -262,7 +274,12 @@ function Sidebar({ subject, activeId, done }: { subject: Subject; activeId: stri
 function SubjectHome({ subject, done }: { subject: Subject; done: string[] }) {
   const list = bySubject(subject.id);
   const roteiro =
-    subject.id === "sci"
+    subject.id === "mat"
+      ? {
+          oque: ["U8 — Frações e números mistos; frações e decimais (denominadores 10 e 100)", "U9 — Perímetro e área na malha; perímetro de polígonos; área do retângulo", "U10 — Padrões na multiplicação; sequência de Fibonacci", "U11 — Probabilidade: a chance dos eventos"],
+          como: ["Ler o Student Book e o Math Workbook e fazer resumos curtos de cada aula", "Fazer todas as lições de casa", "Comparar suas respostas com as dos colegas ou com trabalhos anteriores"],
+        }
+      : subject.id === "sci"
       ? {
           oque: ["U3 — Simple Machines: máquinas simples, alavanca, roda e eixo e polia", "U4 — Weather: energia do Sol, nuvens, previsão do tempo e tempo severo"],
           como: ["Ler o Student Book e fazer resumos curtos de cada aula", "Revisar as Cornell Notes feitas em sala", "Sublinhar as partes importantes do texto", "Anotar as dúvidas e levar para a aula", "Comparar suas respostas com as dos colegas"],
