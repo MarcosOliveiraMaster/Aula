@@ -224,6 +224,7 @@ export default defineConfig({
       input: {
         main: path.resolve(import.meta.dirname, "client", "index.html"),
         estudos5: path.resolve(import.meta.dirname, "client", "5ano", "index.html"),
+        geo2: path.resolve(import.meta.dirname, "client", "geo2", "index.html"),
       },
     },
   },
