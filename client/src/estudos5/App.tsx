@@ -151,6 +151,12 @@ function Header({ route }: { route: Route }) {
           </span>
         </button>
         <nav className="k-subject-tabs" aria-label="Matérias">
+          {somenteUma && (
+            <a className="k-home-link" href="../" title="Voltar para a página inicial">
+              <Home size={16} />
+              <span className="k-tab-label">Início</span>
+            </a>
+          )}
           {!somenteUma && (
             <button className={!route.subject ? "on" : ""} onClick={() => go(null)} aria-label="Início">
               <Home size={16} />

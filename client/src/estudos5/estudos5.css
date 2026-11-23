@@ -987,3 +987,7 @@ body { background: #fbf8f2; }
 .k-resumo-table th small { text-transform: none; letter-spacing: 0; }
 .k-resumo-table { width: 100%; table-layout: fixed; }
 .k-resumo-table th { overflow-wrap: normal; word-break: normal; font-size: 12.5px; text-transform: none; letter-spacing: 0; padding: 6px 2px; }
+
+/* link para a página inicial do site (quando só uma matéria aparece) */
+.k-home-link { display: flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 999px; font-weight: 800; font-size: 14px; color: #55534e; text-decoration: none; }
+.k-home-link:hover { background: rgba(255,255,255,.6); }
