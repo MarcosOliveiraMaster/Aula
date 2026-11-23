@@ -991,3 +991,10 @@ body { background: #fbf8f2; }
 /* link para a página inicial do site (quando só uma matéria aparece) */
 .k-home-link { display: flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 999px; font-weight: 800; font-size: 14px; color: #55534e; text-decoration: none; }
 .k-home-link:hover { background: rgba(255,255,255,.6); }
+
+/* memória com textos longos (definições) */
+.k-memory.longo .k-mcard { aspect-ratio: auto; height: 168px; }
+.k-memory.longo .k-mcard-face.front { font-size: 12.5px; font-weight: 700; line-height: 1.3; padding: 8px; overflow: auto; }
+.k-memory.longo .k-mcard-face.front.en { background: #fdf3e3; font-size: 14.5px; font-weight: 900; }
+@media (max-width: 720px) { .k-memory.longo { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 480px) { .k-memory.longo { grid-template-columns: repeat(2, minmax(0, 1fr)); } .k-memory.longo .k-mcard { height: 150px; } }

@@ -18,7 +18,8 @@ function embaralhar<T>(lista: T[]): T[] {
 type Carta = { id: number; par: number; texto: string; ingles: boolean };
 
 /** pares: [inglês, português] */
-export function JogoMemoria({ pares, titulo }: { pares: Array<[string, string]>; titulo?: string }) {
+/** Opções (padrão = memória inglês ↔ português da seção Ciências): rótulos das cartas, falar em inglês, cartas altas para textos longos e texto de ajuda. */
+export function JogoMemoria({ pares, titulo, rotulos = ["🇬🇧", "🇧🇷"], falar = true, longo = false, ajuda }: { pares: Array<[string, string]>; titulo?: string; rotulos?: [string, string]; falar?: boolean; longo?: boolean; ajuda?: string }) {
   const novoBaralho = useCallback(
     () => embaralhar(pares.flatMap(([en, pt], i) => [{ id: i * 2, par: i, texto: en, ingles: true }, { id: i * 2 + 1, par: i, texto: pt, ingles: false }] as Carta[])),
     [pares],
@@ -32,7 +33,7 @@ export function JogoMemoria({ pares, titulo }: { pares: Array<[string, string]>;
   const virar = (idx: number) => {
     const c = cartas[idx];
     if (abertas.length === 2 || abertas.includes(idx) || achados.includes(c.par)) return;
-    if (som && c.ingles) sayEnglish(c.texto);
+    if (falar && som && c.ingles) sayEnglish(c.texto);
     const novas = [...abertas, idx];
     setAbertas(novas);
     if (novas.length === 2) {
@@ -54,8 +55,8 @@ export function JogoMemoria({ pares, titulo }: { pares: Array<[string, string]>;
         <b>🃏 {titulo ?? "Jogo da memória"}</b>
         <span>Pares: {achados.length}/{pares.length} · Jogadas: {jogadas}</span>
       </div>
-      <p className="k-vis-help">Encontre os pares: a palavra em <b>inglês</b> e a tradução em <b>português</b>.</p>
-      <div className="k-memory" style={{ "--n": Math.min(6, Math.ceil(Math.sqrt(pares.length * 2))) } as React.CSSProperties}>
+      <p className="k-vis-help">{ajuda ?? <>Encontre os pares: a palavra em <b>inglês</b> e a tradução em <b>português</b>.</>}</p>
+      <div className={`k-memory ${longo ? "longo" : ""}`} style={{ "--n": Math.min(6, Math.ceil(Math.sqrt(pares.length * 2))) } as React.CSSProperties}>
         {cartas.map((c, i) => {
           const aberta = abertas.includes(i) || achados.includes(c.par);
           return (
@@ -63,8 +64,8 @@ export function JogoMemoria({ pares, titulo }: { pares: Array<[string, string]>;
               <motion.div className="k-mcard-inner" animate={{ rotateY: aberta ? 180 : 0 }} transition={{ duration: 0.35 }}>
                 <div className="k-mcard-face back">?</div>
                 <div className={`k-mcard-face front ${c.ingles ? "en" : "pt"}`}>
-                  <small>{c.ingles ? "🇬🇧" : "🇧🇷"}</small>
-                  <span lang={c.ingles ? "en" : "pt"}>{c.texto}</span>
+                  <small>{c.ingles ? rotulos[0] : rotulos[1]}</small>
+                  <span lang={falar && c.ingles ? "en" : "pt"}>{c.texto}</span>
                 </div>
               </motion.div>
             </button>
@@ -73,7 +74,7 @@ export function JogoMemoria({ pares, titulo }: { pares: Array<[string, string]>;
       </div>
       <div className="k-actions">
         <button className="k-btn ghost" onClick={recomecar}><RotateCcw size={15} /> Embaralhar de novo</button>
-        <button className="k-btn ghost" onClick={() => setSom(!som)} aria-pressed={som}>{som ? <Volume2 size={15} /> : <VolumeX size={15} />} {som ? "Falando em inglês" : "Sem som"}</button>
+        {falar && <button className="k-btn ghost" onClick={() => setSom(!som)} aria-pressed={som}>{som ? <Volume2 size={15} /> : <VolumeX size={15} />} {som ? "Falando em inglês" : "Sem som"}</button>}
         {venceu && <span className="k-score">🎉 Você achou todos os pares em {jogadas} jogadas!</span>}
       </div>
     </figure>
@@ -84,7 +85,8 @@ export function JogoMemoria({ pares, titulo }: { pares: Array<[string, string]>;
 
 const LETRAS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
-export function Forca({ palavras, titulo }: { palavras: Array<{ palavra: string; dica: string; pt: string }>; titulo?: string }) {
+/** falar = pronunciar a palavra em inglês ao acertar (padrão da seção Ciências). */
+export function Forca({ palavras, titulo, falar = true }: { palavras: Array<{ palavra: string; dica: string; pt: string }>; titulo?: string; falar?: boolean }) {
   const [ordem, setOrdem] = useState(() => embaralhar(palavras.map((_, i) => i)));
   const [pos, setPos] = useState(0);
   const [chutes, setChutes] = useState<string[]>([]);
@@ -97,7 +99,7 @@ export function Forca({ palavras, titulo }: { palavras: Array<{ palavra: string;
   const perdeu = erros >= MAX;
   const fim = ganhou || perdeu;
 
-  useEffect(() => { if (ganhou) { setPontos((p) => p + 1); sayEnglish(atual.palavra); } }, [ganhou]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { if (ganhou) { setPontos((p) => p + 1); if (falar) sayEnglish(atual.palavra); } }, [ganhou]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const chutar = (l: string) => { if (!fim && !chutes.includes(l)) setChutes([...chutes, l]); };
   const proxima = () => {
@@ -124,7 +126,7 @@ export function Forca({ palavras, titulo }: { palavras: Array<{ palavra: string;
         </svg>
         <div className="k-hang-main">
           <p className="k-hang-hint">💡 Dica: <b>{atual.dica}</b></p>
-          <div className="k-hang-word" lang="en" aria-live="polite">
+          <div className="k-hang-word" lang={falar ? "en" : "pt"} aria-live="polite">
             {alvo.split("").map((l, i) => (
               <span key={i} className={l === " " ? "space" : ""}>{/[A-Z]/.test(l) ? (chutes.includes(l) || perdeu ? l : "") : l}</span>
             ))}
@@ -140,9 +142,9 @@ export function Forca({ palavras, titulo }: { palavras: Array<{ palavra: string;
         </div>
       ) : (
         <div className={`k-hang-result ${ganhou ? "win" : "lose"}`}>
-          <p>{ganhou ? "🎉 Acertou!" : "😅 Não foi dessa vez."} A palavra é <b lang="en">{atual.palavra}</b> = {atual.pt}.</p>
+          <p>{ganhou ? "🎉 Acertou!" : "😅 Não foi dessa vez."} {falar ? <>A palavra é <b lang="en">{atual.palavra}</b> = {atual.pt}.</> : <>A resposta é <b>{atual.palavra}</b>: {atual.pt}</>}</p>
           <div className="k-actions">
-            <button className="k-btn ghost" onClick={() => sayEnglish(atual.palavra)}><Volume2 size={15} /> Ouvir</button>
+            {falar && <button className="k-btn ghost" onClick={() => sayEnglish(atual.palavra)}><Volume2 size={15} /> Ouvir</button>}
             <button className="k-btn" onClick={proxima}>Próxima palavra ➜</button>
           </div>
         </div>

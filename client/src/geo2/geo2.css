@@ -1,0 +1,13 @@
+.g2 .k-brand-mark { background: #2f5d8a; font-size: 15px; }
+.g2-simples { background: #eaf1f8; border: 2px solid #b9cfe4; border-radius: 16px; padding: 16px 18px; margin-bottom: 14px; }
+.g2-simples-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 6px; color: #1d3f61; }
+.g2-simples p { margin: 0; font-size: 16px; line-height: 1.6; }
+.g2-faixa { display: inline-block; background: #2f5d8a; color: #fff; font-weight: 900; font-size: 14px; padding: 6px 14px; border-radius: 99px; margin: 4px 0 12px; }
+.g2-fonte { font-size: 13.5px; color: #5c6b7a; margin: 0 0 10px; }
+.g2-table td, .g2-table th { font-size: 14.5px; }
+.g2-table { min-width: 560px; }
+.g2 .k-topic-card small { display: block; font-size: 13.5px; color: #5c6b7a; font-weight: 600; line-height: 1.4; margin-top: 4px; }
+@media (max-width: 560px) {
+  .g2-simples { padding: 14px; }
+  .g2-simples p { font-size: 15px; }
+}

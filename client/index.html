@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
     <style>
-      :root { --bg: #fbf8f2; --text: #24262b; --muted: #6b6a66; --line: #ece4d8; --hist: #b5532a; --hist-soft: #fbebe2; --geo: #1a7fb5; --geo-soft: #e3f2fb; }
+      :root { --bg: #fbf8f2; --text: #24262b; --muted: #6b6a66; --line: #ece4d8; --hist: #b5532a; --hist-soft: #fbebe2; --geo: #1a7fb5; --geo-soft: #e3f2fb; --geo2: #2f5d8a; --geo2-soft: #eaf1f8; }
       * { box-sizing: border-box; }
       html, body { margin: 0; }
       body { min-height: 100vh; background: var(--bg); color: var(--text); font-family: "Nunito", system-ui, sans-serif; display: flex; flex-direction: column; }
@@ -19,20 +19,26 @@
       header .eyebrow { font-size: 13px; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
       h1 { margin: 0; font-family: "Fraunces", Georgia, serif; font-size: clamp(30px, 5vw, 46px); line-height: 1.1; letter-spacing: -.02em; text-wrap: balance; }
       header p { margin: 0; font-size: 18px; color: var(--muted); }
-      .choices { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+      .choices { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+      @media (max-width: 900px) { .choices { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
       .choice { display: grid; gap: 12px; align-content: start; text-decoration: none; color: inherit; background: #fff; border: 2px solid var(--line); border-radius: 24px; padding: 26px; transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease; }
       .choice:hover, .choice:focus-visible { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(60, 45, 25, .12); outline: none; }
       .choice.hist { border-top: 8px solid var(--hist); }
       .choice.geo { border-top: 8px solid var(--geo); }
       .choice.hist:hover, .choice.hist:focus-visible { border-color: var(--hist); }
       .choice.geo:hover, .choice.geo:focus-visible { border-color: var(--geo); }
+      .choice.geo2 { border-top: 8px solid var(--geo2); }
+      .choice.geo2:hover, .choice.geo2:focus-visible { border-color: var(--geo2); }
+      .geo2 .icon { background: var(--geo2-soft); }
+      .geo2 .tag { color: var(--geo2); }
+      .geo2 .go { background: var(--geo2); }
       .icon { width: 72px; height: 72px; border-radius: 20px; display: grid; place-items: center; font-size: 40px; }
       .hist .icon { background: var(--hist-soft); }
       .geo .icon { background: var(--geo-soft); }
       .tag { font-size: 13px; font-weight: 900; letter-spacing: .06em; text-transform: uppercase; }
       .hist .tag { color: var(--hist); }
       .geo .tag { color: var(--geo); }
-      .choice h2 { margin: 0; font-size: 26px; font-weight: 900; line-height: 1.15; }
+      .choice h2 { margin: 0; font-size: 24px; font-weight: 900; line-height: 1.15; }
       .choice p { margin: 0; font-size: 16px; line-height: 1.5; color: #45443f; }
       .go { justify-self: start; margin-top: 6px; display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 999px; color: #fff; font-weight: 900; font-size: 16px; }
       .hist .go { background: var(--hist); }
@@ -68,6 +74,13 @@
           <h2>Trilha da Água</h2>
           <p>Hidrosfera e oceanos, ciclo da água e rios, água doce e sustentabilidade, hidrelétricas, hidrovias e bacias do Brasil.</p>
           <span class="go">Estudar Geografia ➜</span>
+        </a>
+        <a class="choice geo2" href="./geo2/">
+          <span class="icon" aria-hidden="true">🌐</span>
+          <span class="tag">Geografia 02 · Ensino Médio</span>
+          <h2>Nacionalismo e Conflitos Geopolíticos</h2>
+          <p>Origens e tipos de nacionalismo, o nacionalismo brasileiro (1870–1930), EUA × China, Rússia × Ucrânia e Oriente Médio.</p>
+          <span class="go">Estudar Geografia 02 ➜</span>
         </a>
       </nav>
     </main>
