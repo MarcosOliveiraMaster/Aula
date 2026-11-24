@@ -1,4 +1,4 @@
-import type { Afirmacao, Enigma, FatoDatado } from "../jogos-historia";
+import type { Afirmacao, Enigma, FatoDatado, Flashcard } from "../jogos-historia";
 
 // Dados dos jogos de História (Unidade 3). Tudo baseado no conteúdo dos assuntos.
 
@@ -101,3 +101,83 @@ export const palavrasForca = [
   { palavra: "Capacitismo", dica: "Preconceito contra pessoas com deficiência", pt: "precisa ser combatido, como o racismo." },
   { palavra: "Liberto", dica: "Pessoa que foi escravizada e conseguiu a liberdade", pt: "podia votar em 1824, mas não ser candidato." },
 ];
+
+// Flashcards: frente = pergunta ou palavra; verso = resposta curta.
+export const flashcardsHistoria: Record<string, Flashcard[]> = {
+  democracia: [
+    { emoji: "🗳️", frente: "O que é democracia?", verso: "Um jeito de organizar o governo em que o povo escolhe seus líderes." },
+    { emoji: "🏛️", frente: "O que significa a palavra “democracia”?", verso: "Poder do povo (do grego: demos = povo; kratos = poder)." },
+    { emoji: "⛔", frente: "O que é ditadura?", verso: "Uma pessoa ou um grupo pequeno manda sozinho, sem eleições livres." },
+    { emoji: "👑", frente: "O que é monarquia?", verso: "Governo de um rei ou de uma rainha. O poder passa de pai ou mãe para filho ou filha." },
+    { emoji: "✋", frente: "Democracia direta", verso: "Todas as pessoas votam em cada decisão." },
+    { emoji: "🙋", frente: "Democracia representativa", verso: "O povo escolhe representantes para decidir em seu nome. É a do Brasil!" },
+    { emoji: "🏙️", frente: "Quem governa a cidade?", verso: "O prefeito. Os vereadores fazem as leis da cidade." },
+    { emoji: "🗺️", frente: "Quem governa o estado?", verso: "O governador. Os deputados estaduais fazem as leis do estado." },
+    { emoji: "🇧🇷", frente: "Quem governa o país?", verso: "O presidente da República. Deputados federais e senadores fazem as leis do país." },
+    { emoji: "🎂", frente: "Com que idade os brasileiros podem votar?", verso: "A partir dos 16 anos." },
+    { emoji: "🔄", frente: "E se um representante não fizer um bom trabalho?", verso: "O povo pode escolher outra pessoa na eleição seguinte." },
+    { emoji: "🌈", frente: "Viver em democracia é…", verso: "Ter liberdade de expressão, votar e ser votado, respeitar as regras e conviver com as diferenças." },
+  ],
+  "participacao-politica": [
+    { emoji: "🏺", frente: "Onde surgiu a democracia?", verso: "Em Atenas, na Grécia Antiga, por volta do século VI a.C." },
+    { emoji: "🏛️", frente: "O que era a Ágora?", verso: "A praça pública de Atenas, com comércio, assembleias e tribunais." },
+    { emoji: "🧔", frente: "Quem era cidadão em Atenas?", verso: "Homens maiores de 18 anos, filhos de pai e mãe atenienses." },
+    { emoji: "🚫", frente: "Quem NÃO era cidadão em Atenas?", verso: "Mulheres, escravizados e estrangeiros." },
+    { emoji: "🇫🇷", frente: "Quando começou a Revolução Francesa?", verso: "Em 1789." },
+    { emoji: "⚔️", frente: "O que a Revolução Francesa derrubou?", verso: "A monarquia absolutista, em que o rei tinha poder absoluto." },
+    { emoji: "😠", frente: "Por que o povo francês se revoltou?", verso: "Os nobres tinham privilégios, enquanto camponeses e comerciantes viviam na pobreza." },
+    { emoji: "📝", frente: "Poder Legislativo", verso: "Faz as leis (deputados, senadores e vereadores)." },
+    { emoji: "🏢", frente: "Poder Executivo", verso: "Governa e coloca as leis em prática (prefeito, governador e presidente)." },
+    { emoji: "⚖️", frente: "Poder Judiciário", verso: "Julga se as leis estão sendo cumpridas (juízes e tribunais)." },
+    { emoji: "📜", frente: "O que é uma Constituição?", verso: "O conjunto das leis mais importantes de um país. Limita o poder dos governantes e garante direitos." },
+    { emoji: "🔒", frente: "O que é um direito inalienável?", verso: "Um direito fundamental que ninguém pode tirar, nem um governante." },
+    { emoji: "📄", frente: "Quem ficou de fora da Declaração dos Direitos do Homem e do Cidadão?", verso: "As mulheres e os povos das colônias, que continuaram explorados." },
+  ],
+  "brasil-colonia": [
+    { emoji: "⛵", frente: "O que aconteceu em 1500?", verso: "Os portugueses chegaram e transformaram o território em colônia de Portugal." },
+    { emoji: "📅", frente: "Quando foi o Período Colonial?", verso: "De 1500 a 1822 (Independência)." },
+    { emoji: "🗺️", frente: "O que é uma colônia?", verso: "Um território dominado e explorado por outro país." },
+    { emoji: "👑", frente: "No Brasil Colônia, as pessoas eram…", verso: "Súditas do rei de Portugal, não cidadãs." },
+    { emoji: "🩸", frente: "O que era a “pureza de sangue”?", verso: "Um critério discriminatório: só portugueses cristãos recebiam terras e cargos." },
+    { emoji: "✡️", frente: "Quem eram os cristãos-novos?", verso: "Judeus e muçulmanos convertidos ao cristianismo, excluídos dos privilégios." },
+    { emoji: "⛓️", frente: "Por quanto tempo a escravidão foi legal no Brasil?", verso: "Quase 400 anos, até 1888." },
+    { emoji: "🧱", frente: "O que é racismo estrutural?", verso: "Um preconceito racial enraizado na sociedade, que vem da escravidão." },
+    { emoji: "🛖", frente: "O que eram os quilombos?", verso: "Povoados de pessoas escravizadas que conseguiam fugir: refúgio e luta pela liberdade." },
+    { emoji: "✊🏿", frente: "Zumbi dos Palmares", verso: "Líder do Quilombo dos Palmares, na Serra da Barriga, em Alagoas." },
+    { emoji: "📆", frente: "20 de novembro", verso: "Dia da Consciência Negra, data da morte de Zumbi (1695)." },
+    { emoji: "📣", frente: "Conjuração Baiana (1798)", verso: "Em Salvador, negros e mestiços, livres e escravizados, lutaram pela República e pelo fim da escravidão." },
+    { emoji: "💬", frente: "Por que dizer “pessoa escravizada”?", verso: "Porque ninguém nasce escravo: a escravidão foi imposta à pessoa." },
+  ],
+  "brasil-imperio": [
+    { emoji: "🚢", frente: "Por que a família real veio para o Brasil em 1808?", verso: "Fugindo do exército de Napoleão, da França." },
+    { emoji: "↩️", frente: "O que aconteceu em 1821?", verso: "D. João VI voltou para Portugal e deixou seu filho, D. Pedro I, no Brasil." },
+    { emoji: "🇧🇷", frente: "7 de setembro de 1822", verso: "D. Pedro I proclama a Independência e vira imperador." },
+    { emoji: "👑", frente: "Monarquia constitucional", verso: "Tem rei ou imperador, mas também Congresso eleito e Constituição que garante direitos." },
+    { emoji: "📜", frente: "Constituição de 1824", verso: "A primeira do Brasil. Reconheceu cidadãos brasileiros, mas poucos podiam votar." },
+    { emoji: "🗳️", frente: "Quem podia votar em 1824?", verso: "Homens livres ou libertos, nascidos no Brasil, maiores de 25 anos, com renda acima de 100 mil réis." },
+    { emoji: "🚫", frente: "Quem ficava de fora do voto em 1824?", verso: "Mulheres, pessoas escravizadas, pobres e menores de 25 anos." },
+    { emoji: "✊", frente: "Revolta dos Malês (1835)", verso: "Maior revolta de escravizados do Brasil, em Salvador, feita por africanos muçulmanos." },
+    { emoji: "👶", frente: "Lei do Ventre Livre (1871)", verso: "Filhos de mulheres escravizadas nasceriam livres, mas ficavam sob controle dos senhores." },
+    { emoji: "👴", frente: "Lei do Sexagenário (1885)", verso: "Libertava escravizados com mais de 60 anos, mas poucos chegavam a essa idade." },
+    { emoji: "🕊️", frente: "Lei Áurea (1888)", verso: "Fim da escravidão. O Brasil foi o último país da América a abolir. Os libertos não receberam apoio." },
+    { emoji: "🏛️", frente: "O que aconteceu em 1889?", verso: "A Proclamação da República: fim do Império." },
+  ],
+  "pessoa-com-deficiencia": [
+    { emoji: "🏺", frente: "Egito Antigo", verso: "Pessoas com deficiência ocupavam vários cargos. O Papiro de Amenemope ensinava a não zombar delas." },
+    { emoji: "🛡️", frente: "Esparta e Roma", verso: "Sociedades voltadas para a guerra: crianças com deficiência eram rejeitadas. Uma crueldade!" },
+    { emoji: "⛪", frente: "Idade Média", verso: "Muitos achavam, erradamente, que a deficiência era um castigo divino." },
+    { emoji: "🎪", frente: "Século XIX", verso: "Pessoas com deficiência eram expostas em feiras como entretenimento: tratamento desumano." },
+    { emoji: "🕊️", frente: "Depois da 2ª Guerra Mundial (1945)", verso: "Muitos voltaram feridos, e a Europa passou a pensar em inclusão." },
+    { emoji: "🇺🇳", frente: "1971 e 1975 — ONU", verso: "Primeiras declarações sobre os direitos das pessoas com deficiência." },
+    { emoji: "🩺", frente: "Modelo biomédico", verso: "Vê a deficiência como doença da pessoa, que precisa se adaptar sozinha." },
+    { emoji: "🤝", frente: "Modelo social", verso: "As barreiras da sociedade é que precisam ser eliminadas." },
+    { emoji: "🏫", frente: "Declaração de Salamanca (1994)", verso: "Inclusão escolar: as escolas devem se adaptar aos alunos com deficiência." },
+    { emoji: "📘", frente: "Convenção de 2006", verso: "Adota o termo “pessoa com deficiência” e o modelo social." },
+    { emoji: "💬", frente: "Qual é o termo correto?", verso: "“Pessoa com deficiência”: a pessoa vem antes da deficiência." },
+    { emoji: "🚫", frente: "O que é capacitismo?", verso: "O preconceito contra pessoas com deficiência, como achar que são incapazes." },
+    { emoji: "♿", frente: "Exemplos de remover barreiras", verso: "Rampa, elevador, piso tátil e intérprete de Libras." },
+  ],
+};
+
+// Todos os cartões juntos, para a revisão geral.
+export const flashcardsTodos: Flashcard[] = Object.values(flashcardsHistoria).flat();

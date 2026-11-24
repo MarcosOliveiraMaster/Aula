@@ -358,3 +358,91 @@ export function SimuladoSorteado({ id, bancos, quantas = 10, accent }: { id: str
     </div>
   );
 }
+
+/* ==================================== 6. Flashcards ==================================== */
+
+export type Flashcard = { frente: string; verso: string; emoji?: string };
+
+/** Cartões de estudo: toque para virar. Marque "Já sei" ou "Rever". O que o estudante já sabe fica salvo no aparelho. */
+export function Flashcards({ id, cartoes, titulo }: { id: string; cartoes: Flashcard[]; titulo?: string }) {
+  const [sei, setSei] = useState<string[]>(() => load(`flash:${id}`, []));
+  const [soRever, setSoRever] = useState(false);
+  const [baralho, setBaralho] = useState<Flashcard[]>(cartoes);
+  const [pos, setPos] = useState(0);
+  const [virado, setVirado] = useState(false);
+
+  useEffect(() => save(`flash:${id}`, sei), [id, sei]);
+
+  const visiveis = soRever ? baralho.filter((c) => !sei.includes(c.frente)) : baralho;
+  const atual = visiveis[Math.min(pos, visiveis.length - 1)];
+  const total = cartoes.length;
+  const sabidos = cartoes.filter((c) => sei.includes(c.frente)).length;
+
+  const ir = (d: number) => { setVirado(false); setPos((p) => (visiveis.length ? (p + d + visiveis.length) % visiveis.length : 0)); };
+  const marcar = (sabe: boolean) => {
+    if (!atual) return;
+    const jaSabia = sei.includes(atual.frente);
+    setSei((l) => (sabe ? (l.includes(atual.frente) ? l : [...l, atual.frente]) : l.filter((x) => x !== atual.frente)));
+    setVirado(false);
+    // No modo "só rever", o cartão que sai da lista já abre espaço para o próximo.
+    if (soRever && sabe && !jaSabia) setPos((p) => (p >= visiveis.length - 1 ? 0 : p));
+    else setPos((p) => (visiveis.length ? (p + 1) % visiveis.length : 0));
+  };
+  const embaralharCartoes = () => { setBaralho(embaralhar(cartoes)); setPos(0); setVirado(false); };
+  const recomecar = () => { setSei([]); setSoRever(false); setBaralho(cartoes); setPos(0); setVirado(false); };
+
+  return (
+    <figure className="k-vis k-game" tabIndex={0} onKeyDown={(e) => {
+      if (e.key === " " || e.key === "Enter") { e.preventDefault(); setVirado((v) => !v); }
+      if (e.key === "ArrowRight") ir(1);
+      if (e.key === "ArrowLeft") ir(-1);
+    }}>
+      <div className="k-game-head">
+        <b>🗂️ {titulo ?? "Flashcards"}</b>
+        <span>✅ Já sei: {sabidos}/{total}</span>
+      </div>
+      <div className="k-progress-track"><i style={{ width: `${(sabidos / total) * 100}%` }} /></div>
+
+      {atual ? (
+        <>
+          <button className={`k-flash ${virado ? "virado" : ""}`} onClick={() => setVirado(!virado)} aria-label={virado ? `Resposta: ${atual.verso}` : `Pergunta: ${atual.frente}. Toque para ver a resposta.`}>
+            <motion.div className="k-flash-inner" animate={{ rotateY: virado ? 180 : 0 }} transition={{ duration: 0.4 }}>
+              <div className="k-flash-face frente">
+                <small>Cartão {Math.min(pos, visiveis.length - 1) + 1} de {visiveis.length}{sei.includes(atual.frente) ? " · ✅" : ""}</small>
+                {atual.emoji && <span className="k-flash-emoji" aria-hidden="true">{atual.emoji}</span>}
+                <b>{atual.frente}</b>
+                <em>Toque para virar 🔄</em>
+              </div>
+              <div className="k-flash-face verso">
+                <small>Resposta</small>
+                <p>{atual.verso}</p>
+              </div>
+            </motion.div>
+          </button>
+          <div className="k-flash-nav">
+            <button className="k-btn ghost" onClick={() => ir(-1)} aria-label="Cartão anterior">◀</button>
+            {virado ? (
+              <>
+                <button className="k-vf-btn f" onClick={() => marcar(false)}>🔁 Rever</button>
+                <button className="k-vf-btn v" onClick={() => marcar(true)}>✅ Já sei</button>
+              </>
+            ) : (
+              <button className="k-btn k-flash-virar" onClick={() => setVirado(true)}>🔄 Ver resposta</button>
+            )}
+            <button className="k-btn ghost" onClick={() => ir(1)} aria-label="Próximo cartão">▶</button>
+          </div>
+        </>
+      ) : (
+        <p className="k-feedback right"><strong>🌟 Parabéns!</strong> Você marcou todos os cartões como “Já sei”.</p>
+      )}
+
+      <div className="k-actions">
+        <button className="k-btn ghost" onClick={embaralharCartoes}><Shuffle size={15} /> Embaralhar</button>
+        <button className={`k-btn ghost ${soRever ? "on" : ""}`} aria-pressed={soRever} onClick={() => { setSoRever(!soRever); setPos(0); setVirado(false); }}>
+          {soRever ? "📚 Mostrar todos" : `🔁 Só os que faltam (${total - sabidos})`}
+        </button>
+        <button className="k-btn ghost" onClick={recomecar}><RotateCcw size={15} /> Recomeçar</button>
+      </div>
+    </figure>
+  );
+}

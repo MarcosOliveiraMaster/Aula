@@ -2,9 +2,9 @@ import type { Topic } from "../types";
 import { questoesHistoria } from "./questoes-historia";
 import { Callout, Card, CardGrid, Glossary, Section, Sorter } from "../ui";
 import { Cruzadinha, Forca, JogoMemoria, LigarPontos } from "../jogos";
-import { CacaPalavras, OrdemCronologica, QuemSouEu, SimuladoSorteado, VerdadeiroFalso } from "../jogos-historia";
+import { CacaPalavras, Flashcards, OrdemCronologica, QuemSouEu, SimuladoSorteado, VerdadeiroFalso } from "../jogos-historia";
 import cruzadinhaHistoria from "./cruzadinha-historia.json";
-import { afirmacoesHistoria, enigmasHistoria, fatosColonia, fatosHistoria, fatosImperio, palavrasCaca, palavrasForca } from "./jogos-historia-dados";
+import { afirmacoesHistoria, enigmasHistoria, flashcardsHistoria, flashcardsTodos, fatosColonia, fatosHistoria, fatosImperio, palavrasCaca, palavrasForca } from "./jogos-historia-dados";
 import { DiretaRepresentativa, LeisPapelPratica, LinhaHistoria, QuaseQuatrocentos, QuemElegemos, QuemGoverna, QuemPodiaVotar, RemoveBarreiras, TresPoderes, type Evento } from "../visuais-historia";
 
 const HIST = "#b5532a";
@@ -117,6 +117,12 @@ const topicos: Topic[] = [
           </Callout>
         </Section>
 
+        <Section emoji="🗂️" title="Flashcards" accent={HIST}
+          narration="Use os flashcards para memorizar. Leia a pergunta, tente responder de cabeça e toque no cartão para ver a resposta. Depois, marque se você já sabe ou se precisa rever.">
+          <p>Leia a frente, <b>tente responder de cabeça</b> e toque para virar. Marque <b>“Já sei”</b> ou <b>“Rever”</b>: depois você pode treinar só os que faltam.</p>
+          <Flashcards id="democracia" cartoes={flashcardsHistoria["democracia"]} />
+        </Section>
+
         <Section emoji="🎮" title="Jogue e revise">
           <JogoMemoria
             titulo="Memória da democracia"
@@ -221,6 +227,12 @@ const topicos: Topic[] = [
           <QuemPodiaVotar />
         </Section>
 
+        <Section emoji="🗂️" title="Flashcards" accent={HIST}
+          narration="Use os flashcards para memorizar. Leia a pergunta, tente responder de cabeça e toque no cartão para ver a resposta. Depois, marque se você já sabe ou se precisa rever.">
+          <p>Leia a frente, <b>tente responder de cabeça</b> e toque para virar. Marque <b>“Já sei”</b> ou <b>“Rever”</b>: depois você pode treinar só os que faltam.</p>
+          <Flashcards id="participacao-politica" cartoes={flashcardsHistoria["participacao-politica"]} />
+        </Section>
+
         <Section emoji="🎮" title="Jogue e revise">
           <LigarPontos
             titulo="Ligue cada palavra ao seu significado"
@@ -305,6 +317,12 @@ const topicos: Topic[] = [
           </Callout>
         </Section>
 
+        <Section emoji="🗂️" title="Flashcards" accent={HIST}
+          narration="Use os flashcards para memorizar. Leia a pergunta, tente responder de cabeça e toque no cartão para ver a resposta. Depois, marque se você já sabe ou se precisa rever.">
+          <p>Leia a frente, <b>tente responder de cabeça</b> e toque para virar. Marque <b>“Já sei”</b> ou <b>“Rever”</b>: depois você pode treinar só os que faltam.</p>
+          <Flashcards id="brasil-colonia" cartoes={flashcardsHistoria["brasil-colonia"]} />
+        </Section>
+
         <Section emoji="🎮" title="Jogue e revise">
           <OrdemCronologica titulo="Monte a linha do tempo do Brasil Colônia" fatos={fatosColonia} quantos={fatosColonia.length} />
           <Forca titulo="Forca da História" falar={false} palavras={palavrasForca.slice(0, 6)} />
@@ -387,6 +405,12 @@ const topicos: Topic[] = [
           <Callout kind="lembre" title="O Brasil foi o último!">
             O Brasil foi o <b>último país da América</b> a abolir a escravidão. E, sem apoio depois da Lei Áurea, muitas pessoas libertas foram morar em moradias improvisadas e morros. Isso se liga ao que estudamos em Geografia sobre a <b>cidade invisível</b>.
           </Callout>
+        </Section>
+
+        <Section emoji="🗂️" title="Flashcards" accent={HIST}
+          narration="Use os flashcards para memorizar. Leia a pergunta, tente responder de cabeça e toque no cartão para ver a resposta. Depois, marque se você já sabe ou se precisa rever.">
+          <p>Leia a frente, <b>tente responder de cabeça</b> e toque para virar. Marque <b>“Já sei”</b> ou <b>“Rever”</b>: depois você pode treinar só os que faltam.</p>
+          <Flashcards id="brasil-imperio" cartoes={flashcardsHistoria["brasil-imperio"]} />
         </Section>
 
         <Section emoji="🎮" title="Jogue e revise">
@@ -477,6 +501,12 @@ const topicos: Topic[] = [
           <Callout kind="dica" title="O que é capacitismo?">
             É o <b>preconceito contra pessoas com deficiência</b>, como achar que elas são incapazes. Assim como o racismo, precisa ser combatido.
           </Callout>
+        </Section>
+
+        <Section emoji="🗂️" title="Flashcards" accent={HIST}
+          narration="Use os flashcards para memorizar. Leia a pergunta, tente responder de cabeça e toque no cartão para ver a resposta. Depois, marque se você já sabe ou se precisa rever.">
+          <p>Leia a frente, <b>tente responder de cabeça</b> e toque para virar. Marque <b>“Já sei”</b> ou <b>“Rever”</b>: depois você pode treinar só os que faltam.</p>
+          <Flashcards id="pessoa-com-deficiencia" cartoes={flashcardsHistoria["pessoa-com-deficiencia"]} />
         </Section>
 
         <Section emoji="🎮" title="Jogue e revise">
@@ -589,6 +619,11 @@ const topicos: Topic[] = [
           <Callout kind="lembre" title="A ideia que liga tudo">
             Os direitos que temos hoje <b>não caíram do céu</b>: foram conquistados com <b>muita luta</b>, e a cada época mais pessoas passaram a participar. Ainda há barreiras a derrubar, e todos podemos ajudar.
           </Callout>
+        </Section>
+
+        <Section emoji="🗂️" title="Todos os flashcards" accent={HIST}>
+          <p>Os <b>{flashcardsTodos.length} cartões</b> de todos os assuntos juntos. Embaralhe e veja quanto você já sabe!</p>
+          <Flashcards id="todos-historia" cartoes={flashcardsTodos} titulo="Flashcards da Unidade 3" />
         </Section>
 
         <Section emoji="🎲" title="Simulado sorteado">
