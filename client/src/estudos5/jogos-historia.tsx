@@ -361,7 +361,7 @@ export function SimuladoSorteado({ id, bancos, quantas = 10, accent }: { id: str
 
 /* ==================================== 6. Flashcards ==================================== */
 
-export type Flashcard = { frente: string; verso: string; emoji?: string };
+export type Flashcard = { frente: string; verso: string; emoji?: string; saibaMais?: string };
 
 /** Cartões de estudo: toque para virar. Marque "Já sei" ou "Rever". O que o estudante já sabe fica salvo no aparelho. */
 export function Flashcards({ id, cartoes, titulo }: { id: string; cartoes: Flashcard[]; titulo?: string }) {
@@ -370,12 +370,16 @@ export function Flashcards({ id, cartoes, titulo }: { id: string; cartoes: Flash
   const [baralho, setBaralho] = useState<Flashcard[]>(cartoes);
   const [pos, setPos] = useState(0);
   const [virado, setVirado] = useState(false);
+  const [curiosidade, setCuriosidade] = useState(false);
 
   useEffect(() => save(`flash:${id}`, sei), [id, sei]);
 
   const visiveis = soRever ? baralho.filter((c) => !sei.includes(c.frente)) : baralho;
   const atual = visiveis[Math.min(pos, visiveis.length - 1)];
   const total = cartoes.length;
+
+  // Ao trocar de cartão, o "Saiba mais!" fecha de novo.
+  useEffect(() => setCuriosidade(false), [atual?.frente]);
   const sabidos = cartoes.filter((c) => sei.includes(c.frente)).length;
 
   const ir = (d: number) => { setVirado(false); setPos((p) => (visiveis.length ? (p + d + visiveis.length) % visiveis.length : 0)); };
@@ -431,6 +435,18 @@ export function Flashcards({ id, cartoes, titulo }: { id: string; cartoes: Flash
             )}
             <button className="k-btn ghost" onClick={() => ir(1)} aria-label="Próximo cartão">▶</button>
           </div>
+          {atual.saibaMais && (
+            <div className="k-saiba">
+              <button className="k-saiba-btn" onClick={() => setCuriosidade(!curiosidade)} aria-expanded={curiosidade}>
+                💡 {curiosidade ? "Fechar curiosidade" : "Saiba mais!"}
+              </button>
+              {curiosidade && (
+                <motion.p className="k-saiba-texto" initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }}>
+                  <b>Você sabia?</b> {atual.saibaMais}
+                </motion.p>
+              )}
+            </div>
+          )}
         </>
       ) : (
         <p className="k-feedback right"><strong>🌟 Parabéns!</strong> Você marcou todos os cartões como “Já sei”.</p>

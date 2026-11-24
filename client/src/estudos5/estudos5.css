@@ -1070,3 +1070,8 @@ body { background: #fbf8f2; }
   .k-flash-face.verso p { font-size: 16px; }
   .k-flash-nav .k-vf-btn { font-size: 15px; padding: 12px 6px; }
 }
+.k-saiba { display: grid; gap: 8px; justify-items: center; }
+.k-saiba-btn { background: #fff7d6; border: 2px solid #f2c94c; color: #7a5a00; font-weight: 900; font-size: 15px; border-radius: 999px; padding: 8px 18px; transition: transform 120ms; }
+.k-saiba-btn:hover { transform: translateY(-1px); }
+.k-saiba-texto { margin: 0 !important; width: 100%; background: #fffbea; border: 1.5px dashed #f2c94c; border-radius: 14px; padding: 12px 14px; font-size: 15.5px; line-height: 1.5; }
+.k-saiba-texto b { color: #7a5a00; }
