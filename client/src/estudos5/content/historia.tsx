@@ -1,6 +1,10 @@
 import type { Topic } from "../types";
 import { questoesHistoria } from "./questoes-historia";
 import { Callout, Card, CardGrid, Glossary, Section, Sorter } from "../ui";
+import { Cruzadinha, Forca, JogoMemoria, LigarPontos } from "../jogos";
+import { CacaPalavras, OrdemCronologica, QuemSouEu, SimuladoSorteado, VerdadeiroFalso } from "../jogos-historia";
+import cruzadinhaHistoria from "./cruzadinha-historia.json";
+import { afirmacoesHistoria, enigmasHistoria, fatosColonia, fatosHistoria, fatosImperio, palavrasCaca, palavrasForca } from "./jogos-historia-dados";
 import { DiretaRepresentativa, LeisPapelPratica, LinhaHistoria, QuaseQuatrocentos, QuemElegemos, QuemGoverna, QuemPodiaVotar, RemoveBarreiras, TresPoderes, type Evento } from "../visuais-historia";
 
 const HIST = "#b5532a";
@@ -113,6 +117,24 @@ const topicos: Topic[] = [
           </Callout>
         </Section>
 
+        <Section emoji="🎮" title="Jogue e revise">
+          <JogoMemoria
+            titulo="Memória da democracia"
+            falar={false}
+            longo
+            rotulos={["📘", "💬"]}
+            ajuda={<>Encontre os pares: a <b>palavra</b> e o seu <b>significado</b>.</>}
+            pares={[
+              ["Democracia", "O povo escolhe quem governa"],
+              ["Ditadura", "Uma pessoa ou grupo manda sem eleições"],
+              ["Monarquia", "Governo de um rei ou rainha"],
+              ["Democracia direta", "Todos votam em cada decisão"],
+              ["Democracia representativa", "O povo elege representantes"],
+              ["Prefeito", "Governa a cidade"],
+            ]}
+          />
+        </Section>
+
         <Section emoji="📖" title="Palavras importantes">
           <Glossary
             items={[
@@ -199,6 +221,15 @@ const topicos: Topic[] = [
           <QuemPodiaVotar />
         </Section>
 
+        <Section emoji="🎮" title="Jogue e revise">
+          <LigarPontos
+            titulo="Ligue cada palavra ao seu significado"
+            esquerda={["Legislativo", "Executivo", "Judiciário", "Ágora", "Constituição", "Monarquia absolutista"]}
+            direita={["O rei manda em tudo e não responde a ninguém", "Julga se as leis estão sendo cumpridas", "Faz as leis", "As leis mais importantes de um país", "Governa e põe as leis em prática", "Praça pública de Atenas"]}
+            certo={[2, 4, 1, 5, 3, 0]}
+          />
+        </Section>
+
         <Section emoji="📖" title="Glossário">
           <Glossary
             items={[
@@ -272,6 +303,11 @@ const topicos: Topic[] = [
           <Callout kind="sabia" title="20 de novembro">
             O <b>Dia da Consciência Negra</b> é comemorado em 20 de novembro, data da morte de <b>Zumbi dos Palmares</b>, em 1695. O Quilombo dos Palmares ficava na Serra da Barriga, em <b>Alagoas</b>, o nosso estado!
           </Callout>
+        </Section>
+
+        <Section emoji="🎮" title="Jogue e revise">
+          <OrdemCronologica titulo="Monte a linha do tempo do Brasil Colônia" fatos={fatosColonia} quantos={fatosColonia.length} />
+          <Forca titulo="Forca da História" falar={false} palavras={palavrasForca.slice(0, 6)} />
         </Section>
 
         <Section emoji="📖" title="Palavras importantes">
@@ -351,6 +387,10 @@ const topicos: Topic[] = [
           <Callout kind="lembre" title="O Brasil foi o último!">
             O Brasil foi o <b>último país da América</b> a abolir a escravidão. E, sem apoio depois da Lei Áurea, muitas pessoas libertas foram morar em moradias improvisadas e morros. Isso se liga ao que estudamos em Geografia sobre a <b>cidade invisível</b>.
           </Callout>
+        </Section>
+
+        <Section emoji="🎮" title="Jogue e revise">
+          <OrdemCronologica titulo="Do Império à abolição: coloque em ordem" fatos={fatosImperio} quantos={fatosImperio.length} />
         </Section>
 
         <Section emoji="📖" title="Palavras importantes">
@@ -439,6 +479,15 @@ const topicos: Topic[] = [
           </Callout>
         </Section>
 
+        <Section emoji="🎮" title="Jogue e revise">
+          <LigarPontos
+            titulo="Ligue cada ano ao seu marco"
+            esquerda={["1971", "1975", "1994", "2006"]}
+            direita={["Declaração de Salamanca: inclusão escolar", "Primeiro documento internacional da ONU sobre o tema", "Convenção: “pessoa com deficiência” e modelo social", "Declaração dos Direitos das Pessoas Portadoras de Deficiência"]}
+            certo={[1, 3, 0, 2]}
+          />
+        </Section>
+
         <Section emoji="📖" title="Glossário">
           <Glossary
             items={[
@@ -458,12 +507,71 @@ const topicos: Topic[] = [
 
   /* ------------------------------------------------------------------ */
   {
+    id: "jogos-historia",
+    subject: "hist",
+    emoji: "🎮",
+    title: "Jogos de História",
+    subtitle: "Revise a unidade brincando",
+    summary: "Linha do tempo, verdadeiro ou falso contra o relógio, quem sou eu, caça-palavras, cruzadinha, forca e memória: toda a Unidade 3 em jogos.",
+    narration:
+      "Hora de jogar! Nesta página, você revisa toda a Unidade 3 de História com jogos. Monte a linha do tempo colocando os acontecimentos em ordem, responda verdadeiro ou falso contra o relógio, descubra quem sou eu com as pistas, encontre as palavras no caça-palavras e complete a cruzadinha. Bons jogos!",
+    body: () => (
+      <>
+        <Section emoji="🕰️" title="Linha do tempo maluca" accent={HIST}
+          narration="Toque nos acontecimentos do mais antigo para o mais recente. A cada partida, novos acontecimentos são sorteados.">
+          <p>Os acontecimentos estão misturados! A cada partida, <b>6 deles</b> são sorteados entre todos os da unidade.</p>
+          <OrdemCronologica titulo="Linha do tempo maluca" fatos={fatosHistoria} quantos={6} />
+        </Section>
+
+        <Section emoji="⚡" title="Verdadeiro ou falso contra o relógio" accent={HIST}>
+          <VerdadeiroFalso id="historia" afirmacoes={afirmacoesHistoria} />
+        </Section>
+
+        <Section emoji="🕵️" title="Quem sou eu?" accent={HIST}>
+          <QuemSouEu enigmas={enigmasHistoria} />
+        </Section>
+
+        <Section emoji="🔎" title="Caça-palavras">
+          <CacaPalavras titulo="Caça-palavras da Unidade 3" palavras={palavrasCaca} />
+        </Section>
+
+        <Section emoji="✏️" title="Cruzadinha">
+          <Cruzadinha titulo="Cruzadinha de História" dados={cruzadinhaHistoria} ajuda={<>Escreva a palavra de cada dica <b>sem acentos</b>. Toque numa dica para ir até ela.</>} />
+        </Section>
+
+        <Section emoji="🪢" title="Forca">
+          <Forca titulo="Forca da História" falar={false} palavras={palavrasForca} />
+        </Section>
+
+        <Section emoji="🃏" title="Memória das datas">
+          <JogoMemoria
+            titulo="Memória das datas"
+            falar={false}
+            longo
+            rotulos={["📅", "📌"]}
+            ajuda={<>Encontre os pares: o <b>ano</b> e o <b>acontecimento</b>.</>}
+            pares={[
+              ["1500", "Chegada dos portugueses"],
+              ["1789", "Revolução Francesa"],
+              ["1822", "Independência do Brasil"],
+              ["1835", "Revolta dos Malês"],
+              ["1888", "Lei Áurea"],
+              ["2006", "Convenção da pessoa com deficiência"],
+            ]}
+          />
+        </Section>
+      </>
+    ),
+  },
+
+  /* ------------------------------------------------------------------ */
+  {
     id: "revisao-historia",
     subject: "hist",
     emoji: "🧭",
     title: "Revisão geral de História",
-    subtitle: "Mapa mental + simulado",
-    summary: "Toda a Unidade 3 de História resumida num mapa mental, com um simulado de 20 questões para treinar para a prova.",
+    subtitle: "Mapa mental + simulados",
+    summary: "Toda a Unidade 3 de História resumida num mapa mental, com 30 questões de revisão e um simulado sorteado que muda a cada vez.",
     narration:
       "Vamos revisar a Unidade 3 de História: ampliação da participação política e conquista de direitos. A democracia é o governo em que o povo escolhe seus líderes, e o Brasil é uma democracia representativa. A participação política foi aumentando ao longo da história: na Atenas antiga e na Revolução Francesa, muitas pessoas ficavam de fora. No Brasil, a escravidão durou quase 400 anos, e houve muita resistência, como os quilombos, a Conjuração Baiana e a Revolta dos Malês, até a Lei Áurea, em 1888. E as pessoas com deficiência conquistaram direitos com o modelo social, que diz que a sociedade deve tirar as barreiras. A ideia que liga tudo é que os direitos foram conquistados com muita luta, e que devemos continuar lutando para que ninguém fique de fora.",
     body: () => (
@@ -483,6 +591,11 @@ const topicos: Topic[] = [
           </Callout>
         </Section>
 
+        <Section emoji="🎲" title="Simulado sorteado">
+          <p>Quer treinar como se fosse a prova? Aqui as questões são <b>sorteadas</b> entre todos os assuntos. Terminou? Sorteie outro!</p>
+          <SimuladoSorteado id="simulado-historia" bancos={questoesHistoria} quantas={10} accent={HIST} />
+        </Section>
+
         <Section emoji="📅" title="Como estudar para a prova">
           <CardGrid min={180}>
             <Card emoji="⏰" title="Faça uma rotina">Estude um pouquinho todo dia, no mesmo horário.</Card>
@@ -496,5 +609,5 @@ const topicos: Topic[] = [
   },
 ];
 
-// No fim de cada assunto: 20 questões de revisão.
+// No fim de cada assunto: 30 questões de revisão.
 export const historia: Topic[] = topicos.map((topico) => ({ ...topico, quiz: questoesHistoria[topico.id] }));

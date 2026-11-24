@@ -236,7 +236,7 @@ function Welcome({ done }: { done: string[] }) {
         <div className="k-howto-grid">
           <div><b>1. Leia</b><span>Cada assunto tem explicações curtas, com exemplos do dia a dia.</span></div>
           <div><b>2. Ouça</b><span>Toque em <em>🔊 Ouvir</em> para escutar a explicação. Em E.L.A., toque nas palavras em inglês para ouvir a pronúncia.</span></div>
-          <div><b>3. Pratique</b><span>No fim de cada assunto há 20 questões de revisão, com a correção explicada.</span></div>
+          <div><b>3. Pratique</b><span>No fim de cada assunto há questões de revisão, com a correção explicada. Em História, há também uma página só de jogos!</span></div>
           <div><b>4. Marque</b><span>Quando terminar, marque “Já estudei” para acompanhar seu progresso.</span></div>
         </div>
       </section>
@@ -299,7 +299,7 @@ function SubjectHome({ subject, done }: { subject: Subject; done: string[] }) {
         }
       : subject.id === "hist"
       ? {
-          oque: ["Democracia: ampliação da participação política", "Brasil: um passado escravagista", "Direito da Pessoa com Deficiência"],
+          oque: ["Democracia: ampliação da participação política", "Brasil: um passado escravagista", "Direito da Pessoa com Deficiência", "Jogos de História e simulado sorteado para revisar"],
           como: ["Definir uma rotina diária de estudos para a prova", "Ler os textos enviados", "Fazer resumos", "Tirar dúvidas com os professores"],
         }
       : subject.id === "geo"

@@ -1,6 +1,6 @@
 import type { QuizQuestion } from "../types";
 
-// 20 questões de revisão por assunto de História.
+// 30 questões de revisão por assunto de História.
 
 const banco: Record<string, QuizQuestion[]> = {
   democracia: [
@@ -24,6 +24,16 @@ const banco: Record<string, QuizQuestion[]> = {
     { q: "Escolher o representante da turma por votação é um exemplo de:", options: ["monarquia", "ditadura", "escravidão", "democracia"], answer: 3, why: "Os alunos escolhem pelo voto: é democracia." },
     { q: "“O filho do rei herdou o trono.” Isso acontece em qual tipo de governo?", options: ["Democracia representativa", "Monarquia", "Democracia direta", "Eleição"], answer: 1, why: "Na monarquia, o poder passa de pai ou mãe para filho ou filha." },
     { q: "A partir de que idade os brasileiros podem votar?", options: ["10 anos", "16 anos", "30 anos", "50 anos"], answer: 1, why: "No Brasil, o voto é permitido a partir dos 16 anos." },
+    { q: "Quais são os três níveis de governo no Brasil?", options: ["Municipal, estadual e federal", "Rei, príncipe e duque", "Escola, casa e rua", "Norte, sul e centro"], answer: 0, why: "Município (cidade), estado e país (federal)." },
+    { q: "Quem faz as leis da cidade?", options: ["Os vereadores", "O presidente", "Os senadores", "O governador"], answer: 0, why: "Os vereadores formam a Câmara Municipal." },
+    { q: "O que é uma eleição?", options: ["Uma festa de aniversário", "O momento em que o povo vota para escolher seus representantes", "Um tipo de imposto", "Uma guerra"], answer: 1, why: "Na eleição, cada pessoa vota em quem quer que a represente." },
+    { q: "Por que o voto é secreto?", options: ["Para ninguém votar", "Para que cada pessoa vote livremente, sem ser pressionada", "Para esconder o resultado", "Porque é proibido votar"], answer: 1, why: "O voto secreto protege a liberdade de escolha." },
+    { q: "Qual destas atitudes NÃO combina com a democracia?", options: ["Votar", "Dar a opinião com respeito", "Proibir alguém de falar só porque pensa diferente", "Respeitar as leis"], answer: 2, why: "Na democracia há liberdade de expressão." },
+    { q: "Na turma, todos votam para decidir o passeio da escola. Isso parece:", options: ["Democracia direta", "Ditadura", "Monarquia", "Escravidão"], answer: 0, why: "Todos votam diretamente na decisão." },
+    { q: "Na turma, os alunos escolhem um representante para falar por eles. Isso parece:", options: ["Democracia direta", "Democracia representativa", "Monarquia", "Ditadura"], answer: 1, why: "Escolher alguém para nos representar é democracia representativa." },
+    { q: "O que significa “ser votado”?", options: ["Poder se candidatar e receber votos", "Não poder votar", "Ser obrigado a votar", "Ser o rei"], answer: 0, why: "Na democracia, podemos votar e também ser candidatos." },
+    { q: "Em uma ditadura, quem pensa diferente do governo:", options: ["é sempre ouvido", "pode ser perseguido ou punido", "vira presidente", "ganha um prêmio"], answer: 1, why: "Na ditadura não há liberdade de expressão." },
+    { q: "Qual é a palavra grega que significa “povo”?", options: ["Kratos", "Demos", "Ágora", "Polis"], answer: 1, why: "Demos = povo; kratos = poder." },
   ],
 
   "participacao-politica": [
@@ -47,6 +57,16 @@ const banco: Record<string, QuizQuestion[]> = {
     { q: "Quem ficou de fora dos direitos políticos na Declaração francesa?", options: ["As mulheres", "Os homens franceses", "Os revolucionários", "Os deputados"], answer: 0, why: "As mulheres continuaram sem direito ao voto." },
     { q: "Depois das declarações de liberdade, o que os países europeus continuaram fazendo com suas colônias?", options: ["Deram independência a todas", "Continuaram explorando e escravizando seus povos", "Pararam de comerciar", "Deram direito de voto a todos"], answer: 1, why: "Haiti, Índia, Congo, Egito e outros continuaram explorados." },
     { q: "O que significa “ampliação da participação política”?", options: ["Menos pessoas votando", "Cada vez mais pessoas conquistando o direito de participar da política", "Acabar com as eleições", "Só os reis participando"], answer: 1, why: "Ao longo da história, mais grupos conquistaram o direito de participar." },
+    { q: "Qual era a principal diferença entre a democracia de Atenas e a do Brasil de hoje?", options: ["Em Atenas, só uma pequena parte da população era cidadã", "Em Atenas, todos votavam", "No Brasil, só os homens votam", "Não há diferença"], answer: 0, why: "Mulheres, escravizados e estrangeiros ficavam de fora em Atenas." },
+    { q: "Na Ágora de Atenas aconteciam:", options: ["Só jogos de futebol", "Comércio, assembleias e tribunais", "Corridas de carro", "Aulas de inglês"], answer: 1, why: "Era o centro da vida da cidade." },
+    { q: "Qual poder GOVERNA e coloca as leis em prática?", options: ["Legislativo", "Judiciário", "Executivo", "Nenhum"], answer: 2, why: "O Executivo é formado por prefeitos, governadores e presidente." },
+    { q: "Prefeito, governador e presidente fazem parte de qual poder?", options: ["Judiciário", "Executivo", "Legislativo", "Real"], answer: 1, why: "Eles governam: são do poder Executivo." },
+    { q: "Deputados, senadores e vereadores fazem parte de qual poder?", options: ["Legislativo", "Executivo", "Judiciário", "Militar"], answer: 0, why: "Eles fazem as leis." },
+    { q: "Juízes e tribunais fazem parte de qual poder?", options: ["Executivo", "Legislativo", "Judiciário", "Real"], answer: 2, why: "O Judiciário julga se as leis são cumpridas." },
+    { q: "Antes da Revolução Francesa, quem tinha privilégios na França?", options: ["Os camponeses", "Os nobres", "Os comerciantes pobres", "Todos igualmente"], answer: 1, why: "Os nobres tinham privilégios enquanto muitos viviam na pobreza." },
+    { q: "A Declaração dos Direitos do Homem e do Cidadão se inspirava em quais ideias?", options: ["Liberdade e igualdade", "Escravidão e guerra", "Poder absoluto do rei", "Fim das leis"], answer: 0, why: "Ela defendia a liberdade e a igualdade." },
+    { q: "Por que dizemos que a Declaração francesa foi “incompleta”?", options: ["Porque tinha poucas páginas", "Porque mulheres e povos das colônias continuaram sem direitos", "Porque foi escrita em inglês", "Porque deu direitos demais"], answer: 1, why: "Muitos grupos ficaram de fora." },
+    { q: "Qual é a ordem certa?", options: ["Revolução Francesa → democracia em Atenas", "Democracia em Atenas → Revolução Francesa", "As duas aconteceram no mesmo ano", "Nenhuma aconteceu"], answer: 1, why: "Atenas foi no século VI a.C.; a Revolução Francesa, em 1789." },
   ],
 
   "brasil-colonia": [
@@ -70,6 +90,16 @@ const banco: Record<string, QuizQuestion[]> = {
     { q: "O que aconteceu com os movimentos de resistência no período colonial?", options: ["Foram duramente reprimidos e seus líderes perseguidos e mortos", "Ganharam prêmios", "Foram ignorados", "Viraram leis imediatamente"], answer: 0, why: "A repressão foi violenta." },
     { q: "Por que dizemos “pessoa escravizada” e não “escravo”?", options: ["Porque é mais curto", "Porque ninguém nasce escravo: a escravidão foi imposta à pessoa", "Porque é uma palavra em inglês", "Não há diferença"], answer: 1, why: "A expressão mostra que a escravidão foi uma violência imposta." },
     { q: "O Período Colonial terminou com:", options: ["a Lei Áurea", "a Revolução Francesa", "a Independência do Brasil, em 1822", "a chegada dos portugueses"], answer: 2, why: "Com a Independência, começa o Período Imperial." },
+    { q: "Quem liderou o Quilombo dos Palmares?", options: ["D. Pedro I", "Zumbi", "Napoleão", "D. João VI"], answer: 1, why: "Zumbi é símbolo da resistência negra." },
+    { q: "Na Serra da Barriga, em Alagoas, ficava:", options: ["o Quilombo dos Palmares", "a Ágora", "o palácio do rei", "a Bastilha"], answer: 0, why: "Palmares ficava na Serra da Barriga." },
+    { q: "Em que atividade muitos escravizados foram obrigados a trabalhar no início da colônia?", options: ["Nos engenhos de açúcar", "Em fábricas de celular", "Em aviões", "Em computadores"], answer: 0, why: "Os engenhos de açúcar usavam trabalho escravizado." },
+    { q: "Quem foi escravizado no Brasil?", options: ["Só portugueses", "Indígenas e milhões de africanos", "Só franceses", "Ninguém"], answer: 1, why: "Indígenas e, depois, milhões de africanos foram escravizados." },
+    { q: "Em que ano aconteceu a Conjuração Baiana?", options: ["1500", "1798", "1888", "2006"], answer: 1, why: "Ela aconteceu em 1798, em Salvador." },
+    { q: "O que era ser “súdito” do rei?", options: ["Ser obediente ao rei, sem direitos políticos", "Ser um deputado", "Ser eleito pelo povo", "Ser o dono do país"], answer: 0, why: "Súditos obedeciam ao rei e não escolhiam governantes." },
+    { q: "Por que o critério da “pureza de sangue” era injusto?", options: ["Porque era um sorteio", "Porque discriminava pessoas pela origem e pela religião", "Porque todos ganhavam terras", "Porque era escolhido por voto"], answer: 1, why: "Ele excluía cristãos-novos, negros e indígenas." },
+    { q: "Qual destas era uma forma de RESISTÊNCIA à escravidão?", options: ["Fugir e formar quilombos", "Comprar escravizados", "Aceitar tudo calado", "Viajar para Portugal"], answer: 0, why: "Fugas, quilombos e revoltas eram formas de resistência." },
+    { q: "O racismo estrutural tem origem:", options: ["na Revolução Francesa", "na escravidão, que durou quase 400 anos", "na Grécia Antiga", "na Convenção de 2006"], answer: 1, why: "A escravidão deixou marcas que ainda existem." },
+    { q: "Qual é a ordem certa?", options: ["Independência → chegada dos portugueses → Conjuração Baiana", "Chegada dos portugueses → Conjuração Baiana → Independência", "Conjuração Baiana → chegada dos portugueses → Independência", "Todas no mesmo ano"], answer: 1, why: "1500 → 1798 → 1822." },
   ],
 
   "brasil-imperio": [
@@ -93,6 +123,16 @@ const banco: Record<string, QuizQuestion[]> = {
     { q: "O que a Lei Áurea NÃO garantiu aos libertos?", options: ["A liberdade", "Terras, trabalho ou qualquer tipo de apoio", "O fim da escravidão", "O direito de não serem vendidos"], answer: 1, why: "Os libertos ficaram sem nenhum apoio." },
     { q: "O Brasil foi:", options: ["o primeiro país do mundo a abolir a escravidão", "o último país da América a abolir a escravidão", "um país que nunca teve escravidão", "o primeiro da América a abolir"], answer: 1, why: "O Brasil foi o último da América." },
     { q: "Qual é a ordem certa das leis?", options: ["Lei Áurea → Sexagenário → Ventre Livre", "Ventre Livre (1871) → Sexagenário (1885) → Lei Áurea (1888)", "Sexagenário → Lei Áurea → Ventre Livre", "Todas no mesmo ano"], answer: 1, why: "1871, 1885 e 1888." },
+    { q: "Em que ano D. João VI voltou para Portugal?", options: ["1808", "1821", "1888", "1500"], answer: 1, why: "Ele voltou em 1821 e deixou seu filho, D. Pedro I, no Brasil." },
+    { q: "Quem governou o Brasil depois da Independência?", options: ["Um presidente eleito", "D. Pedro I, como imperador", "Napoleão", "Zumbi"], answer: 1, why: "O Brasil virou um Império." },
+    { q: "O que aconteceu em 1889?", options: ["A Independência", "A Proclamação da República", "A Lei Áurea", "A chegada da família real"], answer: 1, why: "Em 1889 terminou o Império." },
+    { q: "Por que muitos libertos foram morar em moradias improvisadas e morros depois de 1888?", options: ["Porque quiseram", "Porque não receberam nenhum apoio, como terras ou trabalho", "Porque ganharam casas", "Porque foram para Portugal"], answer: 1, why: "Sem apoio, muitos ficaram sem ter onde morar." },
+    { q: "O que é abolição?", options: ["O fim da escravidão", "Uma revolta", "Um tipo de rei", "Uma eleição"], answer: 0, why: "A abolição aconteceu com a Lei Áurea." },
+    { q: "O que é um liberto?", options: ["Uma pessoa que nunca foi escravizada", "Uma pessoa que foi escravizada e conseguiu a liberdade", "Um rei", "Um deputado"], answer: 1, why: "Libertos podiam votar em 1824, mas não ser candidatos." },
+    { q: "Qual renda mínima era exigida para votar em 1824?", options: ["Nenhuma", "100 mil réis por ano", "1 real", "1 milhão de réis por dia"], answer: 1, why: "Por isso os pobres ficavam de fora." },
+    { q: "Em 1824, para ser candidato, além da renda, era preciso ser:", options: ["católico", "mulher", "menor de idade", "estrangeiro"], answer: 0, why: "Também era preciso ser homem livre e maior de 25 anos." },
+    { q: "O que as elites que lucravam com a escravidão queriam?", options: ["Acabar logo com ela", "Atrasar o fim da escravidão", "Dar terras aos libertos", "Dar voto às mulheres"], answer: 1, why: "Por isso o fim foi lento e gradual." },
+    { q: "O que aconteceu com os participantes da Revolta dos Malês?", options: ["Ganharam prêmios", "Foram duramente punidos, com mortes, prisões e açoites", "Viraram deputados", "Foram para a França"], answer: 1, why: "A revolta foi duramente reprimida." },
   ],
 
   "pessoa-com-deficiencia": [
@@ -116,6 +156,16 @@ const banco: Record<string, QuizQuestion[]> = {
     { q: "Qual destes é um exemplo de REMOVER uma barreira?", options: ["Construir só escadas", "Colocar rampa, elevador e intérprete de Libras", "Fazer piadas", "Fechar a porta"], answer: 1, why: "Acessibilidade permite que todos participem." },
     { q: "O que é capacitismo?", options: ["Uma capacidade especial", "O preconceito contra pessoas com deficiência", "Uma lei de 1888", "Um esporte"], answer: 1, why: "Como o racismo, o capacitismo precisa ser combatido." },
     { q: "O que é “casamento consanguíneo”?", options: ["Casamento entre parentes muito próximos", "Casamento na igreja", "Casamento entre reis de países diferentes", "Uma festa egípcia"], answer: 0, why: "No Egito Antigo era comum e aumentava a chance de deficiências congênitas." },
+    { q: "Por que é importante ter intérprete de Libras em eventos e escolas?", options: ["Para enfeitar", "Para que pessoas surdas possam entender e participar", "Porque é obrigatório falar alto", "Não é importante"], answer: 1, why: "É uma forma de remover barreiras de comunicação." },
+    { q: "Qual destes é um exemplo de barreira?", options: ["Rampa", "Elevador", "Uma escada sem rampa na entrada da escola", "Piso tátil"], answer: 2, why: "Uma escada sem rampa impede quem usa cadeira de rodas de entrar." },
+    { q: "O piso tátil ajuda principalmente:", options: ["pessoas com deficiência visual", "pessoas altas", "motoristas", "cachorros"], answer: 0, why: "O piso com relevo orienta quem usa bengala." },
+    { q: "Segundo o modelo social, quem deve se esforçar para incluir as pessoas com deficiência?", options: ["Só a pessoa com deficiência", "Toda a sociedade", "Só os médicos", "Ninguém"], answer: 1, why: "As barreiras são da sociedade." },
+    { q: "Em que ano foi a Convenção sobre os Direitos da Pessoa com Deficiência?", options: ["1500", "1888", "1971", "2006"], answer: 3, why: "Ela adotou o termo “pessoa com deficiência”." },
+    { q: "Em que ano foi a Declaração de Salamanca?", options: ["1994", "1789", "1822", "1945"], answer: 0, why: "Ela defende a inclusão escolar." },
+    { q: "Qual dessas atitudes é capacitismo?", options: ["Ajudar quando a pessoa pede", "Achar que uma pessoa com deficiência não pode aprender", "Conversar normalmente", "Usar o termo “pessoa com deficiência”"], answer: 1, why: "Capacitismo é achar que a pessoa é incapaz." },
+    { q: "Ser incluído na escola significa:", options: ["estudar numa sala separada, longe dos colegas", "aprender junto com todos, com as adaptações necessárias", "não ir à escola", "ficar só em casa"], answer: 1, why: "Inclusão é participar junto com todos." },
+    { q: "O que a Segunda Guerra Mundial tem a ver com os direitos das pessoas com deficiência?", options: ["Nada", "Muitas pessoas voltaram feridas, e a Europa passou a pensar em inclusão", "Ela acabou com a escravidão", "Ela criou a democracia"], answer: 1, why: "Depois de 1945, a inclusão ganhou força." },
+    { q: "Por que o modelo biomédico foi criticado?", options: ["Porque via a deficiência como um problema só da pessoa, que precisava se adaptar", "Porque defendia rampas", "Porque era muito novo", "Porque falava de democracia"], answer: 0, why: "O modelo social mostrou que as barreiras são o problema." },
   ],
 
   "revisao-historia": [
@@ -139,6 +189,16 @@ const banco: Record<string, QuizQuestion[]> = {
     { q: "O termo correto, segundo a Convenção de 2006, é:", options: ["portador de deficiência", "pessoa com deficiência", "pessoa com necessidades especiais", "inválido"], answer: 1, why: "A pessoa vem antes da deficiência." },
     { q: "A Declaração de Salamanca (1994) defende:", options: ["a inclusão escolar", "o fim das escolas", "a monarquia", "a escravidão"], answer: 0, why: "As escolas devem se adaptar aos alunos com deficiência." },
     { q: "Qual é a ideia que liga todos os assuntos da unidade?", options: ["Os direitos sempre existiram para todos", "Os direitos foram conquistados com muita luta, e cada vez mais pessoas passaram a participar", "Só os reis têm direitos", "Ninguém precisa lutar por direitos"], answer: 1, why: "A participação política e os direitos foram ampliados ao longo da história." },
+    { q: "Qual destes grupos podia votar em Atenas?", options: ["Mulheres", "Estrangeiros", "Homens adultos filhos de atenienses", "Escravizados"], answer: 2, why: "Só uma pequena parte da população era cidadã." },
+    { q: "Qual destes é um direito de quem vive em uma democracia?", options: ["Liberdade de expressão", "Ser escravizado", "Nunca votar", "Obedecer ao rei absolutista"], answer: 0, why: "Na democracia há liberdade de expressão." },
+    { q: "O que liga a Conjuração Baiana e a Revolta dos Malês?", options: ["As duas aconteceram em Salvador e lutaram contra a escravidão", "As duas foram na França", "As duas foram festas", "As duas criaram a ONU"], answer: 0, why: "Ambas foram movimentos de resistência na Bahia." },
+    { q: "Qual é a ordem certa?", options: ["Lei Áurea → Independência → Constituição de 1824", "Independência → Constituição de 1824 → Lei Áurea", "Constituição de 1824 → Lei Áurea → Independência", "Todas em 1888"], answer: 1, why: "1822 → 1824 → 1888." },
+    { q: "Quem proclamou a Independência do Brasil?", options: ["Zumbi", "D. Pedro I", "Napoleão", "D. João VI"], answer: 1, why: "Em 7 de setembro de 1822." },
+    { q: "Qual palavra completa a frase: “Os direitos foram ______ com muita luta”?", options: ["comprados", "conquistados", "esquecidos", "proibidos"], answer: 1, why: "Nenhum direito caiu do céu." },
+    { q: "Qual destes documentos é sobre pessoas com deficiência?", options: ["Lei Áurea", "Constituição de 1824", "Convenção de 2006", "Declaração dos Direitos do Homem e do Cidadão"], answer: 2, why: "A Convenção de 2006 adotou o modelo social." },
+    { q: "Qual poder faz as leis?", options: ["Legislativo", "Executivo", "Judiciário", "Nenhum"], answer: 0, why: "Deputados, senadores e vereadores fazem as leis." },
+    { q: "Mulheres, escravizados e pobres ficavam de fora do voto em:", options: ["Atenas e na Constituição de 1824", "Nenhum lugar", "Só na ONU", "Só na Convenção de 2006"], answer: 0, why: "Em vários momentos da história, muitos grupos ficaram de fora." },
+    { q: "O que é capacitismo?", options: ["Preconceito contra pessoas com deficiência", "Uma lei do Império", "Um tipo de governo", "Um quilombo"], answer: 0, why: "Assim como o racismo, precisa ser combatido." },
   ],
 };
 

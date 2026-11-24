@@ -19,7 +19,7 @@ type Carta = { id: number; par: number; texto: string; ingles: boolean };
 
 /** pares: [inglês, português] */
 /** Opções (padrão = memória inglês ↔ português da seção Ciências): rótulos das cartas, falar em inglês, cartas altas para textos longos e texto de ajuda. */
-export function JogoMemoria({ pares, titulo, rotulos = ["🇬🇧", "🇧🇷"], falar = true, longo = false, ajuda }: { pares: Array<[string, string]>; titulo?: string; rotulos?: [string, string]; falar?: boolean; longo?: boolean; ajuda?: string }) {
+export function JogoMemoria({ pares, titulo, rotulos = ["🇬🇧", "🇧🇷"], falar = true, longo = false, ajuda }: { pares: Array<[string, string]>; titulo?: string; rotulos?: [string, string]; falar?: boolean; longo?: boolean; ajuda?: React.ReactNode }) {
   const novoBaralho = useCallback(
     () => embaralhar(pares.flatMap(([en, pt], i) => [{ id: i * 2, par: i, texto: en, ingles: true }, { id: i * 2 + 1, par: i, texto: pt, ingles: false }] as Carta[])),
     [pares],
@@ -92,7 +92,8 @@ export function Forca({ palavras, titulo, falar = true }: { palavras: Array<{ pa
   const [chutes, setChutes] = useState<string[]>([]);
   const [pontos, setPontos] = useState(0);
   const atual = palavras[ordem[pos % ordem.length]];
-  const alvo = atual.palavra.toUpperCase();
+  // Sem acentos: "ÁGORA" vira "AGORA" para o teclado de A a Z.
+  const alvo = atual.palavra.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase();
   const erros = chutes.filter((l) => !alvo.includes(l)).length;
   const MAX = 6;
   const ganhou = alvo.split("").every((l) => !/[A-Z]/.test(l) || chutes.includes(l));
@@ -238,7 +239,7 @@ export function LigarPontos({ esquerda, direita, certo, titulo }: { esquerda: st
 
 type PalavraCruzada = { resposta: string; dica: string; linha: number; coluna: number; direcao: string };
 
-export function Cruzadinha({ dados, titulo }: { dados: { linhas: number; colunas: number; palavras: PalavraCruzada[] }; titulo?: string }) {
+export function Cruzadinha({ dados, titulo, ajuda }: { dados: { linhas: number; colunas: number; palavras: PalavraCruzada[] }; titulo?: string; ajuda?: React.ReactNode }) {
   const { linhas, colunas, palavras } = dados;
   const mapa = useMemo(() => {
     const m = new Map<string, { letra: string; num?: number; palavras: number[] }>();
@@ -295,7 +296,7 @@ export function Cruzadinha({ dados, titulo }: { dados: { linhas: number; colunas
         <b>✏️ {titulo ?? "Palavras cruzadas"}</b>
         <span>{completas}/{palavras.length} palavras</span>
       </div>
-      <p className="k-vis-help">Escreva em <b>inglês</b> a palavra de cada dica. Toque numa dica para ir até ela.</p>
+      <p className="k-vis-help">{ajuda ?? <>Escreva em <b>inglês</b> a palavra de cada dica. Toque numa dica para ir até ela.</>}</p>
       <div className="k-cross-wrap">
         <div className="k-cross" style={{ gridTemplateColumns: `repeat(${colunas}, 1fr)`, "--cols": colunas } as React.CSSProperties}>
           {Array.from({ length: linhas * colunas }, (_, idx) => {
